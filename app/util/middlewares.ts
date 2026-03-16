@@ -20,11 +20,11 @@ const USER_REJECTED_ERROR_CODE = 4001;
  * @param {{ origin: string }} opts - The middleware options
  * @returns {Function}
  */
-export function createOriginMiddleware(opts) {
+export function createOriginMiddleware(opts: { origin: string }) {
   return function originMiddleware(
-    /** @type {any} */ req,
-    /** @type {any} */ _,
-    /** @type {Function} */ next,
+    req: Record<string, unknown>,
+    _: unknown,
+    next: () => void,
   ) {
     req.origin = opts.origin;
 
@@ -43,7 +43,7 @@ export function createOriginMiddleware(opts) {
  * @param {String} errorMessage
  * @returns {boolean}
  */
-export function containsUserRejectedError(errorMessage, errorCode) {
+export function containsUserRejectedError(errorMessage: string, errorCode?: number): boolean {
   try {
     if (!errorMessage || !(typeof errorMessage === 'string')) return false;
 
@@ -67,13 +67,13 @@ export function containsUserRejectedError(errorMessage, errorCode) {
  * @param {{ origin: string }} opts - The middleware options
  * @returns {Function}
  */
-export function createLoggerMiddleware(opts) {
+export function createLoggerMiddleware(opts: { origin: string }) {
   return function loggerMiddleware(
-    /** @type {any} */ req,
-    /** @type {any} */ res,
-    /** @type {Function} */ next,
+    req: Record<string, unknown>,
+    res: Record<string, unknown>,
+    next: (callback: (cb: () => void) => void) => void,
   ) {
-    next((/** @type {Function} */ cb) => {
+    next((cb: () => void) => {
       if (res.error) {
         const { error } = res;
         if (error) {

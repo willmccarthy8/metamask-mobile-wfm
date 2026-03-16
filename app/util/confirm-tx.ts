@@ -28,7 +28,7 @@ const NON_ISO4217_CRYPTO_CODES = [
   'ZEC',
 ];
 
-export function increaseLastGasPrice(lastGasPrice) {
+export function increaseLastGasPrice(lastGasPrice: string): string {
   return addHexPrefix(
     multiplyCurrencies(lastGasPrice || '0x0', 1.1, {
       multiplicandBase: 16,
@@ -38,14 +38,14 @@ export function increaseLastGasPrice(lastGasPrice) {
   );
 }
 
-export function hexGreaterThan(a, b) {
+export function hexGreaterThan(a: string, b: string): boolean {
   return conversionGreaterThan(
     { value: a, fromNumericBase: 'hex' },
     { value: b, fromNumericBase: 'hex' },
   );
 }
 
-export function getHexGasTotal({ gasLimit, gasPrice }) {
+export function getHexGasTotal({ gasLimit, gasPrice }: { gasLimit: string; gasPrice: string }): string {
   return addHexPrefix(
     multiplyCurrencies(gasLimit || '0x0', gasPrice || '0x0', {
       toNumericBase: 'hex',
@@ -84,7 +84,14 @@ export function getValueFromWeiHex({
   conversionRate,
   numberOfDecimals,
   toDenomination,
-}) {
+}: {
+  value: string;
+  fromCurrency?: string;
+  toCurrency: string;
+  conversionRate?: number;
+  numberOfDecimals?: number;
+  toDenomination?: string;
+}): string {
   return conversionUtil(value, {
     fromNumericBase: 'hex',
     toNumericBase: 'dec',
@@ -103,7 +110,13 @@ export function getTransactionFee({
   toCurrency,
   conversionRate,
   numberOfDecimals,
-}) {
+}: {
+  value: string;
+  fromCurrency?: string;
+  toCurrency: string;
+  conversionRate?: number;
+  numberOfDecimals?: number;
+}): string {
   return conversionUtil(value, {
     fromNumericBase: 'BN',
     toNumericBase: 'dec',
@@ -115,7 +128,7 @@ export function getTransactionFee({
   });
 }
 
-export function formatCurrency(value, currencyCode) {
+export function formatCurrency(value: string | number, currencyCode: string): string {
   const upperCaseCurrencyCode = currencyCode.toUpperCase();
 
   const formatedCurrency = NON_ISO4217_CRYPTO_CODES.includes(
@@ -136,7 +149,13 @@ export function convertTokenToFiat({
   toCurrency,
   conversionRate,
   contractExchangeRate,
-}) {
+}: {
+  value: string;
+  fromCurrency?: string;
+  toCurrency: string;
+  conversionRate: number;
+  contractExchangeRate: number;
+}): string | number {
   if (!contractExchangeRate) return 0;
   const totalExchangeRate = conversionRate * contractExchangeRate;
 
@@ -157,7 +176,7 @@ export function convertTokenToFiat({
  * @returns {string} The rounded number, or the original number if no
  * rounding was necessary.
  */
-export function roundExponential(decimalString) {
+export function roundExponential(decimalString: string): string {
   const PRECISION = 4;
   const bigNumberValue = new BigNumber(decimalString);
 
