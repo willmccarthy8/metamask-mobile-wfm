@@ -2,6 +2,14 @@ import { rpcErrors } from '@metamask/rpc-errors';
 import { MESSAGE_TYPE } from '../createTracingMiddleware';
 import { trackDappViewedEvent } from '../../util/metrics';
 import { isSnapId } from '@metamask/snaps-utils';
+import type { JsonRpcRequest, PendingJsonRpcResponse } from '@metamask/utils';
+
+interface EthRequestAccountsHooks {
+  getAccounts: (options: { ignoreLock: boolean }) => string[];
+  getUnlockPromise: (shouldShowUnlockRequest: boolean) => Promise<void>;
+  getCaip25PermissionFromLegacyPermissionsForOrigin: () => unknown;
+  requestPermissionsForOrigin: (permission: unknown) => Promise<unknown>;
+}
 
 const requestEthereumAccounts = {
   methodNames: [MESSAGE_TYPE.ETH_REQUEST_ACCOUNTS],
@@ -37,17 +45,17 @@ const locks = new Set();
  * @returns A promise that resolves to nothing
  */
 async function requestEthereumAccountsHandler(
-  req,
-  res,
-  _next,
-  end,
+  req: JsonRpcRequest & { origin: string },
+  res: PendingJsonRpcResponse<string[]>,
+  _next: () => void,
+  end: (error?: unknown) => void,
   {
     getAccounts,
     getUnlockPromise,
     getCaip25PermissionFromLegacyPermissionsForOrigin,
     requestPermissionsForOrigin,
-  },
-) {
+  }: EthRequestAccountsHooks,
+): Promise<void> {
   const { origin } = req;
   if (locks.has(origin)) {
     res.error = rpcErrors.resourceUnavailable(

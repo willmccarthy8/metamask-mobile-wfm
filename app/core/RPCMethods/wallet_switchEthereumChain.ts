@@ -9,6 +9,34 @@ import {
 } from './lib/ethereum-chain-utils';
 import { MESSAGE_TYPE } from '../createTracingMiddleware';
 import { isSnapId } from '@metamask/snaps-utils';
+import type { Hex } from '@metamask/utils';
+
+interface SwitchEthereumChainRequest {
+  origin: string;
+  params?: Array<{ chainId?: string; [key: string]: unknown }>;
+}
+
+interface SwitchEthereumChainResponse {
+  result: unknown;
+}
+
+interface SwitchEthereumChainHooks {
+  getNetworkConfigurationByChainId: (chainId: Hex) => {
+    rpcEndpoints: { networkClientId: string; url: string }[];
+    defaultRpcEndpointIndex: number;
+    nativeCurrency: string;
+    chainId: Hex;
+  } | undefined;
+  getCurrentChainIdForDomain: (origin: string) => Hex;
+  [key: string]: unknown;
+}
+
+interface SwitchEthereumChainParams {
+  req: SwitchEthereumChainRequest;
+  res: SwitchEthereumChainResponse;
+  analytics: Record<string, unknown>;
+  hooks: SwitchEthereumChainHooks;
+}
 
 /**
  * Switch chain implementation to be used in JsonRpcEngine middleware.
@@ -24,7 +52,7 @@ export const wallet_switchEthereumChain = async ({
   res,
   analytics,
   hooks,
-}) => {
+}: SwitchEthereumChainParams): Promise<void> => {
   const {
     CurrencyRateController,
     NetworkController,

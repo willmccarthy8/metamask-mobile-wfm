@@ -17,10 +17,57 @@ import { AnalyticsEventBuilder } from '../../../util/analytics/AnalyticsEventBui
 import Engine from '../../Engine';
 import { isSnapId } from '@metamask/snaps-utils';
 import { POPULAR_NETWORK_CHAIN_IDS } from '../../../constants/popular-networks';
+import type { Hex } from '@metamask/utils';
+
+interface NativeCurrency {
+  symbol?: string;
+  decimals?: number;
+}
+
+interface AddEthereumChainParam {
+  chainId: string;
+  chainName?: string;
+  blockExplorerUrls?: string[] | null;
+  nativeCurrency?: NativeCurrency | null;
+  rpcUrls?: string[];
+  iconUrls?: string[];
+}
+
+interface ValidatedAddEthereumChainParams {
+  chainId: Hex;
+  chainName: string;
+  firstValidRPCUrl: string;
+  firstValidBlockExplorerUrl: string | null | undefined;
+  ticker: string;
+}
+
+interface SwitchToNetworkParams {
+  networkClientId: string;
+  nativeCurrency: string;
+  rpcUrl: string;
+  chainId: Hex;
+  analytics?: Record<string, unknown>;
+  origin: string;
+  autoApprove?: boolean;
+  hooks: SwitchToNetworkHooks;
+}
+
+interface SwitchToNetworkHooks {
+  getCaveat: (params: { target: string; caveatType: string }) => { value: unknown } | undefined;
+  requestPermittedChainsPermissionIncrementalForOrigin: (params: {
+    chainId: Hex;
+    autoApprove: boolean;
+    metadata: { rpcUrl: string };
+  }) => Promise<void>;
+  hasApprovalRequestsForOrigin?: () => boolean;
+  rejectApprovalRequestsForOrigin?: () => void;
+  fromNetworkConfiguration?: { chainId?: Hex };
+  [key: string]: unknown;
+}
 
 const EVM_NATIVE_TOKEN_DECIMALS = 18;
 
-export function validateChainId(chainId) {
+export function validateChainId(chainId: unknown): Hex {
   const _chainId = typeof chainId === 'string' && chainId.toLowerCase();
 
   if (!isPrefixedFormattedHexString(_chainId)) {
@@ -38,7 +85,7 @@ export function validateChainId(chainId) {
   return _chainId;
 }
 
-export function validateAddEthereumChainParams(params) {
+export function validateAddEthereumChainParams(params: unknown): ValidatedAddEthereumChainParams {
   if (!params || !params?.[0] || typeof params[0] !== 'object') {
     throw rpcErrors.invalidParams({
       message: `Expected single, object parameter. Received:\n${JSON.stringify(
@@ -92,7 +139,7 @@ export function validateAddEthereumChainParams(params) {
   };
 }
 
-function validateRpcUrls(rpcUrls) {
+function validateRpcUrls(rpcUrls: string[] | undefined): string {
   const dirtyFirstValidRPCUrl = Array.isArray(rpcUrls)
     ? rpcUrls.find((rpcUrl) => validUrl.isHttpsUri(rpcUrl))
     : null;
@@ -110,7 +157,7 @@ function validateRpcUrls(rpcUrls) {
   return firstValidRPCUrl;
 }
 
-function validateBlockExplorerUrls(blockExplorerUrls) {
+function validateBlockExplorerUrls(blockExplorerUrls: string[] | null): string | null | undefined {
   const firstValidBlockExplorerUrl =
     blockExplorerUrls !== null && Array.isArray(blockExplorerUrls)
       ? blockExplorerUrls.find((blockExplorerUrl) =>
@@ -127,7 +174,7 @@ function validateBlockExplorerUrls(blockExplorerUrls) {
   return firstValidBlockExplorerUrl;
 }
 
-function validateChainName(rawChainName) {
+function validateChainName(rawChainName: unknown): string {
   if (typeof rawChainName !== 'string' || !rawChainName) {
     throw rpcErrors.invalidParams({
       message: `Expected non-empty string 'chainName'. Received:\n${rawChainName}`,
@@ -138,7 +185,7 @@ function validateChainName(rawChainName) {
     : rawChainName;
 }
 
-function validateNativeCurrency(nativeCurrency) {
+function validateNativeCurrency(nativeCurrency: NativeCurrency | null): string {
   if (nativeCurrency !== null) {
     if (typeof nativeCurrency !== 'object' || Array.isArray(nativeCurrency)) {
       throw rpcErrors.invalidParams({
@@ -168,7 +215,7 @@ function validateNativeCurrency(nativeCurrency) {
   return ticker;
 }
 
-export async function validateRpcEndpoint(rpcUrl, chainId) {
+export async function validateRpcEndpoint(rpcUrl: string, chainId: Hex): Promise<void> {
   let endpointChainId;
   try {
     endpointChainId = await jsonRpcRequest(rpcUrl, 'eth_chainId');
@@ -186,7 +233,7 @@ export async function validateRpcEndpoint(rpcUrl, chainId) {
   }
 }
 
-export function findExistingNetwork(chainId, networkConfigurations) {
+export function findExistingNetwork(chainId: Hex, networkConfigurations: Record<string, { chainId: Hex; rpcEndpoints: { networkClientId: string }[]; defaultRpcEndpointIndex: number }>): [string, unknown] | undefined {
   const existingEntry = Object.entries(networkConfigurations).find(
     ([, networkConfiguration]) => networkConfiguration.chainId === chainId,
   );
@@ -226,7 +273,7 @@ export async function switchToNetwork({
   origin,
   autoApprove = false,
   hooks,
-}) {
+}: SwitchToNetworkParams): Promise<void> {
   const {
     getCaveat,
     requestPermittedChainsPermissionIncrementalForOrigin,

@@ -11,6 +11,9 @@ import {
   caip25EndowmentBuilder,
   createCaip25Caveat,
 } from '@metamask/chain-agnostic-permission';
+import type { InternalAccount } from '@metamask/keyring-api';
+import type { InternalScopeString } from '@metamask/chain-agnostic-permission';
+import type { CaipAccountId, Json } from '@metamask/utils';
 
 /**
  * This file contains the specifications of the permissions and caveats
@@ -61,6 +64,11 @@ export const getCaveatSpecifications = ({
   findNetworkClientIdByChainId,
   isNonEvmScopeSupported,
   getNonEvmAccountAddresses,
+}: {
+  listAccounts: () => InternalAccount[];
+  findNetworkClientIdByChainId: (chainId: `0x${string}`) => string;
+  isNonEvmScopeSupported: (scope: InternalScopeString) => Json | unknown;
+  getNonEvmAccountAddresses: (scope: InternalScopeString) => CaipAccountId[] | unknown;
 }) => ({
   [Caip25CaveatType]: caip25CaveatBuilder({
     listAccounts,
@@ -79,7 +87,7 @@ export const getCaveatSpecifications = ({
  * PermissionController.
  *
  */
-export const getPermissionSpecifications = () => ({
+export const getPermissionSpecifications = (): Record<string, unknown> => ({
   [caip25EndowmentBuilder.targetName]:
     caip25EndowmentBuilder.specificationBuilder({}),
 });
