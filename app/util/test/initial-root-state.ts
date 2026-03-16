@@ -17,6 +17,16 @@ import { initialState as initialSampleCounterState } from '../../features/Sample
 import { isTest } from './utils';
 import { initialState as initialRewardsState } from '../../reducers/rewards';
 import { initialState as initialNetworkConnectionBannerState } from '../../reducers/networkConnectionBanner';
+import alertReducer from '../../reducers/alert';
+import bookmarksReducer from '../../reducers/bookmarks';
+import browserReducer from '../../reducers/browser';
+import collectiblesReducer from '../../reducers/collectibles';
+import infuraAvailabilityReducer from '../../reducers/infuraAvailability';
+import modalsReducer from '../../reducers/modals';
+import notificationReducer from '../../reducers/notification';
+import privacyReducer from '../../reducers/privacy';
+import settingsReducer from '../../reducers/settings';
+import swapsReducer from '../../reducers/swaps';
 // A cast is needed here because we use enums in some controllers, and TypeScript doesn't consider
 // the string value of an enum as satisfying an enum type.
 export const backgroundState: EngineState =
@@ -28,26 +38,26 @@ const initialRootState: RootState = {
     newPrivacyPolicyToastClickedOrClosed: false,
     newPrivacyPolicyToastShownDate: null,
   },
-  collectibles: undefined,
+  collectibles: collectiblesReducer(undefined, { type: '@@INIT' } as never),
   engine: { backgroundState },
   cronjobController: {
     storage: undefined,
   },
-  privacy: undefined,
-  bookmarks: undefined,
-  browser: undefined,
-  modals: undefined,
-  settings: undefined,
-  alert: undefined,
+  privacy: privacyReducer(undefined, { type: '@@INIT' } as never),
+  bookmarks: bookmarksReducer(undefined, { type: '@@INIT' } as never),
+  browser: browserReducer(undefined, { type: '@@INIT' } as never),
+  modals: modalsReducer(undefined, { type: '@@INIT' } as never),
+  settings: settingsReducer(undefined, { type: '@@INIT' } as never),
+  alert: alertReducer(undefined, { type: '@@INIT' } as never),
   securityAlerts: {
     alerts: {},
   },
   user: userInitialState,
   onboarding: initialOnboardingState,
-  notification: undefined,
-  swaps: undefined,
+  notification: notificationReducer(undefined, { type: '@@INIT' } as never),
+  swaps: swapsReducer(undefined, { type: '@@INIT' } as never),
   fiatOrders: initialFiatOrdersState,
-  infuraAvailability: undefined,
+  infuraAvailability: infuraAvailabilityReducer(undefined, { type: '@@INIT' } as never),
   navigation: initialNavigationState,
   networkOnboarded: undefined,
   security: initialSecurityState,

@@ -29,7 +29,7 @@ import { useAccountMenuEnabled } from '../../../selectors/featureFlagController/
 
 const initialState = {
   user: { seedphraseBackedUp: true, passwordSet: true },
-  privacy: { approvedHosts: [] },
+  privacy: { approvedHosts: {} },
   browser: { history: [] },
   settings: {
     lockTime: 1000,

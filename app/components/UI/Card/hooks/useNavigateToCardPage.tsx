@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../../../reducers';
-import { BrowserTab } from '../../Tokens/types';
+import type { BrowserTab } from '../../../../reducers/browser';
 import { isCardUrl, isCardTravelUrl, isCardTosUrl } from '../../../../util/url';
 import AppConstants from '../../../../core/AppConstants';
 import { NavigationProp, ParamListBase } from '@react-navigation/native';

@@ -301,7 +301,7 @@ function setupGlobalState({
         ? {
             activeTab,
           }
-        : {},
+        : ({} as any),
       engine: {
         backgroundState: {
           ...backgroundState,

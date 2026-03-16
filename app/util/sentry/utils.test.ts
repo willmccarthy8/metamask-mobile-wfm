@@ -437,7 +437,7 @@ describe('captureSentryFeedback', () => {
         },
       },
       privacy: {},
-      bookmarks: {},
+      bookmarks: [],
       browser: {
         activeTab: null,
         favicons: [],
@@ -489,9 +489,6 @@ describe('captureSentryFeedback', () => {
         events: [],
       },
       notification: {
-        notification: {
-          notificationsSettings: {},
-        },
         notifications: [],
       },
       swaps: {

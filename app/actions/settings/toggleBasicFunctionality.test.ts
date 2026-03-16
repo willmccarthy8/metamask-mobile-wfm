@@ -13,7 +13,7 @@ jest.mock('../../core/Engine', () => ({
 }));
 
 describe('toggleBasicFunctionality action', () => {
-  let mockDispatch;
+  let mockDispatch: jest.Mock;
 
   beforeEach(() => {
     mockDispatch = jest.fn();

@@ -256,7 +256,7 @@ const LedgerConnect = ({
         default: {
           dispatch(
             showSimpleNotification({
-              autodismiss: false,
+              autodismiss: 0,
               title: strings('ledger.toast_bluetooth_connection_error_title'),
               description: strings(
                 'ledger.toast_bluetooth_connection_error_subtitle',

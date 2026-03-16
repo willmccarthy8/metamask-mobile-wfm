@@ -56,7 +56,7 @@ const defaultState = {
   settings: {
     avatarAccountType: 'Maskicon',
   },
-};
+} as any;
 
 const mockUseRampSDK = useRampSDK as jest.MockedFunction<typeof useRampSDK>;
 const mockUseAccountGroupName = useAccountGroupName as jest.MockedFunction<
