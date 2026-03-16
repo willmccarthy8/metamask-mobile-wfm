@@ -9,13 +9,11 @@ const selectSettings = (state: RootState) => state.settings;
 
 export const selectPerpsChartPreferences = createSelector(
   selectSettings,
-  (settingsState: Record<string, unknown>) => {
-    const preferences = settingsState.perpsChartPreferences as
-      | Record<string, unknown>
-      | undefined;
+  (settingsState) => {
+    const preferences = settingsState.perpsChartPreferences;
     return {
       preferredCandlePeriod:
-        (preferences?.preferredCandlePeriod as string) ?? DEFAULT_CANDLE_PERIOD,
+        preferences?.preferredCandlePeriod ?? DEFAULT_CANDLE_PERIOD,
     };
   },
 );

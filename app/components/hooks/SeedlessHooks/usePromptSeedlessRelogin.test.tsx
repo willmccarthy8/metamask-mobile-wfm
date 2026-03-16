@@ -90,7 +90,7 @@ describe('usePromptSeedlessRelogin', () => {
       id: expect.any(Number),
       metricsEnabled: expect.any(Boolean),
       marketingEnabled: expect.any(Boolean),
-    });
+    } as any);
   });
 
   describe('hook initialization', () => {

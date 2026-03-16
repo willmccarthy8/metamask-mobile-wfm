@@ -1,19 +1,29 @@
 import bookmarksReducer from './bookmarks';
+import type { BookmarksState } from './bookmarks';
 import browserReducer from './browser';
+import type { BrowserState } from './browser';
 import engineReducer from '../core/redux/slices/engine';
 import privacyReducer from './privacy';
+import type { PrivacyState } from './privacy';
 import modalsReducer from './modals';
+import type { ModalsState } from './modals';
 import settingsReducer from './settings';
+import type { SettingsState } from './settings';
 import alertReducer from './alert';
+import type { AlertState } from './alert';
 import securityAlertsReducer, { SecurityAlertsState } from './security-alerts';
 import legalNoticesReducer, { LegalNoticesState } from './legalNotices';
 import userReducer, { UserState } from './user';
 import onboardingReducer, { OnboardingState } from './onboarding';
 import fiatOrders from './fiatOrders';
 import swapsReducer from './swaps';
+import type { SwapsState } from './swaps';
 import notificationReducer from './notification';
+import type { NotificationState } from './notification';
 import infuraAvailabilityReducer from './infuraAvailability';
+import type { InfuraAvailabilityState } from './infuraAvailability';
 import collectiblesReducer from './collectibles';
+import type { CollectiblesState } from './collectibles';
 import navigationReducer, { NavigationState } from './navigation';
 import networkOnboardReducer from './networkSelector';
 import securityReducer, { SecurityState } from './security';
@@ -65,43 +75,21 @@ export type StateFromReducer<reducer> =
 // using the `StateFromReducersMapObject` type from redux.
 export interface RootState {
   legalNotices: LegalNoticesState;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  collectibles: any;
+  collectibles: CollectiblesState;
   engine: { backgroundState: EngineState };
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  privacy: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  bookmarks: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  browser: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  modals: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  settings: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  alert: any;
+  privacy: PrivacyState;
+  bookmarks: BookmarksState;
+  browser: BrowserState;
+  modals: ModalsState;
+  settings: SettingsState;
+  alert: AlertState;
   securityAlerts: SecurityAlertsState;
   user: UserState;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onboarding: OnboardingState;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  notification: any;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  swaps: any;
+  notification: NotificationState;
+  swaps: SwapsState;
   fiatOrders: StateFromReducer<typeof fiatOrders>;
-  // TODO: Replace "any" with type
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  infuraAvailability: any;
+  infuraAvailability: InfuraAvailabilityState;
   navigation: NavigationState;
   // The networkOnboarded reducer is TypeScript but not yet a valid reducer
   // TODO: Replace "any" with type

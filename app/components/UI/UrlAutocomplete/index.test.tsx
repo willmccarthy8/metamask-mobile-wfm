@@ -360,14 +360,14 @@ describe('UrlAutocomplete', () => {
       jest.runAllTimers();
     });
     const deleteFavorite = await screen.findByTestId(
-      deleteFavoriteTestId(defaultState.bookmarks[0].url),
+      deleteFavoriteTestId(defaultState.bookmarks![0].url!),
       { includeHiddenElements: true },
     );
     fireEvent.press(deleteFavorite);
 
     // Assert
     expect(store.dispatch).toHaveBeenCalledWith(
-      removeBookmark({ ...defaultState.bookmarks[0], category: 'favorites' }),
+      removeBookmark({ ...defaultState.bookmarks![0], category: 'favorites' } as any),
     );
   });
 

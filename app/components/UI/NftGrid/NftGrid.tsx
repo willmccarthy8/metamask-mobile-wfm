@@ -108,9 +108,9 @@ const NftGrid = forwardRef<TabRefreshHandle, NftGridProps>(
 
     const nftSource = isFullView ? 'mobile-nft-list-page' : 'mobile-nft-list';
 
-    const collectiblesByEnabledNetworks: Record<string, Nft[]> = useSelector(
+    const collectiblesByEnabledNetworks = useSelector(
       multichainCollectiblesByEnabledNetworksSelector,
-    );
+    ) as Record<string, Nft[]>;
 
     const { detectNfts, abortDetection, chainIdsToDetectNftsFor } =
       useNftDetection();

@@ -9,7 +9,7 @@ import { FeatureFlags } from '@metamask/swaps-controller/dist/types';
 // Note: The reducer is written in JavaScript without proper TypeScript types,
 // so we need to use type assertions in some places
 
-interface SwapsAction {
+interface SwapsActionLocal {
   type: string | null;
   payload?: object | null;
 }
@@ -57,7 +57,7 @@ import reducer, {
   getFeatureFlagChainId,
 } from './index';
 
-const emptyAction: SwapsAction = { type: null };
+const emptyAction = { type: '@@INIT' } as unknown as import('./index').SwapsAction;
 
 const DEFAULT_FEATURE_FLAGS = {
   ethereum: {
@@ -415,7 +415,8 @@ describe('swaps reducer', () => {
           },
         },
       };
-      expect(swapsTokensObjectSelector(state)).toStrictEqual({
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect(swapsTokensObjectSelector(state as any)).toStrictEqual({
         '0x0000000000000000000000000000000000000000': undefined,
         '0x0000000000000000000000000000000000000001': undefined,
         '0x0000000000000000000000000000000000000010': undefined,
@@ -434,7 +435,8 @@ describe('swaps reducer', () => {
           },
         },
       };
-      expect(swapsTokensObjectSelector(state)).toStrictEqual({});
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      expect(swapsTokensObjectSelector(state as any)).toStrictEqual({});
     });
   });
 
@@ -513,7 +515,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns all unique token addresses with undefined values
       expect(result).toStrictEqual({
@@ -562,7 +565,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns only the user tokens
       expect(result).toStrictEqual({
@@ -605,7 +609,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns only the SwapsController tokens
       expect(result).toStrictEqual({
@@ -658,7 +663,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns only one entry for the duplicated address
       expect(result).toStrictEqual({
@@ -711,7 +717,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then addresses are normalized to lowercase
       expect(result).toStrictEqual({
@@ -747,7 +754,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns an empty object
       expect(result).toStrictEqual({});
@@ -819,7 +827,8 @@ describe('swaps reducer', () => {
       };
 
       // When the selector is called
-      const result = swapsTokensMultiChainObjectSelector(mockState);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const result = swapsTokensMultiChainObjectSelector(mockState as any);
 
       // Then it returns tokens from all chains plus SwapsController
       expect(result).toStrictEqual({

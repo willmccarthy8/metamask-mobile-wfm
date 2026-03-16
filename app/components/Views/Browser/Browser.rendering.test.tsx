@@ -603,7 +603,7 @@ describe('Browser - Rendering and Initialization', () => {
             browser: {
               tabs: props.tabs || defaultBrowserProps.tabs,
               activeTab: props.activeTab || defaultBrowserProps.activeTab,
-            },
+            } as any,
           },
         },
       );

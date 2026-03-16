@@ -79,7 +79,7 @@ export const Result: React.FC<ResultProps> = memo(
     const dispatch = useDispatch();
 
     const onPressRemove = useCallback(() => {
-      dispatch(removeBookmark(result));
+      dispatch(removeBookmark(result as any));
     }, [dispatch, result]);
 
     const swapsEnabled =
