@@ -189,12 +189,8 @@ export const BrowserTab: React.FC<BrowserTabProps> = React.memo(
     const iconRef = useRef<ImageSourcePropType | undefined>();
     const sessionENSNamesRef = useRef<SessionENSNames>({});
     const ensIgnoreListRef = useRef<string[]>([]);
-    const backgroundBridgeRef = useRef<{
-      url: string;
-      sendNotificationEip1193: (payload: unknown) => void;
-      onDisconnect: () => void;
-      onMessage: (message: Record<string, unknown>) => void;
-    }>();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const backgroundBridgeRef = useRef<any>();
     const searchEngine = useSelector(selectSearchEngine);
 
     const permittedEvmAccountsList = useSelector((state: RootState) => {

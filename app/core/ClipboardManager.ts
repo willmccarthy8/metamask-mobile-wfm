@@ -35,7 +35,7 @@ const ClipboardManager = {
         if (!currentString) return;
 
         try {
-          await Clipboard.clearString();
+          await (Clipboard as unknown as { clearString: () => Promise<void> }).clearString();
         } catch (_) {
           //Fail silently
         }

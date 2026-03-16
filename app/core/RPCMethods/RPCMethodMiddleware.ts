@@ -626,7 +626,7 @@ export const getRpcMethodMiddleware = ({
               req,
               res,
               next,
-              (err: Error) => {
+              (err?: unknown) => {
                 if (err) {
                   return reject(err);
                 }
@@ -641,7 +641,7 @@ export const getRpcMethodMiddleware = ({
                   getCaip25PermissionFromLegacyPermissions(
                     requestedPermissions,
                   ),
-                requestPermissionsForOrigin: (
+                requestPermissionsForOrigin: ((
                   requestedPermissions: RequestedPermissions,
                 ) =>
                   Engine.context.PermissionController.requestPermissions(
@@ -652,7 +652,7 @@ export const getRpcMethodMiddleware = ({
                         isEip1193Request: true,
                       },
                     },
-                  ),
+                  )) as any,
                 getUnlockPromise: () => {
                   if (Engine.context.KeyringController.isUnlocked()) {
                     return Promise.resolve();

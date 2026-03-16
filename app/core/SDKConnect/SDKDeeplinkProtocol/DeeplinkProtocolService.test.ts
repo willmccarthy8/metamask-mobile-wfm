@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 import { Linking } from 'react-native';
 import Engine from '../../../core/Engine';

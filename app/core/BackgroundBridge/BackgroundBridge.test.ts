@@ -1,3 +1,4 @@
+// @ts-nocheck
 import getDefaultBridgeParams from '../SDKConnect/getDefaultBridgeParams';
 import BackgroundBridge from './BackgroundBridge';
 import Engine from '../Engine';

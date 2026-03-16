@@ -4,7 +4,6 @@ import { selectEvmNetworkConfigurationsByChainId } from '../../selectors/network
 import { store } from '../../store';
 import {
   validateChainId,
-  findtoNetworkConfiguration,
   switchToNetwork,
 } from './lib/ethereum-chain-utils';
 import { MESSAGE_TYPE } from '../createTracingMiddleware';
@@ -69,7 +68,7 @@ export const wallet_switchEthereumChain = async ({
     });
   }
   const { chainId } = params;
-  const allowedKeys = {
+  const allowedKeys: Record<string, boolean> = {
     chainId: true,
   };
 
@@ -125,7 +124,7 @@ export const wallet_switchEthereumChain = async ({
         toNetworkConfiguration,
         fromNetworkConfiguration,
         ...hooks,
-      },
+      } as unknown as Parameters<typeof switchToNetwork>[0]['hooks'],
     });
 
     res.result = null;

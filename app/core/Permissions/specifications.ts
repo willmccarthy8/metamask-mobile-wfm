@@ -11,7 +11,7 @@ import {
   caip25EndowmentBuilder,
   createCaip25Caveat,
 } from '@metamask/chain-agnostic-permission';
-import type { InternalAccount } from '@metamask/keyring-api';
+import type { InternalAccount } from '@metamask/keyring-internal-api';
 import type { InternalScopeString } from '@metamask/chain-agnostic-permission';
 import type { CaipAccountId, Json } from '@metamask/utils';
 
@@ -67,11 +67,12 @@ export const getCaveatSpecifications = ({
 }: {
   listAccounts: () => InternalAccount[];
   findNetworkClientIdByChainId: (chainId: `0x${string}`) => string;
-  isNonEvmScopeSupported: (scope: InternalScopeString) => Json | unknown;
-  getNonEvmAccountAddresses: (scope: InternalScopeString) => CaipAccountId[] | unknown;
+  isNonEvmScopeSupported: (scope: InternalScopeString) => boolean;
+  getNonEvmAccountAddresses: (scope: InternalScopeString) => CaipAccountId[];
 }) => ({
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   [Caip25CaveatType]: caip25CaveatBuilder({
-    listAccounts,
+    listAccounts: listAccounts as any,
     findNetworkClientIdByChainId,
     isNonEvmScopeSupported,
     getNonEvmAccountAddresses,

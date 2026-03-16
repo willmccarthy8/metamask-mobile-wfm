@@ -46,6 +46,7 @@ interface SwitchToNetworkParams {
   nativeCurrency: string;
   rpcUrl: string;
   chainId: Hex;
+  controllers?: unknown;
   analytics?: Record<string, unknown>;
   origin: string;
   autoApprove?: boolean;
@@ -70,23 +71,23 @@ const EVM_NATIVE_TOKEN_DECIMALS = 18;
 export function validateChainId(chainId: unknown): Hex {
   const _chainId = typeof chainId === 'string' && chainId.toLowerCase();
 
-  if (!isPrefixedFormattedHexString(_chainId)) {
+  if (!isPrefixedFormattedHexString(_chainId as string)) {
     throw rpcErrors.invalidParams(
       `Expected 0x-prefixed, unpadded, non-zero hexadecimal string 'chainId'. Received:\n${chainId}`,
     );
   }
 
-  if (!isSafeChainId(_chainId)) {
+  if (!isSafeChainId(_chainId as Hex)) {
     throw rpcErrors.invalidParams(
       `Invalid chain ID "${_chainId}": numerical value greater than max safe value. Received:\n${chainId}`,
     );
   }
 
-  return _chainId;
+  return _chainId as Hex;
 }
 
 export function validateAddEthereumChainParams(params: unknown): ValidatedAddEthereumChainParams {
-  if (!params || !params?.[0] || typeof params[0] !== 'object') {
+  if (!params || !(params as AddEthereumChainParam[])?.[0] || typeof (params as AddEthereumChainParam[])[0] !== 'object') {
     throw rpcErrors.invalidParams({
       message: `Expected single, object parameter. Received:\n${JSON.stringify(
         params,
@@ -102,9 +103,9 @@ export function validateAddEthereumChainParams(params: unknown): ValidatedAddEth
       nativeCurrency = null,
       rpcUrls,
     },
-  ] = params;
+  ] = params as AddEthereumChainParam[];
 
-  const allowedKeys = {
+  const allowedKeys: Record<string, boolean> = {
     chainId: true,
     chainName: true,
     blockExplorerUrls: true,
@@ -113,7 +114,7 @@ export function validateAddEthereumChainParams(params: unknown): ValidatedAddEth
     iconUrls: true,
   };
 
-  const extraKeys = Object.keys(params[0]).filter((key) => !allowedKeys[key]);
+  const extraKeys = Object.keys((params as AddEthereumChainParam[])[0]).filter((key) => !allowedKeys[key]);
   if (extraKeys.length) {
     throw rpcErrors.invalidParams(
       `Received unexpected keys on object parameter. Unsupported keys:\n${extraKeys}`,
@@ -294,7 +295,7 @@ export async function switchToNetwork({
   // similar to what is in extension so it's easier for the future dev to
   // reconcile the last bit of differences first.
   if (caip25Caveat) {
-    ethChainIds = getPermittedEthChainIds(caip25Caveat.value);
+    ethChainIds = getPermittedEthChainIds(caip25Caveat.value as Parameters<typeof getPermittedEthChainIds>[0]);
 
     if (!ethChainIds?.includes(chainId)) {
       await requestPermittedChainsPermissionIncrementalForOrigin({

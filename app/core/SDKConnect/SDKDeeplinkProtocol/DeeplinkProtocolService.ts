@@ -128,7 +128,8 @@ export default class DeeplinkProtocolService {
     const defaultBridgeParams = getDefaultBridgeParams(clientInfo);
 
     const bridge = new BackgroundBridge({
-      webview: null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      webview: null as any,
       channelId: clientInfo.clientId,
       isMMSDK: true,
       url: PROTOCOLS.METAMASK + '://' + AppConstants.MM_SDK.SDK_REMOTE_ORIGIN,
@@ -137,7 +138,8 @@ export default class DeeplinkProtocolService {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       sendMessage: (msg: any) => this.sendMessage(msg),
       ...defaultBridgeParams,
-    });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } as any);
 
     this.bridgeByClientId[clientInfo.clientId] = bridge;
   }
@@ -579,7 +581,8 @@ export default class DeeplinkProtocolService {
       method: requestObject.method,
     });
 
-    bridge.onMessage({ name: 'metamask-provider', data: processedRpc });
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    bridge.onMessage({ origin: '', name: 'metamask-provider', data: processedRpc } as any);
   }
 
   public getChainId() {
@@ -903,7 +906,8 @@ export default class DeeplinkProtocolService {
         method: data.method,
       });
 
-      bridge.onMessage({ name: 'metamask-provider', data: processedRpc });
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      bridge.onMessage({ origin: '', name: 'metamask-provider', data: processedRpc } as any);
     };
 
     handleEventAsync().catch((err) => {

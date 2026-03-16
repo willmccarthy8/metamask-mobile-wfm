@@ -35,7 +35,7 @@ export default class PortDuplexStream extends Duplex {
    */
   _onMessage = function (this: PortDuplexStream, msg: unknown): void {
     if (Buffer.isBuffer(msg)) {
-      delete (msg as Record<string, unknown>)._isBuffer;
+      delete (msg as unknown as Record<string, unknown>)._isBuffer;
       const data = Buffer.from(msg);
       this.push(data);
     } else {

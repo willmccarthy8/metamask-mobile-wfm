@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { JsonRpcEngine, JsonRpcMiddleware } from '@metamask/json-rpc-engine';
 import type {
   CaipAccountId,

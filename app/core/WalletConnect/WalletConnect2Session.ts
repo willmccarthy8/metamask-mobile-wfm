@@ -561,7 +561,8 @@ class WalletConnect2Session {
         `WC::checkWCPermissions switching to network:`,
         existingNetwork,
       );
-      const [networkClientId, networkConfiguration] = existingNetwork;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const [networkClientId, networkConfiguration] = existingNetwork as [string, any];
 
       const hooks = getRpcMethodMiddlewareHooks({
         origin: this.channelId,

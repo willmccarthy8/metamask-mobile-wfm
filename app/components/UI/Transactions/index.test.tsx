@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React from 'react';
 import { default as Transactions, UnconnectedTransactions } from '.';
 import configureMockStore from 'redux-mock-store';

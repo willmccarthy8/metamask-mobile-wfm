@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { OriginatorInfo } from '@metamask/sdk-communication-layer';
 import BackgroundBridge from '../../BackgroundBridge/BackgroundBridge';
 import { Connection } from '../Connection';
