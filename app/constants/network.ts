@@ -1,34 +1,35 @@
 import { NetworkType, toHex } from '@metamask/controller-utils';
 import { KnownCaipNamespace, toCaipChainId } from '@metamask/utils';
 
-export const INFURA_PROJECT_ID = process.env.MM_INFURA_PROJECT_ID;
+export const INFURA_PROJECT_ID: string | undefined =
+  process.env.MM_INFURA_PROJECT_ID;
 
-export const MAINNET = 'mainnet';
-export const HOMESTEAD = 'homestead';
-export const GOERLI = 'goerli';
-export const SEPOLIA = 'sepolia';
-export const LINEA_GOERLI = 'linea-goerli';
-export const LINEA_SEPOLIA = 'linea-sepolia';
-export const LINEA_MAINNET = 'linea-mainnet';
-export const BASE_MAINNET = 'base-mainnet';
-export const MEGAETH_TESTNET = 'megaeth-testnet';
-export const MEGAETH_TESTNET_V2 = 'megaeth-testnet-v2';
-export const MEGAETH_MAINNET = 'megaeth-mainnet';
-export const MONAD_TESTNET = 'monad-testnet';
-export const BITCOIN_TESTNET = 'bitcoin-testnet';
-export const BITCOIN_MUTINYNET = 'bitcoin-mutinynet';
-export const BSC_MAINNET = 'bsc-mainnet';
+export const MAINNET = 'mainnet' as const;
+export const HOMESTEAD = 'homestead' as const;
+export const GOERLI = 'goerli' as const;
+export const SEPOLIA = 'sepolia' as const;
+export const LINEA_GOERLI = 'linea-goerli' as const;
+export const LINEA_SEPOLIA = 'linea-sepolia' as const;
+export const LINEA_MAINNET = 'linea-mainnet' as const;
+export const BASE_MAINNET = 'base-mainnet' as const;
+export const MEGAETH_TESTNET = 'megaeth-testnet' as const;
+export const MEGAETH_TESTNET_V2 = 'megaeth-testnet-v2' as const;
+export const MEGAETH_MAINNET = 'megaeth-mainnet' as const;
+export const MONAD_TESTNET = 'monad-testnet' as const;
+export const BITCOIN_TESTNET = 'bitcoin-testnet' as const;
+export const BITCOIN_MUTINYNET = 'bitcoin-mutinynet' as const;
+export const BSC_MAINNET = 'bsc-mainnet' as const;
 
-export const RPC = NetworkType.rpc;
-export const NO_RPC_BLOCK_EXPLORER = 'NO_BLOCK_EXPLORER';
-export const PRIVATENETWORK = 'PRIVATENETWORK';
-export const DEFAULT_MAINNET_CUSTOM_NAME = 'Ethereum Main Custom';
-export const IPFS_DEFAULT_GATEWAY_URL = 'https://dweb.link/ipfs/';
+export const RPC: string = NetworkType.rpc;
+export const NO_RPC_BLOCK_EXPLORER = 'NO_BLOCK_EXPLORER' as const;
+export const PRIVATENETWORK = 'PRIVATENETWORK' as const;
+export const DEFAULT_MAINNET_CUSTOM_NAME = 'Ethereum Main Custom' as const;
+export const IPFS_DEFAULT_GATEWAY_URL = 'https://dweb.link/ipfs/' as const;
 
 /**
  * @enum {string}
  */
-export const NETWORKS_CHAIN_ID = {
+export const NETWORKS_CHAIN_ID: Record<string, `0x${string}`> = {
   MAINNET: toHex('1'),
   OPTIMISM: toHex('10'),
   OPTIMISM_SEPOLIA: toHex('11155420'),
@@ -70,14 +71,14 @@ export const NETWORKS_CHAIN_ID = {
 };
 
 // To add a deprecation warning to a network, add it to the array
-export const DEPRECATED_NETWORKS = [
+export const DEPRECATED_NETWORKS: `0x${string}`[] = [
   NETWORKS_CHAIN_ID.GOERLI,
   NETWORKS_CHAIN_ID.ARBITRUM_GOERLI,
   NETWORKS_CHAIN_ID.OPTIMISM_GOERLI,
   NETWORKS_CHAIN_ID.LINEA_GOERLI,
   NETWORKS_CHAIN_ID.MUMBAI,
 ];
-export const CHAINLIST_CURRENCY_SYMBOLS_MAP = {
+export const CHAINLIST_CURRENCY_SYMBOLS_MAP: Record<string, string> = {
   MAINNET: 'ETH',
   OPTIMISM: 'ETH',
   BNB: 'BNB',
@@ -109,7 +110,7 @@ export const CHAINLIST_CURRENCY_SYMBOLS_MAP = {
   NOMINA: 'NOM',
 };
 
-export const CURRENCY_SYMBOL_BY_CHAIN_ID = {
+export const CURRENCY_SYMBOL_BY_CHAIN_ID: Record<string, string> = {
   [NETWORKS_CHAIN_ID.MAINNET]: CHAINLIST_CURRENCY_SYMBOLS_MAP.MAINNET,
   [NETWORKS_CHAIN_ID.OPTIMISM]: CHAINLIST_CURRENCY_SYMBOLS_MAP.OPTIMISM,
   [NETWORKS_CHAIN_ID.BSC]: CHAINLIST_CURRENCY_SYMBOLS_MAP.BNB,
@@ -146,7 +147,7 @@ export const CURRENCY_SYMBOL_BY_CHAIN_ID = {
   [NETWORKS_CHAIN_ID.NOMINA]: CHAINLIST_CURRENCY_SYMBOLS_MAP.NOMINA,
 };
 
-export const TEST_NETWORK_IDS = [
+export const TEST_NETWORK_IDS: `0x${string}`[] = [
   NETWORKS_CHAIN_ID.GOERLI,
   NETWORKS_CHAIN_ID.SEPOLIA,
   NETWORKS_CHAIN_ID.LINEA_GOERLI,
@@ -156,6 +157,6 @@ export const TEST_NETWORK_IDS = [
   NETWORKS_CHAIN_ID.MONAD_TESTNET,
 ];
 
-export const TESTNET_CAIP_IDS = TEST_NETWORK_IDS.map((id) =>
+export const TESTNET_CAIP_IDS: string[] = TEST_NETWORK_IDS.map((id) =>
   toCaipChainId(KnownCaipNamespace.Eip155, parseInt(id, 16).toString()),
 );

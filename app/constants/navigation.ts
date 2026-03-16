@@ -1,3 +1,3 @@
-export const PREVIOUS_SCREEN: string = 'previous_screen';
-export const ONBOARDING: string = 'onboarding';
-export const PROTECT: string = 'protect';
+export const PREVIOUS_SCREEN = 'previous_screen' as const;
+export const ONBOARDING = 'onboarding' as const;
+export const PROTECT = 'protect' as const;
