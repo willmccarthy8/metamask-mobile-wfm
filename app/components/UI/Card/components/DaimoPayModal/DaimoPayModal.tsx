@@ -270,7 +270,7 @@ const DaimoPayModal: React.FC = () => {
           isMainFrame: true,
         });
 
-        backgroundBridgeRef.current = newBridge;
+        backgroundBridgeRef.current = newBridge as any;
       } catch (err) {
         Logger.error(
           err as Error,

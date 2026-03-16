@@ -2,15 +2,15 @@
 import * as FileSystem from 'expo-file-system';
 
 const EntryScriptWeb3 = {
-  entryScriptWeb3: null,
+  entryScriptWeb3: null as string | null,
   // Cache InpageBridgeWeb3 so that it is immediately available
-  async init() {
+  async init(): Promise<string> {
     this.entryScriptWeb3 = await FileSystem.readAsStringAsync(
       `${FileSystem.bundleDirectory}InpageBridgeWeb3.js`,
     );
     return this.entryScriptWeb3;
   },
-  async get() {
+  async get(): Promise<string> {
     // Return from cache
     if (this.entryScriptWeb3) return this.entryScriptWeb3;
 

@@ -248,7 +248,8 @@ export class SDKConnect {
     }
     DevLogger.log(`SDKConnect::refreshChannel channelId=${channelId}`);
     // Force enitting updated accounts
-    session.backgroundBridge?.notifySelectedAddressChanged();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    (session.backgroundBridge as any)?.notifySelectedAddressChanged();
   }
 
   /**

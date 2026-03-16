@@ -36,7 +36,7 @@ const TokenDetailsList: React.FC<TokenDetailsListProps> = ({
   const tw = useTailwind();
 
   const copyAccountToClipboard = async () => {
-    await ClipboardManager.setString(tokenDetails.contractAddress);
+    await ClipboardManager.setString(tokenDetails.contractAddress ?? '');
 
     toastRef?.current?.showToast({
       variant: ToastVariants.Icon,

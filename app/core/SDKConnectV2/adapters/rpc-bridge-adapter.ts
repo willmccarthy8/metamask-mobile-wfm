@@ -95,7 +95,8 @@ export class RPCBridgeAdapter
 
     while (this.queue.length > 0) {
       const request = this.queue.shift();
-      this.client.onMessage(request);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      this.client.onMessage(request as any);
     }
 
     this.processing = false;
@@ -121,7 +122,8 @@ export class RPCBridgeAdapter
     const selfReportedDappIcon = this.connInfo.metadata.dapp.icon;
 
     return new BackgroundBridge({
-      webview: null,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      webview: null as any,
       isMMSDK: true,
       sdkVersion: 'v2',
       isRemoteConn: true,

@@ -38,13 +38,14 @@ export const permissionControllerInit: ControllerInitFunction<
   const controller = new PermissionController({
     messenger: controllerMessenger,
     state: persistedState.PermissionController,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     caveatSpecifications: getCaveatSpecifications({
-      listAccounts: (...args) =>
-        initMessenger.call('AccountsController:listAccounts', ...args),
-      findNetworkClientIdByChainId: (...args) =>
+      listAccounts: () =>
+        initMessenger.call('AccountsController:listAccounts'),
+      findNetworkClientIdByChainId: (chainId: `0x${string}`) =>
         initMessenger.call(
           'NetworkController:findNetworkClientIdByChainId',
-          ...args,
+          chainId,
         ),
       isNonEvmScopeSupported: (scope) =>
         initMessenger.call(
@@ -55,8 +56,9 @@ export const permissionControllerInit: ControllerInitFunction<
         initMessenger.call(
           'MultichainRouter:getSupportedAccounts',
           scope as CaipChainId,
-        ),
-    }),
+        ) as any,
+    }) as any,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     permissionSpecifications: {
       ...getPermissionSpecifications(),
       ///: BEGIN:ONLY_INCLUDE_IF(preinstalled-snaps,external-snaps)
@@ -64,7 +66,7 @@ export const permissionControllerInit: ControllerInitFunction<
         addNewKeyring: keyringController.addNewKeyring.bind(keyringController),
       }),
       ///: END:ONLY_INCLUDE_IF
-    },
+    } as any,
     unrestrictedMethods,
   });
 

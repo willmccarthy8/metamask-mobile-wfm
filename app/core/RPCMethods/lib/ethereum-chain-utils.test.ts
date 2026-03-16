@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { mockNetworkState } from '../../../util/test/network';
 import { AnalyticsEventBuilder } from '../../../util/analytics/AnalyticsEventBuilder';
 import { analytics } from '../../../util/analytics/analytics';

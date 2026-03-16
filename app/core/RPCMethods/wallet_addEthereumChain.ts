@@ -21,8 +21,38 @@ import { getDecimalChainId } from '../../util/networks';
 import { RpcEndpointType } from '@metamask/network-controller';
 import { addItemToChainIdList } from '../../util/metrics/MultichainAPI/networkMetricUtils';
 import Logger from '../../util/Logger';
+import type { Hex } from '@metamask/utils';
 
-const waitForInteraction = async () =>
+interface AddEthereumChainRequest {
+  origin: string;
+  params: unknown;
+}
+
+interface AddEthereumChainResponse {
+  result: unknown;
+}
+
+interface AddEthereumChainHooks {
+  getNetworkConfigurationByChainId: (chainId: Hex) => {
+    rpcEndpoints: { url: string; networkClientId: string; type: string; name?: string }[];
+    blockExplorerUrls: string[];
+    defaultRpcEndpointIndex: number;
+    defaultBlockExplorerUrlIndex: number;
+    nativeCurrency: string;
+    chainId: Hex;
+  } | undefined;
+  [key: string]: unknown;
+}
+
+interface AddEthereumChainParams {
+  req: AddEthereumChainRequest;
+  res: AddEthereumChainResponse;
+  requestUserApproval: (params: { type: string; requestData: Record<string, unknown> }) => Promise<void>;
+  analytics: Record<string, unknown>;
+  hooks: AddEthereumChainHooks;
+}
+
+const waitForInteraction = async (): Promise<void> =>
   new Promise((resolve) => {
     InteractionManager.runAfterInteractions(() => {
       resolve();
@@ -30,7 +60,7 @@ const waitForInteraction = async () =>
   });
 
 // Utility function to find or add an item in an array and return the updated array and index
-const addOrUpdateIndex = (array, value, comparator) => {
+const addOrUpdateIndex = <T>(array: T[], value: T, comparator: (item: T) => boolean): { updatedArray: T[]; index: number } => {
   const index = array.findIndex(comparator);
   if (index === -1) {
     return {
@@ -57,7 +87,7 @@ export const wallet_addEthereumChain = async ({
   requestUserApproval,
   analytics: analyticsParams,
   hooks,
-}) => {
+}: AddEthereumChainParams): Promise<void> => {
   const {
     NetworkController,
     MultichainNetworkController,
@@ -115,7 +145,7 @@ export const wallet_addEthereumChain = async ({
       requestData.chainName,
       requestData.ticker,
     );
-    requestData.alerts = alerts;
+    (requestData as Record<string, unknown>).alerts = alerts;
 
     analytics.trackEvent(
       AnalyticsEventBuilder.createEventBuilder(
@@ -167,7 +197,7 @@ export const wallet_addEthereumChain = async ({
           url: firstValidRPCUrl,
           type: RpcEndpointType.Custom,
           name: chainName,
-        },
+        } as (typeof existingNetworkConfiguration.rpcEndpoints)[number],
         (endpoint) => endpoint.url === firstValidRPCUrl,
       );
 
@@ -185,16 +215,16 @@ export const wallet_addEthereumChain = async ({
         defaultBlockExplorerUrlIndex: blockExplorerResult.index,
       };
 
-      updatedNetworkConfiguration = await NetworkController.updateNetwork(
+      updatedNetworkConfiguration = (await NetworkController.updateNetwork(
         chainId,
-        clonedNetworkConfiguration,
+        clonedNetworkConfiguration as Parameters<typeof NetworkController.updateNetwork>[1],
         currentChainId === chainId
           ? {
               replacementSelectedRpcEndpointIndex:
                 clonedNetworkConfiguration.defaultRpcEndpointIndex,
             }
           : undefined,
-      );
+      )) as typeof updatedNetworkConfiguration;
 
       // Track RPC Added event if a new RPC endpoint was added (not just updated)
       // rpcResult.index === original array length means a new RPC was added
@@ -216,7 +246,7 @@ export const wallet_addEthereumChain = async ({
     } else {
       updatedNetworkConfiguration = NetworkController.addNetwork({
         chainId,
-        blockExplorerUrls: [firstValidBlockExplorerUrl],
+        blockExplorerUrls: [firstValidBlockExplorerUrl].filter((url): url is string => typeof url === 'string'),
         defaultRpcEndpointIndex: 0,
         defaultBlockExplorerUrlIndex: 0,
         name: chainName,
@@ -228,7 +258,7 @@ export const wallet_addEthereumChain = async ({
             type: RpcEndpointType.Custom,
           },
         ],
-      });
+      }) as typeof updatedNetworkConfiguration;
 
       // Track RPC Added event for new networks - first RPC endpoint is at index 0
       analytics.trackEvent(
@@ -248,13 +278,13 @@ export const wallet_addEthereumChain = async ({
   }
 
   const { networkClientId, url: rpcUrl } =
-    updatedNetworkConfiguration.rpcEndpoints[
-      updatedNetworkConfiguration.defaultRpcEndpointIndex
+    updatedNetworkConfiguration!.rpcEndpoints[
+      updatedNetworkConfiguration!.defaultRpcEndpointIndex
     ];
 
   await switchToNetwork({
     networkClientId,
-    nativeCurrency: updatedNetworkConfiguration.nativeCurrency,
+    nativeCurrency: updatedNetworkConfiguration!.nativeCurrency,
     rpcUrl,
     chainId,
     controllers: {
@@ -264,8 +294,8 @@ export const wallet_addEthereumChain = async ({
     },
     analytics: analyticsParams,
     origin,
-    autoApprove: shouldAddOrUpdateNetwork,
-    hooks,
+    autoApprove: shouldAddOrUpdateNetwork || false,
+    hooks: hooks as unknown as Parameters<typeof switchToNetwork>[0]['hooks'],
   });
 
   res.result = null;

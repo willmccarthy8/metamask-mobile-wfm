@@ -51,7 +51,8 @@ export const setupBridge = ({
   const selfReportedIcon = originatorInfo.icon;
 
   const backgroundBridge = new BackgroundBridge({
-    webview: null,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    webview: null as any,
     isMMSDK: true,
     channelId: connection.channelId,
     url: selfReportedUrl,
@@ -67,11 +68,14 @@ export const setupBridge = ({
         Logger.error(err, 'Connection::sendMessage failed to send');
       });
     },
-    getApprovedHosts: () => connection.getApprovedHosts('backgroundBridge'),
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getApprovedHosts: (() => connection.getApprovedHosts('backgroundBridge')) as any,
     remoteConnHost: connection.host,
-    getRpcMethodMiddleware: ({
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    getRpcMethodMiddleware: (({
       getProviderState,
-    }: RPCMethodsMiddleParameters) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }: RPCMethodsMiddleParameters): any => {
       DevLogger.log(
         `getRpcMethodMiddleware origin=${connection.origin} selfReportedUrl=${selfReportedUrl} `,
       );
@@ -108,7 +112,8 @@ export const setupBridge = ({
             originatorInfo?.platform ?? AppConstants.MM_SDK.UNKNOWN_PARAM,
         },
       });
-    },
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    }) as any,
     isMainFrame: true,
     isWalletConnect: false,
     wcRequestActions: undefined,

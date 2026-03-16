@@ -374,7 +374,8 @@ export const hasPermissionsToSwitchChainRequest = async (
 
   const existingNetwork = findExistingNetwork(
     hexChainIdString,
-    networkConfigurations,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    networkConfigurations as any,
   );
 
   if (!existingNetwork) {
