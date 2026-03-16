@@ -1,0 +1,33 @@
+export function toggleNetworkModal(shouldNetworkSwitchPopToWallet = true): { type: string; shouldNetworkSwitchPopToWallet: boolean } {
+  return {
+    type: 'TOGGLE_NETWORK_MODAL',
+    shouldNetworkSwitchPopToWallet,
+  };
+}
+
+export function toggleCollectibleContractModal() {
+  return {
+    type: 'TOGGLE_COLLECTIBLE_CONTRACT_MODAL',
+  };
+}
+
+export function toggleDappTransactionModal(show?: boolean | null) {
+  return {
+    type: 'TOGGLE_DAPP_TRANSACTION_MODAL',
+    show,
+  };
+}
+
+export function toggleInfoNetworkModal(show?: boolean | null) {
+  return {
+    type: 'TOGGLE_INFO_NETWORK_MODAL',
+    show,
+  };
+}
+
+export function toggleSignModal(show?: boolean | null) {
+  return {
+    type: 'TOGGLE_SIGN_MODAL',
+    show,
+  };
+}
