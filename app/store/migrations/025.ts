@@ -24,7 +24,7 @@ const ETHERSCAN_SUPPORTED_CHAIN_IDS = {
   MONAD: '0x8f',
 };
 
-export default function migrate(state) {
+export default function migrate(state: Record<string, unknown>) {
   try {
     Object.values(ETHERSCAN_SUPPORTED_CHAIN_IDS).forEach((hexChainId) => {
       const thirdPartyApiMode = state?.privacy?.thirdPartyApiMode ?? true;
