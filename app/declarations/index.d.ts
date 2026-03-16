@@ -18,12 +18,6 @@ declare module 'content-hash';
 
 declare module 'multihashes';
 
-declare module '*.jpg' {
-  import { ImageSourcePropType } from 'react-native';
-  const content: ImageSourcePropType;
-  export default content;
-}
-
 declare module 'react-native-minimizer';
 
 declare module 'xhr2';
@@ -42,6 +36,11 @@ declare module 'images/image-icons' {
 declare module '*.png' {
   import { ImageSourcePropType } from 'react-native';
   const content: ImageSourcePropType;
+  export default content;
+}
+
+declare module '*.jpg' {
+  const content: import('react-native').ImageSourcePropType;
   export default content;
 }
 
