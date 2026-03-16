@@ -1,3 +1,4 @@
+import { ImageSourcePropType } from 'react-native';
 import MATIC from './matic.png';
 import POL from './pol.png';
 import PALM from './palm.png';
@@ -62,7 +63,7 @@ import ROOTSTOCK from './rootstock-native.png';
 import TRON from './tron-logo.png';
 /// END:ONLY_INCLUDE_IF
 
-export default {
+const imageIcons: Record<string, ImageSourcePropType> = {
   PALM,
   MATIC,
   POL,
@@ -133,3 +134,5 @@ export default {
   tRBTC: ROOTSTOCK,
   CHZ,
 };
+
+export default imageIcons;
