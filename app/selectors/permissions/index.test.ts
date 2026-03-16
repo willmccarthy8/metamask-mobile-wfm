@@ -67,9 +67,9 @@ describe('PermissionController selectors', () => {
 
       // If we mutate the state, the selector return value should be different
       const state2 = cloneDeep(state1);
-      state2.subjects['foo.bar'].permissions[
+      (state2.subjects['foo.bar'].permissions[
         Caip25EndowmentPermissionName
-      ].caveats[0].value.requiredScopes = {};
+      ].caveats[0].value as Record<string, unknown>).requiredScopes = {};
 
       const expected2 = {
         requiredScopes: {},

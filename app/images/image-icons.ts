@@ -62,7 +62,7 @@ import ROOTSTOCK from './rootstock-native.png';
 import TRON from './tron-logo.png';
 /// END:ONLY_INCLUDE_IF
 
-export default {
+const imageIcons = {
   PALM,
   MATIC,
   POL,
@@ -133,3 +133,5 @@ export default {
   tRBTC: ROOTSTOCK,
   CHZ,
 };
+
+export default imageIcons;
