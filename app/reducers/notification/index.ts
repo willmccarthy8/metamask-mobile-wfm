@@ -21,11 +21,11 @@ export const ACTIONS = {
   UPDATE_NOTIFICATION_STATUS: 'UPDATE_NOTIFICATION_STATUS',
 };
 
-const enqueue = (notifications, notification) => [
+const enqueue = (notifications: Record<string, unknown>[], notification: Record<string, unknown>) => [
   ...notifications,
   notification,
 ];
-const dequeue = (notifications) => notifications.slice(1);
+const dequeue = (notifications: Record<string, unknown>[]) => notifications.slice(1);
 
 export const currentNotificationSelector = createSelector(
   (
@@ -35,7 +35,7 @@ export const currentNotificationSelector = createSelector(
   (notifications) => notifications[0] || {},
 );
 
-const notificationReducer = (state = initialState, action) => {
+const notificationReducer = (state = initialState, action: Record<string, unknown>) => {
   const { notifications } = state;
   switch (action.type) {
     // make current notification isVisible props false

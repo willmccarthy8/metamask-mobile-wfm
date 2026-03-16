@@ -16,7 +16,7 @@ import { selectEnabledNetworksByNamespace } from '../../selectors/networkEnablem
  * @param {string[]} chainIds - CAIP-2 or Hex chain IDs
  * @returns {Set<string>}
  */
-function buildAllowedChainIdSet(chainIds) {
+function buildAllowedChainIdSet(chainIds: string[]) {
   const set = new Set(chainIds);
   for (const id of chainIds) {
     if (id.startsWith('eip155:')) {
@@ -27,9 +27,9 @@ function buildAllowedChainIdSet(chainIds) {
   return set;
 }
 
-const favoritesSelector = (state) => state.collectibles.favorites;
+const favoritesSelector = (state: Record<string, Record<string, unknown>>) => state.collectibles.favorites;
 
-export const isNftFetchingProgressSelector = (state) =>
+export const isNftFetchingProgressSelector = (state: Record<string, Record<string, unknown>>) =>
   state.collectibles.isNftFetchingProgress;
 
 export const collectibleContractsSelector = createSelector(
@@ -147,9 +147,9 @@ export const isCollectibleInFavoritesSelector = createSelector(
 );
 
 const getFavoritesCollectibles = (
-  favoriteCollectibles,
-  selectedAddress,
-  chainId,
+  favoriteCollectibles: Record<string, Record<string, unknown[]>>,
+  selectedAddress: string,
+  chainId: string,
 ) => favoriteCollectibles[selectedAddress]?.[chainId] || [];
 
 export const ADD_FAVORITE_COLLECTIBLE = 'ADD_FAVORITE_COLLECTIBLE';
@@ -162,7 +162,7 @@ const initialState = {
   isNftFetchingProgress: false,
 };
 
-const collectiblesFavoritesReducer = (state = initialState, action) => {
+const collectiblesFavoritesReducer = (state = initialState, action: Record<string, unknown>) => {
   switch (action.type) {
     case ADD_FAVORITE_COLLECTIBLE: {
       const { selectedAddress, chainId, collectible } = action;

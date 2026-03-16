@@ -3,7 +3,7 @@ const initialState = {
   revealSRPTimestamps: [],
 };
 
-const privacyReducer = (state = initialState, action) => {
+const privacyReducer = (state = initialState, action: Record<string, unknown>) => {
   const newHosts = { ...state.approvedHosts };
   switch (action.type) {
     case 'APPROVE_HOST':

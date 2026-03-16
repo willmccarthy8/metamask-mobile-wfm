@@ -6,7 +6,7 @@ const initialState = {
   signMessageModalVisible: true,
 };
 
-const modalsReducer = (state = initialState, action) => {
+const modalsReducer = (state = initialState, action: Record<string, unknown>) => {
   switch (action.type) {
     case 'TOGGLE_NETWORK_MODAL':
       return {

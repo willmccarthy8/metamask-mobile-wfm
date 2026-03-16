@@ -12,7 +12,7 @@ const initialState = {
   visitedDappsByHostname: {},
   isFullscreen: false,
 };
-const browserReducer = (state = initialState, action) => {
+const browserReducer = (state = initialState, action: Record<string, unknown>) => {
   switch (action.type) {
     case BrowserActionTypes.ADD_TO_VIEWED_DAPP: {
       const { hostname } = action;

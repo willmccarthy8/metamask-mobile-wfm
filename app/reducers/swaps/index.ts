@@ -18,7 +18,7 @@ import { toHex } from '@metamask/controller-utils';
 
 // Identity function, will be removed when legacy swaps is removed,
 // but keep it for now to keep changes atomic.
-export const getFeatureFlagChainId = (chainId) => chainId;
+export const getFeatureFlagChainId = (chainId: string): string => chainId;
 
 // * Constants
 export const SWAPS_SET_LIVENESS = 'SWAPS_SET_LIVENESS';
@@ -26,11 +26,11 @@ export const SWAPS_SET_HAS_ONBOARDED = 'SWAPS_SET_HAS_ONBOARDED';
 const MAX_TOKENS_WITH_BALANCE = 5;
 
 // * Action Creator
-export const setSwapsLiveness = (chainId, featureFlags) => ({
+export const setSwapsLiveness = (chainId: string, featureFlags: Record<string, unknown>) => ({
   type: SWAPS_SET_LIVENESS,
   payload: { chainId, featureFlags },
 });
-export const setSwapsHasOnboarded = (hasOnboarded) => ({
+export const setSwapsHasOnboarded = (hasOnboarded: boolean) => ({
   type: SWAPS_SET_HAS_ONBOARDED,
   payload: hasOnboarded,
 });
@@ -41,7 +41,7 @@ export const setSwapsHasOnboarded = (hasOnboarded) => ({
  * Processes and normalizes a token by removing unwanted properties
  * and ensuring consistent data types
  */
-function processToken(token) {
+function processToken(token: Record<string, unknown> | null) {
   if (!token) return null;
   const { hasBalanceError, image, ...tokenData } = token;
   return {
@@ -56,7 +56,7 @@ function processToken(token) {
  * Combines tokens from multiple sources with deduplication
  * Maintains first-occurrence-wins behavior
  */
-function combineTokens(tokenSources) {
+function combineTokens(tokenSources: (Record<string, unknown>[] | null | undefined)[]) {
   const tokenMap = new Map();
 
   for (const tokens of tokenSources) {
@@ -73,7 +73,7 @@ function combineTokens(tokenSources) {
   return Array.from(tokenMap.values());
 }
 
-function addMetadata(chainId, tokens, tokenList) {
+function addMetadata(chainId: string, tokens: Record<string, unknown>[], tokenList: Record<string, Record<string, unknown>>) {
   if (!isMainnetByChainId(chainId)) {
     return tokens;
   }
@@ -89,7 +89,7 @@ function addMetadata(chainId, tokens, tokenList) {
 
 // * Selectors
 const chainIdSelector = selectEvmChainId;
-const swapsStateSelector = (state) => state.swaps;
+const swapsStateSelector = (state: Record<string, Record<string, unknown>>) => state.swaps;
 
 /**
  * Returns the swaps onboarded state
@@ -100,13 +100,13 @@ export const swapsHasOnboardedSelector = createSelector(
   (swapsState) => swapsState.hasOnboarded,
 );
 
-const selectSwapsControllerState = (state) =>
+const selectSwapsControllerState = (state: Record<string, Record<string, unknown>>) =>
   state.engine.backgroundState.SwapsController;
 
 /**
  * Returns the swaps tokens from the state
  */
-export const swapsControllerTokens = (state) =>
+export const swapsControllerTokens = (state: Record<string, Record<string, unknown>>) =>
   state.engine.backgroundState.SwapsController.tokens;
 
 export const selectSwapsApprovalTransaction = createSelector(
@@ -327,7 +327,7 @@ export const initialState = {
   },
 };
 
-function swapsReducer(state = initialState, action) {
+function swapsReducer(state = initialState, action: Record<string, unknown>) {
   switch (action.type) {
     case SWAPS_SET_LIVENESS: {
       const { chainId: rawChainId, featureFlags } = action.payload;

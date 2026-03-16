@@ -15,7 +15,7 @@ const initialState = {
   },
 };
 
-const settingsReducer = (state = initialState, action) => {
+const settingsReducer = (state = initialState, action: Record<string, unknown>) => {
   switch (action.type) {
     case 'SET_SEARCH_ENGINE':
       return {
