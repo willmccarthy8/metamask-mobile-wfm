@@ -1,4 +1,3 @@
-import { ImageSourcePropType } from 'react-native';
 import MATIC from './matic.png';
 import POL from './pol.png';
 import PALM from './palm.png';
@@ -63,7 +62,7 @@ import ROOTSTOCK from './rootstock-native.png';
 import TRON from './tron-logo.png';
 /// END:ONLY_INCLUDE_IF
 
-const imageIcons: Record<string, ImageSourcePropType> = {
+const imageIcons = {
   PALM,
   MATIC,
   POL,

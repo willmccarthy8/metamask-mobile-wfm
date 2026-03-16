@@ -8,6 +8,22 @@ declare module 'react-native-fade-in-image';
 
 declare module 'react-native-fast-crypto';
 
+declare module 'eth-ens-namehash';
+
+declare module '@metamask/ethjs-query';
+
+declare module '@metamask/ethjs-contract';
+
+declare module 'content-hash';
+
+declare module 'multihashes';
+
+declare module '*.jpg' {
+  import { ImageSourcePropType } from 'react-native';
+  const content: ImageSourcePropType;
+  export default content;
+}
+
 declare module 'react-native-minimizer';
 
 declare module 'xhr2';
