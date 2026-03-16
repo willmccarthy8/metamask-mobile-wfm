@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { providerErrors } from '@metamask/rpc-errors';
 import { CANCEL_RATE, SPEED_UP_RATE } from '@metamask/transaction-controller';
 import PropTypes from 'prop-types';

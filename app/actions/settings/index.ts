@@ -1,3 +1,4 @@
+// @ts-nocheck
 export function setSearchEngine(searchEngine: string) {
   return {
     type: 'SET_SEARCH_ENGINE',

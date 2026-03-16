@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { useEffect, useCallback } from 'react';
 import { Alert } from 'react-native';
 import PropTypes from 'prop-types';

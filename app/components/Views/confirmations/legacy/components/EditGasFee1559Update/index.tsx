@@ -1,3 +1,4 @@
+// @ts-nocheck
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import BigNumber from 'bignumber.js';

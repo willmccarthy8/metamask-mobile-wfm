@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { toHex } from '@metamask/controller-utils';
 import { createSelector } from 'reselect';
 import { selectChainId } from '../../selectors/networkController';

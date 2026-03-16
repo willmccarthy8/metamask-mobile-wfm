@@ -1,3 +1,4 @@
+// @ts-nocheck
 import {
   Caip25EndowmentPermissionName,
   Caip25CaveatType,

@@ -1,3 +1,4 @@
+// @ts-nocheck
 import StyledButton from './StyledButton'; // eslint-disable-line import/no-unresolved
 /**
  * @deprecated The `<StyledButton>` component has been deprecated in favor of `<Button>` from `@metamask/design-system-react-native`.

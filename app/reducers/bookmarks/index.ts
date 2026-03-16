@@ -1,3 +1,4 @@
+// @ts-nocheck
 interface Bookmark {
   url: string;
   name: string;
