@@ -6,14 +6,17 @@ import { Duplex } from 'readable-stream';
 const noop = () => {};
 
 export default class PortDuplexStream extends Duplex {
-  constructor(port, url) {
+  _port: Record<string, unknown>;
+  _url: string;
+
+  constructor(port: Record<string, unknown>, url: string) {
     super({
       objectMode: true,
     });
     this._port = port;
     this._url = url;
-    this._port.addListener('message', this._onMessage.bind(this));
-    this._port.addListener('disconnect', this._onDisconnect.bind(this));
+    (this._port as any).addListener('message', this._onMessage.bind(this));
+    (this._port as any).addListener('disconnect', this._onDisconnect.bind(this));
   }
 
   /**

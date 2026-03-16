@@ -2,7 +2,7 @@
 import * as FileSystem from 'expo-file-system';
 
 const EntryScriptWeb3 = {
-  entryScriptWeb3: null,
+  entryScriptWeb3: null as string | null,
   // Cache InpageBridgeWeb3 so that it is immediately available
   async init() {
     this.entryScriptWeb3 = await FileSystem.readAsStringAsync(
