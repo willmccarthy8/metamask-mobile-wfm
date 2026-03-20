@@ -1,66 +1,57 @@
 /* eslint-disable */
 // Mock for @nktkas/hyperliquid SDK
 
-const mockExchangeClient = {
+const mockExchangeClient: Record<string, jest.Mock> = {
   order: jest.fn(),
   modify: jest.fn(),
   cancel: jest.fn(),
 };
 
-const mockInfoClient = {
+const mockInfoClient: Record<string, jest.Mock> = {
   clearinghouseState: jest.fn(),
   accountState: jest.fn(),
   meta: jest.fn(),
   allMids: jest.fn(),
 };
 
-const mockSubscriptionClient = {
+const mockSubscriptionClient: Record<string | symbol, jest.Mock> = {
   subscription: jest.fn(),
   subscribe: jest.fn(),
   unsubscribe: jest.fn(),
   [Symbol.asyncDispose]: jest.fn(),
 };
 
-const mockWebSocketTransport = {
+const mockWebSocketTransport: Record<string | symbol, jest.Mock> = {
   connect: jest.fn(),
   disconnect: jest.fn(),
   send: jest.fn(),
   [Symbol.asyncDispose]: jest.fn(),
 };
 
-class ExchangeClient {
+export class ExchangeClient {
   constructor() {
     return mockExchangeClient;
   }
 }
 
-class InfoClient {
+export class InfoClient {
   constructor() {
     return mockInfoClient;
   }
 }
 
-class SubscriptionClient {
+export class SubscriptionClient {
   constructor() {
     return mockSubscriptionClient;
   }
 }
 
-class WebSocketTransport {
+export class WebSocketTransport {
   constructor() {
     return mockWebSocketTransport;
   }
 }
 
 // Mock signing functions
-const actionSorter = jest.fn();
-const signL1Action = jest.fn();
-
-module.exports = {
-  ExchangeClient,
-  InfoClient,
-  SubscriptionClient,
-  WebSocketTransport,
-  actionSorter,
-  signL1Action,
-};
+export const actionSorter: jest.Mock = jest.fn();
+export const signL1Action: jest.Mock = jest.fn();
