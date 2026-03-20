@@ -99,7 +99,7 @@ import { useSDKV2Connection } from '../../../hooks/useSDKV2Connection';
 import { useAccountGroupsForPermissions } from '../../../hooks/useAccountGroupsForPermissions/useAccountGroupsForPermissions.ts';
 import NetworkConnectMultiSelector from '../../NetworkConnect/NetworkConnectMultiSelector/index.ts';
 import { Box } from '@metamask/design-system-react-native';
-import { TESTNET_CAIP_IDS } from '../../../../constants/network.js';
+import { TESTNET_CAIP_IDS } from '../../../../constants/network';
 import { getCaip25AccountIdsFromAccountGroupAndScope } from '../../../../util/multichain/getCaip25AccountIdsFromAccountGroupAndScope.ts';
 import { isSnapId } from '@metamask/snaps-utils';
 

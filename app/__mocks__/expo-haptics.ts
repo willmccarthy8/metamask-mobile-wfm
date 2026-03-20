@@ -1,8 +1,8 @@
 // mock expo-haptics for testing
 
-export const impactAsync = jest.fn().mockResolvedValue(undefined);
-export const notificationAsync = jest.fn().mockResolvedValue(undefined);
-export const selectionAsync = jest.fn().mockResolvedValue(undefined);
+export const impactAsync: jest.Mock = jest.fn().mockResolvedValue(undefined);
+export const notificationAsync: jest.Mock = jest.fn().mockResolvedValue(undefined);
+export const selectionAsync: jest.Mock = jest.fn().mockResolvedValue(undefined);
 
 export const ImpactFeedbackStyle = {
   Light: 'light',
@@ -10,13 +10,13 @@ export const ImpactFeedbackStyle = {
   Heavy: 'heavy',
   Rigid: 'rigid',
   Soft: 'soft',
-};
+} as const;
 
 export const NotificationFeedbackType = {
   Success: 'success',
   Warning: 'warning',
   Error: 'error',
-};
+} as const;
 
 export const AndroidHaptics = {
   Clock_Tick: 'clock-tick',
@@ -38,7 +38,7 @@ export const AndroidHaptics = {
   Toggle_On: 'toggle-on',
   Virtual_Key: 'virtual-key',
   Virtual_Key_Release: 'virtual-key-release',
-};
+} as const;
 
 // Default export for namespace imports
 export default {
