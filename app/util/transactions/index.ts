@@ -259,7 +259,7 @@ export function isLegacyTransaction(transactionMeta) {
  * @param {Object} opts - Optional asset parameters
  * @returns {String} - String containing the generated transfer data
  */
-export function generateTransferData(type: string | undefined = undefined, opts: Record<string, string> = {}) {
+export function generateTransferData(type: string | undefined = undefined, opts: Record<string, unknown> = {}) {
   if (!type) {
     throw new TypeError('[transactions] type must be defined');
   }

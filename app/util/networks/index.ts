@@ -554,7 +554,7 @@ export function blockTagParamIndex(payload) {
  * @param {Object} providerConfig - The provider configuration for the current selected network.
  * @returns {string} Name of the network.
  */
-export const getNetworkNameFromProviderConfig = (providerConfig) => {
+export const getNetworkNameFromProviderConfig = (providerConfig: Record<string, unknown>) => {
   let name = strings('network_information.unknown_network');
   if (providerConfig.nickname) {
     name = providerConfig.nickname;
@@ -649,9 +649,9 @@ export const getNetworkImageSource = ({ networkType, chainId }: { networkType?: 
  * @param {string} rpcBlockExplorer rpc block explorer base url
  */
 export const getBlockExplorerAddressUrl = (
-  networkType,
-  address,
-  rpcBlockExplorer = null,
+  networkType: string,
+  address: string,
+  rpcBlockExplorer: string | null = null,
 ) => {
   const isCustomRpcBlockExplorerNetwork = networkType === RPC;
 
@@ -676,9 +676,9 @@ export const getBlockExplorerAddressUrl = (
  * @param {string} rpcBlockExplorer rpc block explorer base url
  */
 export const getBlockExplorerTxUrl = (
-  networkType,
-  transactionHash,
-  rpcBlockExplorer = null,
+  networkType: string,
+  transactionHash: string,
+  rpcBlockExplorer: string | null = null,
 ) => {
   const isCustomRpcBlockExplorerNetwork = networkType === RPC;
 

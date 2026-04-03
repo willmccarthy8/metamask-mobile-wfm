@@ -54,7 +54,7 @@ const createStyles = (theme) => ({
 /**
  * PureComponent that renders receive options
  */
-class ReceiveRequest extends PureComponent {
+class ReceiveRequest extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * The navigator object

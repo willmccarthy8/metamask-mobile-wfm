@@ -25,7 +25,7 @@ const createStyles = (colors) =>
 /**
  * View that is displayed in the flow to agree terms and conditions
  */
-export default class TermsAndConditions extends PureComponent {
+export default class TermsAndConditions extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
     /* navigation object required to push and pop other views
