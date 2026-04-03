@@ -1,4 +1,3 @@
-// @ts-nocheck
 // mock expo-screen-orientation for testing
 
 export const lockAsync = jest.fn().mockResolvedValue(undefined);

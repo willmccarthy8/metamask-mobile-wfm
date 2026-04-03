@@ -1,4 +1,3 @@
-// @ts-nocheck
 // mock expo-haptics for testing
 
 export const impactAsync = jest.fn().mockResolvedValue(undefined);

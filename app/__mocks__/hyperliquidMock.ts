@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* eslint-disable */
 // Mock for @nktkas/hyperliquid SDK
 

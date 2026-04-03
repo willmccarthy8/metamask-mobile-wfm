@@ -1,4 +1,3 @@
-// @ts-nocheck
 import MATIC from './matic.png';
 import POL from './pol.png';
 import PALM from './palm.png';

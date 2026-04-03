@@ -1,4 +1,3 @@
-// @ts-nocheck
 import {
   Caip25CaveatType,
   Caip25EndowmentPermissionName,
@@ -20,7 +19,7 @@ import { createSelector } from 'reselect';
  * @param {Record<string, unknown>} state - The PermissionController state.
  * @returns {Record<string, unknown>} The PermissionController subject.
  */
-const getSubjects = (state) => state.subjects;
+const getSubjects = (state: Record<string, Record<string, unknown>>) => state.subjects;
 
 /**
  * Get the authorized CAIP-25 scopes for the subject.
@@ -30,7 +29,7 @@ const getSubjects = (state) => state.subjects;
  * @param origin - The origin to match the subject state from.
  * @returns {Caip25CaveatValue} The current authorization or undefined if no authorization exists.
  */
-export const getAuthorizedScopes = (origin) =>
+export const getAuthorizedScopes = (origin: string) =>
   createSelector(getSubjects, (subjects) => {
     const subject = subjects[origin];
 
@@ -44,10 +43,11 @@ export const getAuthorizedScopes = (origin) =>
       return emptyPermission;
     }
 
+    const typedSubject = subject as Record<string, Record<string, Record<string, Array<Record<string, unknown>>>>>;
     const caveats =
-      subject.permissions?.[Caip25EndowmentPermissionName]?.caveats || [];
+      typedSubject.permissions?.[Caip25EndowmentPermissionName]?.caveats || [];
 
-    const caveat = caveats.find(({ type }) => type === Caip25CaveatType);
+    const caveat = caveats.find((c: Record<string, unknown>) => c.type === Caip25CaveatType);
 
-    return caveat?.value ?? emptyPermission;
+    return (caveat?.value as Record<string, unknown>) ?? emptyPermission;
   });
