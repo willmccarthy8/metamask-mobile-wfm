@@ -23,9 +23,9 @@ export const typedSign = {
 };
 
 export const getAnalyticsParams = (
-  messageParams,
-  signType,
-  securityAlertResponse,
+  messageParams: Record<string, unknown>,
+  signType: string,
+  securityAlertResponse: unknown = undefined,
 ) => {
   if (!messageParams || typeof messageParams !== 'object') {
     throw new Error('Invalid messageParams provided');
@@ -108,11 +108,11 @@ export const showWalletConnectNotification = (
 };
 
 export const handleSignatureAction = async (
-  onAction,
-  messageParams,
-  signType,
-  securityAlertResponse,
-  confirmation,
+  onAction: (() => Promise<void>) | (() => void),
+  messageParams: Record<string, unknown>,
+  signType: string,
+  securityAlertResponse: unknown,
+  confirmation: unknown = undefined,
 ) => {
   await onAction();
   showWalletConnectNotification(messageParams, confirmation);

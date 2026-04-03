@@ -161,7 +161,7 @@ const createStyles = (colors) =>
 /**
  * Main view for general app configurations
  */
-class Settings extends PureComponent {
+class Settings extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
     /* State current currency

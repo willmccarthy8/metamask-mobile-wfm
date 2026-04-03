@@ -203,12 +203,12 @@ export function getTransactionsNavbarOptions(
  * @returns {Object} - Corresponding navbar options containing title and headerTitleStyle
  */
 export function getNavigationOptionsTitle(
-  title,
-  navigation,
-  isFullScreenModal,
-  themeColors,
-  navigationPopEvent = null,
-) {
+  title: string,
+  navigation: unknown,
+  isFullScreenModal: boolean,
+  themeColors: unknown,
+  navigationPopEvent: unknown = null,
+): Record<string, unknown> {
   const innerStyles = StyleSheet.create({
     headerStyle: {
       backgroundColor: themeColors.background.default,
@@ -1374,8 +1374,8 @@ export function getDepositNavbarOptions(
     showConfiguration = false,
     onConfigurationPress,
   },
-  theme,
-  onClose = undefined,
+  theme: unknown,
+  onClose: (() => void) | undefined = undefined,
 ) {
   let startButtonIconProps, closeButtonProps;
   if (showBack || showClose) {
@@ -1446,11 +1446,11 @@ export const getEditAccountNameNavBarOptions = (goBack, themeColors) => {
  * @returns Staking Navbar Component.
  */
 export function getStakingNavbar(
-  title,
-  navigation,
-  themeColors,
-  navBarOptions,
-  metricsOptions,
+  title: string,
+  navigation: unknown,
+  themeColors: unknown,
+  navBarOptions?: Record<string, unknown>,
+  metricsOptions?: Record<string, unknown>,
   ///: BEGIN:ONLY_INCLUDE_IF(tron)
   earnToken = null,
   aprOverride = null,

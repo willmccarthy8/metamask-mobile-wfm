@@ -1,4 +1,5 @@
 // @ts-nocheck
+export type { RootState } from '../../../../reducers';
 // Third party dependencies.
 import React from 'react';
 import { fireEvent, waitFor } from '@testing-library/react-native';

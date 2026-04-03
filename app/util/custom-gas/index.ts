@@ -16,7 +16,7 @@ export const WEI = 'WEI';
  * @param {number} estimate - Number corresponding to api gas price estimation
  * @returns {Object} - BN instance containing gas price in wei
  */
-export function apiEstimateModifiedToWEI(estimate) {
+export function apiEstimateModifiedToWEI(estimate: string | number) {
   return toWei(estimate, 'gwei');
 }
 
@@ -26,7 +26,7 @@ export function apiEstimateModifiedToWEI(estimate) {
  * @param {number} val - Number corresponding to api gas price estimation
  * @returns {string} - The GWEI value as a string
  */
-export function convertApiValueToGWEI(val) {
+export function convertApiValueToGWEI(val: string | number) {
   return parseInt(val, 10).toString();
 }
 
@@ -37,7 +37,7 @@ export function convertApiValueToGWEI(val) {
  * @param {number} gasLimit - Number corresponding to transaction gas limit
  * @returns {Object} - BN instance containing gas price in wei
  */
-export function getWeiGasFee(estimate, gasLimit = 21000) {
+export function getWeiGasFee(estimate: string | number, gasLimit: number = 21000) {
   const apiEstimate = apiEstimateModifiedToWEI(estimate);
   const gasFee = apiEstimate.mul(new BN(gasLimit, 10));
   return gasFee;
@@ -50,7 +50,7 @@ export function getWeiGasFee(estimate, gasLimit = 21000) {
  * @param {number} gasLimit - Number corresponding to transaction gas limit
  * @returns {Object} - BN instance containing gas price in wei
  */
-export function getRenderableEthGasFee(estimate, gasLimit = 21000) {
+export function getRenderableEthGasFee(estimate: string | number, gasLimit: number = 21000) {
   const gasFee = getWeiGasFee(estimate, gasLimit);
   return renderFromWei(gasFee);
 }
@@ -65,10 +65,10 @@ export function getRenderableEthGasFee(estimate, gasLimit = 21000) {
  * @returns {Object} - BN instance containing gas price in wei
  */
 export function getRenderableFiatGasFee(
-  estimate,
-  conversionRate,
-  currencyCode,
-  gasLimit = 21000,
+  estimate: string | number,
+  conversionRate: number,
+  currencyCode: string,
+  gasLimit: number = 21000,
 ) {
   const wei = getWeiGasFee(estimate, gasLimit);
   return weiToFiat(wei, conversionRate, currencyCode);
@@ -109,9 +109,9 @@ export function parseWaitTime(min) {
 }
 
 export async function getGasLimit(
-  transaction,
-  resetGas = false,
-  networkClientId,
+  transaction: Record<string, unknown>,
+  resetGas: boolean = false,
+  networkClientId?: string,
 ) {
   let estimation;
   try {

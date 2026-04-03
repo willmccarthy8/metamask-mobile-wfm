@@ -102,7 +102,7 @@ const createStyles = (colors) =>
     },
   });
 
-class AccountInfoCard extends PureComponent {
+class AccountInfoCard extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * A string that represents the from address.

@@ -41,7 +41,7 @@ import { getPhishingTestResultAsync } from '../../../util/phishingDetection';
 /**
  * Account access approval component
  */
-class AccountApproval extends PureComponent {
+class AccountApproval extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * Object containing current page title, url, and icon href

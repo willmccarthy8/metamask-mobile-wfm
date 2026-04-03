@@ -150,7 +150,7 @@ const EDIT = 'edit';
 /**
  * View that contains app information
  */
-class ContactForm extends PureComponent {
+class ContactForm extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * Object that represents the navigator

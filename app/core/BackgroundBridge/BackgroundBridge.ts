@@ -117,6 +117,7 @@ const legacyNetworkId = () => {
 };
 
 export class BackgroundBridge extends EventEmitter {
+  url: string = '';
   constructor({
     webview,
     url,
@@ -383,7 +384,7 @@ export class BackgroundBridge extends EventEmitter {
     );
   }
 
-  async notifySelectedAddressChanged(selectedAddress) {
+  async notifySelectedAddressChanged(selectedAddress: string | undefined = undefined) {
     try {
       let approvedAccounts = [];
       DevLogger.log(

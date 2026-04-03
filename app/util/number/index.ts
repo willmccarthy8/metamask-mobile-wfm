@@ -103,7 +103,7 @@ export const addHexPrefix = (str) => {
  * @param {string} unit - Unit to convert to, ether by default
  * @returns {string} - String containing the new number
  */
-export function fromWei(value = 0, unit = 'ether') {
+export function fromWei(value: unknown = 0, unit: string = 'ether') {
   return convert.fromWei(value, unit);
 }
 
@@ -373,7 +373,7 @@ export function fiatNumberToTokenMinimalUnit(
  * @returns {String} - Number of token minimal unit, in render format
  * If value is less than 5 precision decimals will show '< 0.00001'
  */
-export function renderFromWei(value, decimalsToShow = 5) {
+export function renderFromWei(value: unknown, decimalsToShow: number = 5) {
   let renderWei = '0';
   // avoid undefined
   if (value) {
@@ -416,7 +416,7 @@ export function isBN(value) {
  * @param {number | string} value - String to check
  * @returns {boolean} - True if the string is a valid decimal
  */
-export function isDecimal(value) {
+export function isDecimal(value: unknown) {
   return (
     Number.isFinite(parseFloat(value)) &&
     !Number.isNaN(parseFloat(value)) &&
@@ -538,10 +538,10 @@ export function renderToGwei(value, unit = 'ether') {
  * @returns {string} - Currency-formatted string
  */
 export function weiToFiat(
-  wei,
-  conversionRate = null,
-  currencyCode,
-  decimalsToShow = 5,
+  wei: unknown,
+  conversionRate: number | null | undefined = null,
+  currencyCode: string,
+  decimalsToShow: number = 5,
 ) {
   if (!conversionRate) return undefined;
   if (!wei || !isBN(wei) || !conversionRate) {
@@ -641,7 +641,7 @@ export function addCurrencySymbol(
  * @param {Number} decimalsToShow - Decimals to 5
  * @returns {Number} - The converted balance
  */
-export function weiToFiatNumber(wei, conversionRate, decimalsToShow = 5) {
+export function weiToFiatNumber(wei: unknown, conversionRate: number, decimalsToShow: number = 5) {
   const base = Math.pow(10, decimalsToShow);
   const eth = fromWei(wei).toString();
   let value = parseFloat(Math.floor(eth * conversionRate * base) / base);

@@ -314,7 +314,7 @@ const createStyles = (colors) =>
 /**
  * View where users can set their password for the first time
  */
-class ResetPassword extends PureComponent {
+class ResetPassword extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * The navigator object

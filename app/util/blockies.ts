@@ -433,3 +433,5 @@
 class Blockies {
   static cache = {};
 }
+
+export { toDataUrl };

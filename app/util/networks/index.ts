@@ -577,7 +577,7 @@ export const getNetworkNameFromProviderConfig = (providerConfig) => {
  * @param {string} params.chainId - Hex EVM chain ID of the EVM network.
  * @returns {Object} - Image source of the network.
  */
-const getEvmNetworkImageSource = ({ networkType, chainId }) => {
+const getEvmNetworkImageSource = ({ networkType, chainId }: { networkType?: string; chainId: string }) => {
   const defaultNetwork = getDefaultNetworkByChainId(chainId);
 
   if (defaultNetwork) {
@@ -616,7 +616,7 @@ const imageSourceCache = new Map();
  * @param {string} params.chainId - Hex EVM chain ID or CAIP chain ID of the network.
  * @returns {Object} - Image source of the network.
  */
-export const getNetworkImageSource = ({ networkType, chainId }) => {
+export const getNetworkImageSource = ({ networkType, chainId }: { networkType?: string; chainId: string }) => {
   const cacheKey = `${networkType}-${chainId}`;
   if (imageSourceCache.has(cacheKey)) {
     return imageSourceCache.get(cacheKey);
