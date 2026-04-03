@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migrate from './024';
 import { merge } from 'lodash';
 import initialRootState from '../../util/test/initial-root-state';
@@ -41,7 +40,7 @@ describe('Migration #24', () => {
 
   for (const { errorMessage, scenario, state } of invalidBackgroundStates) {
     it(`should capture exception if ${scenario}`, () => {
-      const newState = migrate(state);
+      const newState = migrate(state) as Record<string, Record<string, Record<string, unknown>>>;
 
       expect(newState).toStrictEqual(state);
       expect(mockedCaptureException).toHaveBeenCalledWith(expect.any(Error));
@@ -62,7 +61,7 @@ describe('Migration #24', () => {
       },
     };
 
-    const newState = migrate(state);
+    const newState = migrate(state) as Record<string, Record<string, Record<string, unknown>>>;
 
     expect(newState.engine.backgroundState.NetworkController).toStrictEqual({
       networkId: null,
@@ -81,7 +80,7 @@ describe('Migration #24', () => {
       },
     };
 
-    const newState = migrate(state);
+    const newState = migrate(state) as Record<string, Record<string, Record<string, unknown>>>;
 
     expect(newState.engine.backgroundState.NetworkController).toStrictEqual({
       networkId: '1',

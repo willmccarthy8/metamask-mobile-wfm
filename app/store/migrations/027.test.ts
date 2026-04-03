@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migration from './027';
 
 describe('Migration #27', () => {
@@ -15,7 +14,7 @@ describe('Migration #27', () => {
       },
     };
 
-    const newState = migration(oldState);
+    const newState = migration(oldState) as Record<string, Record<string, Record<string, Record<string, unknown>>>>;
 
     expect(newState).toStrictEqual(oldState);
   });
@@ -31,7 +30,7 @@ describe('Migration #27', () => {
       },
     };
 
-    const newState = migration(oldState);
+    const newState = migration(oldState) as Record<string, Record<string, Record<string, Record<string, unknown>>>>;
 
     expect(newState).toStrictEqual({
       engine: {
@@ -69,7 +68,7 @@ describe('Migration #27', () => {
       },
     };
 
-    const newState = migration(oldState);
+    const newState = migration(oldState) as Record<string, Record<string, Record<string, Record<string, unknown>>>>;
 
     expect(
       newState.engine.backgroundState.TransactionController.submitHistory,
@@ -137,7 +136,7 @@ describe('Migration #27', () => {
       },
     };
 
-    const newState = migration(oldState);
+    const newState = migration(oldState) as Record<string, Record<string, Record<string, Record<string, unknown>>>>;
 
     expect(
       newState.engine.backgroundState.TransactionController.submitHistory,
@@ -227,7 +226,7 @@ describe('Migration #27', () => {
       },
     };
 
-    const newState = migration(oldState);
+    const newState = migration(oldState) as Record<string, Record<string, Record<string, Record<string, unknown>>>>;
 
     expect(
       newState.engine.backgroundState.TransactionController.submitHistory,

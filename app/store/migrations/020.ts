@@ -22,11 +22,11 @@ export default function migrate(state: unknown) {
 
   const preferencesControllerState =
     bgState.PreferencesController;
-  const networkControllerState = bgState.NetworkController;
-  const frequentRpcList = preferencesControllerState?.frequentRpcList;
+  const networkControllerState = bgState.NetworkController as Record<string, unknown>;
+  const frequentRpcList = preferencesControllerState?.frequentRpcList as unknown[] | undefined;
   if (networkControllerState && frequentRpcList) {
-    const networkConfigurations = frequentRpcList.reduce(
-      (networkConfigs: Record<string, unknown>, networkConfig) => {
+    const networkConfigurations = frequentRpcList.reduce<Record<string, unknown>>(
+      (networkConfigs: Record<string, unknown>, networkConfig: Record<string, unknown>) => {
         const networkConfigurationId = v4();
         return {
           ...networkConfigs,

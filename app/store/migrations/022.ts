@@ -8,14 +8,14 @@ export default function migrate(state: unknown) {
   if (!isObject(engineState.backgroundState)) return state;
   const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
 
-  if (state?.engine?.backgroundState?.PreferencesController?.openSeaEnabled) {
+  if ((state as Record<string, Record<string, Record<string, unknown>>>)?.engine?.backgroundState?.PreferencesController?.openSeaEnabled) {
     bgState.PreferencesController.displayNftMedia =
       bgState.PreferencesController.openSeaEnabled ?? true;
 
     delete bgState.PreferencesController.openSeaEnabled;
   }
-  if (state?.user?.nftDetectionDismissed) {
-    delete state.user.nftDetectionDismissed;
+  if ((state as Record<string, Record<string, unknown>>)?.user?.nftDetectionDismissed) {
+    delete (state as Record<string, Record<string, unknown>>).user.nftDetectionDismissed;
   }
 
   return state;

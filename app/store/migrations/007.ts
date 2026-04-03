@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { isObject } from '@metamask/utils';
 
 export default function migrate(state: unknown) {
@@ -18,7 +17,7 @@ export default function migrate(state: unknown) {
           newAllTokens[chainId] = { [accountAddress]: tokensArray };
         } else {
           newAllTokens[chainId] = {
-            ...newAllTokens[chainId],
+            ...newAllTokens[chainId] as Record<string, unknown>,
             [accountAddress]: tokensArray,
           };
         }
@@ -37,7 +36,7 @@ export default function migrate(state: unknown) {
         };
       } else {
         newAllIgnoredTokens[chainId] = {
-          ...newAllIgnoredTokens[chainId],
+          ...newAllIgnoredTokens[chainId] as Record<string, unknown>,
           [accountAddress]: ignoredTokens,
         };
       }
