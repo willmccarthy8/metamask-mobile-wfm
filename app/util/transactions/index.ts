@@ -248,7 +248,7 @@ const actionKeys = {
  * @param {object} transactionMeta - The transaction metadata to check
  * @returns {boolean} true if the transaction is a legacy transaction, false otherwise
  */
-export function isLegacyTransaction(transactionMeta) {
+export function isLegacyTransaction(transactionMeta: Record<string, unknown>) {
   return transactionMeta?.txParams?.type === TransactionEnvelopeType.legacy;
 }
 
@@ -502,9 +502,9 @@ export async function getMethodData(data, networkClientId) {
  * @returns {Promise<boolean>} - Whether the given address is a contract
  */
 export async function isSmartContractAddress(
-  address,
-  chainId,
-  networkClientId = undefined,
+  address: string,
+  chainId: string,
+  networkClientId: string | undefined = undefined,
 ) {
   if (!address) return false;
 
@@ -1805,7 +1805,7 @@ export function getTokenAddressParam(tokenData = {}) {
  * @param {Object} tokenData - ethers Interface token data.
  * @returns {string | undefined} A hex string value.
  */
-export function getTokenValueParamAsHex(tokenData = {}) {
+export function getTokenValueParamAsHex(tokenData: Record<string, unknown> = {}) {
   const value = tokenData?.args?._value?._hex || tokenData?.args?.[1]._hex;
   return value?.toLowerCase();
 }
@@ -1817,11 +1817,11 @@ export function getTokenValueParamAsHex(tokenData = {}) {
  * @param {Object} tokenData - ethers Interface token data.
  * @returns {string | undefined} A decimal string value.
  */
-export function getTokenValueParam(tokenData = {}) {
+export function getTokenValueParam(tokenData: Record<string, unknown> = {}) {
   return tokenData?.args?._value?.toString();
 }
 
-export function getTokenValue(tokenParams = []) {
+export function getTokenValue(tokenParams: Array<{ name: string; value: string }> = []) {
   const valueData = tokenParams.find((param) => param.name === '_value');
   return valueData && valueData.value;
 }
@@ -1962,7 +1962,7 @@ export const getIsNativeTokenTransferred = (txParams) =>
  * @param {string} tokenStandard - The token standard to check.
  * @returns {boolean} - True if the token standard is ERC721 or ERC1155, otherwise false.
  */
-export function isNFTTokenStandard(tokenStandard) {
+export function isNFTTokenStandard(tokenStandard: string) {
   return [ERC721, ERC1155].includes(tokenStandard);
 }
 

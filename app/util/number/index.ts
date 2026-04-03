@@ -918,7 +918,7 @@ export const conversionUtil = (
     value: value || '0',
   });
 
-export const toHexadecimal = (decimal) => {
+export const toHexadecimal = (decimal?: string | number) => {
   if (!decimal) return decimal;
   if (decimal !== typeof 'string') {
     decimal = String(decimal);

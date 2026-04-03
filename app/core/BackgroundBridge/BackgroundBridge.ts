@@ -132,7 +132,7 @@ export class BackgroundBridge extends EventEmitter {
     isMMSDK,
     sdkVersion = 'v1',
     channelId,
-  }) {
+  } = {}) {
     super();
     this.url = url;
     this.origin = new URL(url).origin;
