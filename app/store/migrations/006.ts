@@ -7,8 +7,11 @@ import {
   DENIED,
   EXPLORED,
 } from '../../constants/storage';
+import { isObject } from '@metamask/utils';
 
-export default function migrate(state) {
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+
   state.analytics?.enabled
     ? DefaultPreference.set(METRICS_OPT_IN, AGREED)
     : DefaultPreference.set(METRICS_OPT_IN, DENIED);

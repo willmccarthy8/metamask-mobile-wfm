@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { isObject } from '@metamask/utils';
 import { captureException } from '@sentry/react-native';
 import { NetworkStatus } from '@metamask/network-controller';
@@ -17,8 +16,14 @@ import { NetworkStatus } from '@metamask/network-controller';
  * redux-persist bug somehow.
  *
  **/
-export default function migrate(state) {
-  const networkControllerState = state.engine.backgroundState.NetworkController;
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  const networkControllerState = bgState.NetworkController;
 
   if (!isObject(networkControllerState)) {
     captureException(

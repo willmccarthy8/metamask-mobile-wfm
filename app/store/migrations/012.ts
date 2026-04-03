@@ -1,26 +1,33 @@
-// @ts-nocheck
-export default function migrate(state) {
+import { isObject } from '@metamask/utils';
+
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
   const {
     allCollectibles,
     allCollectibleContracts,
     ignoredCollectibles,
     ...unexpectedCollectiblesControllerState
-  } = state.engine.backgroundState.CollectiblesController;
-  state.engine.backgroundState.NftController = {
+  } = bgState.CollectiblesController;
+  bgState.NftController = {
     ...unexpectedCollectiblesControllerState,
     allNfts: allCollectibles,
     allNftContracts: allCollectibleContracts,
     ignoredNfts: ignoredCollectibles,
   };
-  delete state.engine.backgroundState.CollectiblesController;
+  delete bgState.CollectiblesController;
 
-  state.engine.backgroundState.NftDetectionController =
-    state.engine.backgroundState.CollectibleDetectionController;
-  delete state.engine.backgroundState.CollectibleDetectionController;
+  bgState.NftDetectionController =
+    bgState.CollectibleDetectionController;
+  delete bgState.CollectibleDetectionController;
 
-  state.engine.backgroundState.PreferencesController.useNftDetection =
-    state.engine.backgroundState.PreferencesController.useCollectibleDetection;
-  delete state.engine.backgroundState.PreferencesController
+  bgState.PreferencesController.useNftDetection =
+    bgState.PreferencesController.useCollectibleDetection;
+  delete bgState.PreferencesController
     .useCollectibleDetection;
 
   return state;

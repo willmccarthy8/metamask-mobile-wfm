@@ -1,20 +1,27 @@
-// @ts-nocheck
-export default function migrate(state) {
-  state.engine.backgroundState.TokensController = {
-    allTokens: state.engine.backgroundState.AssetsController.allTokens,
-    ignoredTokens: state.engine.backgroundState.AssetsController.ignoredTokens,
+import { isObject } from '@metamask/utils';
+
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  bgState.TokensController = {
+    allTokens: bgState.AssetsController.allTokens,
+    ignoredTokens: bgState.AssetsController.ignoredTokens,
   };
 
-  state.engine.backgroundState.CollectiblesController = {
+  bgState.CollectiblesController = {
     allCollectibles:
-      state.engine.backgroundState.AssetsController.allCollectibles,
+      bgState.AssetsController.allCollectibles,
     allCollectibleContracts:
-      state.engine.backgroundState.AssetsController.allCollectibleContracts,
+      bgState.AssetsController.allCollectibleContracts,
     ignoredCollectibles:
-      state.engine.backgroundState.AssetsController.ignoredCollectibles,
+      bgState.AssetsController.ignoredCollectibles,
   };
 
-  delete state.engine.backgroundState.AssetsController;
+  delete bgState.AssetsController;
 
   return state;
 }

@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { NetworkType } from '@metamask/controller-utils';
+import { isObject } from '@metamask/utils';
 
 /**
  * Populate the submitHistory in the TransactionController using any
@@ -7,8 +8,14 @@ import { NetworkType } from '@metamask/controller-utils';
  * @param {any} state - Redux state
  * @returns
  */
-export default function migrate(state) {
-  const backgroundState = state.engine.backgroundState;
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  const backgroundState = bgState;
 
   const transactionControllerState = backgroundState.TransactionController;
 
@@ -22,8 +29,8 @@ export default function migrate(state) {
     networkControllerState.networkConfigurations || {};
 
   const submitHistory = transactions
-    .filter((tx) => tx.rawTransaction?.length)
-    .map((tx) => {
+    .filter((tx: Record<string, unknown>) => tx.rawTransaction?.length)
+    .map((tx: Record<string, unknown>) => {
       const matchingProviderConfig =
         providerConfig.chainId === tx.chainId ? providerConfig : undefined;
 
@@ -52,7 +59,7 @@ export default function migrate(state) {
       };
     });
 
-  state.engine.backgroundState.TransactionController.submitHistory =
+  bgState.TransactionController.submitHistory =
     submitHistory;
 
   return state;

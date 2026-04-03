@@ -24,8 +24,14 @@ import ambiguousNetworks from './migration-data/amibiguous-networks.json';
  * redux-persist bug somehow.
  *
  **/
-export default function migrate(state) {
-  const keyringControllerState = state.engine.backgroundState.KeyringController;
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  const keyringControllerState = bgState.KeyringController;
   if (!isObject(keyringControllerState)) {
     captureException(
       // @ts-expect-error We are not returning state not to stop the flow of Vault recovery
@@ -35,9 +41,9 @@ export default function migrate(state) {
     );
   }
 
-  const networkControllerState = state.engine.backgroundState.NetworkController;
+  const networkControllerState = bgState.NetworkController;
   const addressBookControllerState =
-    state.engine.backgroundState.AddressBookController;
+    bgState.AddressBookController;
 
   if (!isObject(networkControllerState)) {
     captureException(
@@ -140,8 +146,8 @@ export default function migrate(state) {
   }
 
   const localChainIds = Object.values(
-    networkControllerState.networkConfigurations,
-  ).reduce((customChainIds, networkConfiguration) => {
+    networkControllerState.networkConfigurations as Record<string, Record<string, unknown>>,
+  ).reduce((customChainIds: Set<unknown>, networkConfiguration: Record<string, unknown>) => {
     customChainIds.add(networkConfiguration.chainId);
     return customChainIds;
   }, new Set());
@@ -156,14 +162,14 @@ export default function migrate(state) {
     localChainIds.add(builtInChainId);
   }
 
-  const migratedAddressBook = {};
-  const ambiguousAddressEntries = {};
+  const migratedAddressBook : Record<string, unknown> = {};
+  const ambiguousAddressEntries : Record<string, unknown> = {};
   for (const [networkId, addressEntries] of Object.entries(
     addressBookControllerState.addressBook,
   )) {
     if (ambiguousNetworks[networkId]) {
       const chainIdCandidates = ambiguousNetworks[networkId].chainIds;
-      const recognizedChainIdCandidates = chainIdCandidates.filter((chainId) =>
+      const recognizedChainIdCandidates = chainIdCandidates.filter((chainId: Record<string, unknown>) =>
         localChainIds.has(chainId),
       );
 
@@ -172,7 +178,7 @@ export default function migrate(state) {
           ambiguousAddressEntries[chainId] = Object.keys(addressEntries);
         }
         migratedAddressBook[chainId] = mapValues(addressEntries, (entry) => ({
-          ...entry,
+          ...(entry as Record<string, unknown>),
           chainId,
         }));
       }

@@ -1,4 +1,6 @@
 // @ts-nocheck
+import { isObject } from '@metamask/utils';
+
 // Hardcoded from ETHERSCAN_SUPPORTED_CHAIN_IDS at the time this migration was written.
 const ETHERSCAN_SUPPORTED_CHAIN_IDS = {
   MAINNET: '0x1',
@@ -25,7 +27,13 @@ const ETHERSCAN_SUPPORTED_CHAIN_IDS = {
   MONAD: '0x8f',
 };
 
-export default function migrate(state) {
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
   try {
     Object.values(ETHERSCAN_SUPPORTED_CHAIN_IDS).forEach((hexChainId) => {
       const thirdPartyApiMode = state?.privacy?.thirdPartyApiMode ?? true;
@@ -33,14 +41,14 @@ export default function migrate(state) {
         state?.engine?.backgroundState?.PreferencesController
           ?.showIncomingTransactions
       ) {
-        state.engine.backgroundState.PreferencesController.showIncomingTransactions =
+        bgState.PreferencesController.showIncomingTransactions =
           {
-            ...state.engine.backgroundState.PreferencesController
+            ...(bgState as Record<string, unknown>).PreferencesController
               .showIncomingTransactions,
             [hexChainId]: thirdPartyApiMode,
           };
       } else if (state?.engine?.backgroundState?.PreferencesController) {
-        state.engine.backgroundState.PreferencesController.showIncomingTransactions =
+        bgState.PreferencesController.showIncomingTransactions =
           { [hexChainId]: thirdPartyApiMode };
       }
     });

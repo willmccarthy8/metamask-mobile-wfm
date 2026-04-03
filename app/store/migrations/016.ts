@@ -1,9 +1,16 @@
-// @ts-nocheck
-export default function migrate(state) {
-  if (state.engine.backgroundState.NetworkController.properties) {
-    state.engine.backgroundState.NetworkController.networkDetails =
-      state.engine.backgroundState.NetworkController.properties;
-    delete state.engine.backgroundState.NetworkController.properties;
+import { isObject } from '@metamask/utils';
+
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  if (bgState.NetworkController.properties) {
+    bgState.NetworkController.networkDetails =
+      bgState.NetworkController.properties;
+    delete bgState.NetworkController.properties;
   }
   return state;
 }

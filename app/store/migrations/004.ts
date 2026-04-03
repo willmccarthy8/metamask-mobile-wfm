@@ -1,16 +1,23 @@
 // @ts-nocheck
 import { NetworksChainId } from '@metamask/controller-utils';
+import { isObject } from '@metamask/utils';
 
-export default function migrate(state) {
-  const { allTokens } = state.engine.backgroundState.TokensController;
+export default function migrate(state: unknown) {
+  if (!isObject(state)) return state;
+  if (!isObject(state.engine)) return state;
+  const engineState = state.engine as Record<string, unknown>;
+  if (!isObject(engineState.backgroundState)) return state;
+  const bgState = engineState.backgroundState as Record<string, Record<string, unknown>>;
+
+  const { allTokens } = bgState.TokensController;
   const { allCollectibleContracts, allCollectibles } =
-    state.engine.backgroundState.CollectiblesController;
+    bgState.CollectiblesController;
   const { frequentRpcList } =
-    state.engine.backgroundState.PreferencesController;
+    bgState.PreferencesController;
 
   const newAllCollectibleContracts = {};
-  const newAllCollectibles = {};
-  const newAllTokens = {};
+  const newAllCollectibles : Record<string, unknown> = {};
+  const newAllTokens : Record<string, unknown> = {};
 
   Object.keys(allTokens).forEach((address) => {
     newAllTokens[address] = {};
@@ -19,7 +26,7 @@ export default function migrate(state) {
         newAllTokens[address][NetworksChainId[networkType]] =
           allTokens[address][networkType];
       } else {
-        frequentRpcList.forEach(({ chainId }) => {
+        frequentRpcList.forEach(({ chainId }: Record<string, unknown>) => {
           newAllTokens[address][chainId] = allTokens[address][networkType];
         });
       }
@@ -33,7 +40,7 @@ export default function migrate(state) {
         newAllCollectibles[address][NetworksChainId[networkType]] =
           allCollectibles[address][networkType];
       } else {
-        frequentRpcList.forEach(({ chainId }) => {
+        frequentRpcList.forEach(({ chainId }: Record<string, unknown>) => {
           newAllCollectibles[address][chainId] =
             allCollectibles[address][networkType];
         });
@@ -48,7 +55,7 @@ export default function migrate(state) {
         newAllCollectibleContracts[address][NetworksChainId[networkType]] =
           allCollectibleContracts[address][networkType];
       } else {
-        frequentRpcList.forEach(({ chainId }) => {
+        frequentRpcList.forEach(({ chainId }: Record<string, unknown>) => {
           newAllCollectibleContracts[address][chainId] =
             allCollectibleContracts[address][networkType];
         });
@@ -56,12 +63,12 @@ export default function migrate(state) {
     });
   });
 
-  state.engine.backgroundState.TokensController = {
-    ...state.engine.backgroundState.TokensController,
+  bgState.TokensController = {
+    ...bgState.TokensController,
     allTokens: newAllTokens,
   };
-  state.engine.backgroundState.CollectiblesController = {
-    ...state.engine.backgroundState.CollectiblesController,
+  bgState.CollectiblesController = {
+    ...bgState.CollectiblesController,
     allCollectibles: newAllCollectibles,
     allCollectibleContracts: newAllCollectibleContracts,
   };
