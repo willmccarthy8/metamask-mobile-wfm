@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { IPFS_DEFAULT_GATEWAY_URL } from '../../../app/constants/network';
 import { isObject } from '@metamask/utils';
 
@@ -17,7 +16,7 @@ export default function migrate(state: unknown) {
   ];
 
   const isUsingOutdatedGateway = outdatedIpfsGateways.includes(
-    bgState?.PreferencesController?.ipfsGateway,
+    bgState?.PreferencesController?.ipfsGateway as string,
   );
 
   if (isUsingOutdatedGateway) {

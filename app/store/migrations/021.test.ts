@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migrate from './021';
 import { IPFS_DEFAULT_GATEWAY_URL } from '../../../app/constants/network';
 import { backgroundState } from '../../util/test/initial-root-state';
@@ -17,7 +16,7 @@ describe('Migration #21', () => {
   });
 
   it('should change outdated ipfs gateway to default one', () => {
-    const stateWithIpfsGateway = (ipfsGateway) => ({
+    const stateWithIpfsGateway = (ipfsGateway: string) => ({
       engine: {
         backgroundState: {
           ...backgroundState,

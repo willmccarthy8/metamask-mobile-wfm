@@ -1,4 +1,3 @@
-// @ts-nocheck
 import AppConstants from '../../core/AppConstants';
 import { toLowerCaseEquals } from '../../util/general';
 import { isObject } from '@metamask/utils';
@@ -16,14 +15,15 @@ export default function migrate(state: unknown) {
 
   const tokens = bgState.TokensController.tokens as unknown[];
   const migratedTokens : unknown[] = [];
-  tokens.forEach((token: Record<string, unknown>) => {
+  tokens.forEach((token) => {
+    const typedToken = token as Record<string, unknown>;
     if (
-      token.symbol === 'DAI' &&
-      toLowerCaseEquals(token.address, AppConstants.SAI_ADDRESS)
+      typedToken.symbol === 'DAI' &&
+      toLowerCaseEquals(typedToken.address, AppConstants.SAI_ADDRESS)
     ) {
-      token.symbol = 'SAI';
+      typedToken.symbol = 'SAI';
     }
-    migratedTokens.push(token);
+    migratedTokens.push(typedToken);
   });
   bgState.TokensController.tokens = migratedTokens;
 

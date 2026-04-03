@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { captureException } from '@sentry/react-native';
 import { isObject } from '@metamask/utils';
 
@@ -17,7 +16,6 @@ export default function migrate(state: unknown) {
   const keyringControllerState = bgState.KeyringController;
   if (!isObject(keyringControllerState)) {
     captureException(
-      // @ts-expect-error We are not returning state not to stop the flow of Vault recovery
       new Error(
         `Migration 26: Invalid vault in KeyringController: '${typeof keyringControllerState}'`,
       ),

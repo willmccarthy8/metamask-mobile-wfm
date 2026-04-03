@@ -1,4 +1,3 @@
-// @ts-nocheck
 /* eslint-disable */
 // Mock for @myx-trade/sdk
 // Prevents Jest failures from lodash-es (ESM-only) imported by the real SDK
@@ -9,9 +8,7 @@ const mockMarkets = {
 };
 
 class MyxClient {
-  constructor() {
-    this.markets = mockMarkets;
-  }
+  markets = mockMarkets;
 }
 
 // SDK enums (mirrored from the real SDK to support adapter tests)
