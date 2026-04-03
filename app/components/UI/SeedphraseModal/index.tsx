@@ -1,9 +1,9 @@
-// @ts-nocheck
 import React, { useRef } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { fontStyles } from '../../../styles/common';
 import { strings } from '../../../../locales/i18n';
 import { useTheme } from '../../../util/theme';
+import type { Colors } from '../../../util/theme/models';
 import BottomSheet from '../../../component-library/components/BottomSheets/BottomSheet';
 import Text, {
   TextVariant,
@@ -17,7 +17,7 @@ import Button, {
 import HeaderCompactStandard from '../../../component-library/components-temp/HeaderCompactStandard';
 import { useNavigation } from '@react-navigation/native';
 
-const createStyles = (colors) =>
+const createStyles = (colors: Colors) =>
   StyleSheet.create({
     modalContainer: {
       flexDirection: 'column',

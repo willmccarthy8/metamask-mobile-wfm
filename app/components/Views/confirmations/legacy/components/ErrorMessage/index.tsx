@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
@@ -17,7 +16,14 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ErrorMessage(props) {
+interface ErrorMessageProps {
+  errorMessage?: string;
+  errorContinue?: string;
+  onContinue?: () => void;
+  isOnlyWarning?: boolean;
+}
+
+export default function ErrorMessage(props: ErrorMessageProps) {
   const { errorMessage, errorContinue, onContinue, isOnlyWarning } = props;
   return (
     <Alert type={isOnlyWarning ? AlertType.Info : AlertType.Error}>
