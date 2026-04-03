@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default [
   {
     url: 'https://instant.airswap.io/',

@@ -1,4 +1,3 @@
-// @ts-nocheck
 export default {
   CUSTOM_GAS: {
     AVERAGE_GAS: 20,

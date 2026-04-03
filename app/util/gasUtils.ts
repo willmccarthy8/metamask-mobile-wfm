@@ -1,4 +1,3 @@
-// @ts-nocheck
 import BigNumber from 'bignumber.js';
 
 export const GAS_LIMIT_INCREMENT = new BigNumber(1000);

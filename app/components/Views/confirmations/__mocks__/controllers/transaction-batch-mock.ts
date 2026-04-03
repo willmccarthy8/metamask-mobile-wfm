@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { ApprovalType } from '@metamask/controller-utils';
 import {
   contractInteractionBaseState,

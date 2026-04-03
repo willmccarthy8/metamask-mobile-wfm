@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NativeModules, Platform } from 'react-native';
 import { isQa, isRc } from '../util/test/utils';
 

@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migrate from './022';
 
 describe('Migration #22', () => {

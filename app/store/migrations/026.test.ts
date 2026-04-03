@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migrate from './026';
 import { captureException } from '@sentry/react-native';
 

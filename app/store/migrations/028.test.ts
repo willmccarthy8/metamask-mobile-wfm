@@ -1,4 +1,3 @@
-// @ts-nocheck
 import migrate, { controllerList } from './028';
 
 jest.mock('@metamask/utils', () => ({

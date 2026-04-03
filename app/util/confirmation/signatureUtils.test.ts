@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { handleSignatureAction } from './signatureUtils';
 import { analytics } from '../analytics/analytics';
 import { AnalyticsEventBuilder } from '../analytics/AnalyticsEventBuilder';

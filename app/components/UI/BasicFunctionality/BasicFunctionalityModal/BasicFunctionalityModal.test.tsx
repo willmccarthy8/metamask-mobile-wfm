@@ -1,4 +1,3 @@
-// @ts-nocheck
 export type { RootState } from '../../../../reducers';
 // Third party dependencies.
 import React from 'react';

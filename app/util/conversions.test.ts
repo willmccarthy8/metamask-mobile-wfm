@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { multiplyHexes } from './conversions';
 
 describe('multiplyHexes', () => {
