@@ -87,7 +87,7 @@ const useAddressBalance = (
         return;
       }
 
-      if (!contractBalances[contractAddress] && !dontWatchAsset) {
+      if (!contractBalances[contractAddress as `0x${string}`] && !dontWatchAsset) {
         TokensController.addToken({
           address: contractAddress,
           symbol,

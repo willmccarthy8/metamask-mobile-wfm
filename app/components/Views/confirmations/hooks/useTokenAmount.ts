@@ -126,7 +126,7 @@ export const useTokenAmount = ({
     safeToChecksumAddress(tokenData?.to) || NATIVE_TOKEN_ADDRESS;
 
   const { value: decimals, pending } = useTokenDecimals(
-    tokenAddress,
+    tokenAddress as `0x${string}`,
     chainId,
     networkClientId,
   );
@@ -208,7 +208,7 @@ export const useTokenAmount = ({
     case TransactionType.tokenMethodTransfer: {
       // ERC20
       const contractExchangeRate =
-        contractExchangeRates?.[tokenAddress]?.price ?? 0;
+        contractExchangeRates?.[tokenAddress as `0x${string}`]?.price ?? 0;
       fiat = amount.times(nativeConversionRate).times(contractExchangeRate);
       native = amount.times(contractExchangeRate);
 
