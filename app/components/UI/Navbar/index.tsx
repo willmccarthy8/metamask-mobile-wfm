@@ -1373,7 +1373,7 @@ export function getDepositNavbarOptions(
     showClose = true,
     showConfiguration = false,
     onConfigurationPress,
-  },
+  }: { title: string; showBack?: boolean; showClose?: boolean; showConfiguration?: boolean; onConfigurationPress?: (() => void) | undefined },
   theme: unknown,
   onClose: (() => void) | undefined = undefined,
 ) {
