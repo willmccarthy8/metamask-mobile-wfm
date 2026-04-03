@@ -1452,8 +1452,8 @@ export function getStakingNavbar(
   navBarOptions?: Record<string, unknown>,
   metricsOptions?: Record<string, unknown>,
   ///: BEGIN:ONLY_INCLUDE_IF(tron)
-  earnToken = null,
-  aprOverride = null,
+  earnToken: unknown = null,
+  aprOverride: string | null = null,
   ///: END:ONLY_INCLUDE_IF
 ) {
   const {
