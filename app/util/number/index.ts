@@ -542,8 +542,8 @@ export function weiToFiat(
   conversionRate: number | null | undefined = null,
   currencyCode: string,
   decimalsToShow: number = 5,
-) {
-  if (!conversionRate) return undefined;
+): string {
+  if (!conversionRate) return '';
   if (!wei || !isBN(wei) || !conversionRate) {
     return addCurrencySymbol(0, currencyCode);
   }
@@ -918,8 +918,8 @@ export const conversionUtil = (
     value: value || '0',
   });
 
-export const toHexadecimal = (decimal?: string | number) => {
-  if (!decimal) return decimal;
+export const toHexadecimal = (decimal?: string | number): string => {
+  if (!decimal) return '';
   if (decimal !== typeof 'string') {
     decimal = String(decimal);
   }

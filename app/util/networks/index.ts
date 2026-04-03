@@ -554,7 +554,7 @@ export function blockTagParamIndex(payload) {
  * @param {Object} providerConfig - The provider configuration for the current selected network.
  * @returns {string} Name of the network.
  */
-export const getNetworkNameFromProviderConfig = (providerConfig: { type?: string; nickname?: string; [key: string]: unknown }) => {
+export const getNetworkNameFromProviderConfig = (providerConfig: { type?: string; nickname?: string }) => {
   let name = strings('network_information.unknown_network');
   if (providerConfig.nickname) {
     name = providerConfig.nickname;
