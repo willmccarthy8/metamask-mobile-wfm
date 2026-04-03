@@ -41,7 +41,7 @@ export const permissionControllerInit: ControllerInitFunction<
     caveatSpecifications: getCaveatSpecifications({
       listAccounts: () =>
         initMessenger.call('AccountsController:listAccounts'),
-      findNetworkClientIdByChainId: (chainId: string) =>
+      findNetworkClientIdByChainId: (chainId: `0x${string}`) =>
         initMessenger.call(
           'NetworkController:findNetworkClientIdByChainId',
           chainId,

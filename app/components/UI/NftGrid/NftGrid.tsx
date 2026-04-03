@@ -110,7 +110,7 @@ const NftGrid = forwardRef<TabRefreshHandle, NftGridProps>(
 
     const collectiblesByEnabledNetworks: Record<string, Nft[]> = useSelector(
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      multichainCollectiblesByEnabledNetworksSelector as (state: any) => Record<string, Nft[]>,
+      multichainCollectiblesByEnabledNetworksSelector as unknown as (state: any) => Record<string, Nft[]>,
     );
 
     const { detectNfts, abortDetection, chainIdsToDetectNftsFor } =

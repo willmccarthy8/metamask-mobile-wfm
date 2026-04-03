@@ -32,7 +32,7 @@ import {
 
 // Internal dependencies.
 import { PermissionsRequest } from '@metamask/permission-controller';
-import PhishingModal from '../../../UI/PhishingModal/index.js';
+import PhishingModal from '../../../UI/PhishingModal';
 import { useMetrics } from '../../../hooks/useMetrics/index.ts';
 import Routes from '../../../../constants/navigation/Routes.ts';
 import {

@@ -342,7 +342,7 @@ const EarnWithdrawInputView = () => {
         navBarOptions,
         navBarEventOptions,
         ///: BEGIN:ONLY_INCLUDE_IF(tron)
-        receiptTokenToUse,
+        receiptTokenToUse ?? null,
         isTronEnabled ? tronApyPercent : null,
         ///: END:ONLY_INCLUDE_IF
       ),

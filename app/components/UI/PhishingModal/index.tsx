@@ -98,7 +98,7 @@ const createStyles = (colors) =>
     },
   });
 
-export default class PhishingModal extends PureComponent {
+export default class PhishingModal extends PureComponent<Record<string, unknown>> {
   static propTypes = {
     /**
      * name of the blacklisted url
