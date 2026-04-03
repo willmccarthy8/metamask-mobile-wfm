@@ -556,7 +556,7 @@ export function toChecksumAddress(address: string) {
   }
 }
 
-export function safeToChecksumAddress(address?: string) {
+export function safeToChecksumAddress(address?: string): string | undefined {
   if (!address) return undefined;
   return toChecksumAddress(address);
 }

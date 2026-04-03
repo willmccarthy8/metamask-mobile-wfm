@@ -830,7 +830,7 @@ export class Engine {
 
     networkConfigurations.forEach((networkConfig) => {
       const { chainId } = networkConfig;
-      const chainIdHex = toHexadecimal(chainId);
+      const chainIdHex = toHexadecimal(chainId) as `0x${string}`;
 
       if (isTestNet(chainId) && !showFiatOnTestnets) {
         return;
