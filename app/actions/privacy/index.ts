@@ -1,21 +1,55 @@
-// @ts-nocheck
-export function approveHost(hostname) {
+import type { Action as ReduxAction } from 'redux';
+
+export enum PrivacyActionType {
+  APPROVE_HOST = 'APPROVE_HOST',
+  REJECT_HOST = 'REJECT_HOST',
+  CLEAR_HOSTS = 'CLEAR_HOSTS',
+  RECORD_SRP_REVEAL_TIMESTAMP = 'RECORD_SRP_REVEAL_TIMESTAMP',
+}
+
+export interface ApproveHostAction
+  extends ReduxAction<PrivacyActionType.APPROVE_HOST> {
+  hostname: string;
+}
+
+export interface RejectHostAction
+  extends ReduxAction<PrivacyActionType.REJECT_HOST> {
+  hostname: string;
+}
+
+export interface ClearHostsAction
+  extends ReduxAction<PrivacyActionType.CLEAR_HOSTS> {}
+
+export interface RecordSRPRevealTimestampAction
+  extends ReduxAction<PrivacyActionType.RECORD_SRP_REVEAL_TIMESTAMP> {
+  timestamp: string | number;
+}
+
+export type PrivacyActionTypes =
+  | ApproveHostAction
+  | RejectHostAction
+  | ClearHostsAction
+  | RecordSRPRevealTimestampAction;
+
+export function approveHost(hostname: string): ApproveHostAction {
   return {
-    type: 'APPROVE_HOST',
+    type: PrivacyActionType.APPROVE_HOST,
     hostname,
   };
 }
 
-export function rejectHost(hostname) {
+export function rejectHost(hostname: string): RejectHostAction {
   return {
-    type: 'REJECT_HOST',
+    type: PrivacyActionType.REJECT_HOST,
     hostname,
   };
 }
 
-export function recordSRPRevealTimestamp(timestamp) {
+export function recordSRPRevealTimestamp(
+  timestamp: string | number,
+): RecordSRPRevealTimestampAction {
   return {
-    type: 'RECORD_SRP_REVEAL_TIMESTAMP',
+    type: PrivacyActionType.RECORD_SRP_REVEAL_TIMESTAMP,
     timestamp,
   };
 }

@@ -1,13 +1,42 @@
-// @ts-nocheck
-export function dismissAlert() {
+import type { Action as ReduxAction } from 'redux';
+
+export enum AlertActionType {
+  SHOW_ALERT = 'SHOW_ALERT',
+  HIDE_ALERT = 'HIDE_ALERT',
+}
+
+export interface ShowAlertAction
+  extends ReduxAction<AlertActionType.SHOW_ALERT> {
+  isVisible: boolean;
+  autodismiss: number | null;
+  content: string | null;
+  data: unknown;
+}
+
+export interface HideAlertAction
+  extends ReduxAction<AlertActionType.HIDE_ALERT> {}
+
+export type AlertActionTypes = ShowAlertAction | HideAlertAction;
+
+export function dismissAlert(): HideAlertAction {
   return {
-    type: 'HIDE_ALERT',
+    type: AlertActionType.HIDE_ALERT,
   };
 }
 
-export function showAlert({ isVisible, autodismiss, content, data }) {
+export function showAlert({
+  isVisible,
+  autodismiss,
+  content,
+  data,
+}: {
+  isVisible: boolean;
+  autodismiss: number | null;
+  content: string | null;
+  data: unknown;
+}): ShowAlertAction {
   return {
-    type: 'SHOW_ALERT',
+    type: AlertActionType.SHOW_ALERT,
     isVisible,
     autodismiss,
     content,

@@ -15,7 +15,7 @@ import {
 } from '@metamask/design-system-react-native';
 import { IconName as ComponentLibraryIconName } from '../../../component-library/components/Icons/Icon';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeBookmark } from '../../../actions/bookmarks';
+import { removeBookmark, type Bookmark } from '../../../actions/bookmarks';
 import stylesheet from './styles';
 import {
   AutocompleteSearchResult,
@@ -79,7 +79,12 @@ export const Result: React.FC<ResultProps> = memo(
     const dispatch = useDispatch();
 
     const onPressRemove = useCallback(() => {
-      dispatch(removeBookmark(result));
+      // result is always a Favorites/FuseSearchResult here (remove button only shown for Favorites category)
+      const bookmark: Bookmark = {
+        url: 'url' in result ? (result.url as string) : '',
+        name: 'name' in result ? (result.name as string) : '',
+      };
+      dispatch(removeBookmark(bookmark));
     }, [dispatch, result]);
 
     const swapsEnabled =

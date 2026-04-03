@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { NetworkType, toHex } from '@metamask/controller-utils';
 import { KnownCaipNamespace, toCaipChainId } from '@metamask/utils';
 
@@ -68,7 +67,7 @@ export const NETWORKS_CHAIN_ID = {
   PLASMA: toHex('9745'),
   CRONOS: toHex('25'),
   NOMINA: toHex('166'),
-};
+} as const;
 
 // To add a deprecation warning to a network, add it to the array
 export const DEPRECATED_NETWORKS = [
@@ -77,7 +76,7 @@ export const DEPRECATED_NETWORKS = [
   NETWORKS_CHAIN_ID.OPTIMISM_GOERLI,
   NETWORKS_CHAIN_ID.LINEA_GOERLI,
   NETWORKS_CHAIN_ID.MUMBAI,
-];
+] as const;
 export const CHAINLIST_CURRENCY_SYMBOLS_MAP = {
   MAINNET: 'ETH',
   OPTIMISM: 'ETH',
@@ -108,7 +107,7 @@ export const CHAINLIST_CURRENCY_SYMBOLS_MAP = {
   CRONOS: 'CRO',
   HYPE: 'HYPE',
   NOMINA: 'NOM',
-};
+} as const;
 
 export const CURRENCY_SYMBOL_BY_CHAIN_ID = {
   [NETWORKS_CHAIN_ID.MAINNET]: CHAINLIST_CURRENCY_SYMBOLS_MAP.MAINNET,
@@ -145,7 +144,7 @@ export const CURRENCY_SYMBOL_BY_CHAIN_ID = {
   [NETWORKS_CHAIN_ID.CRONOS]: CHAINLIST_CURRENCY_SYMBOLS_MAP.CRONOS,
   [NETWORKS_CHAIN_ID.HYPER_EVM]: CHAINLIST_CURRENCY_SYMBOLS_MAP.HYPE,
   [NETWORKS_CHAIN_ID.NOMINA]: CHAINLIST_CURRENCY_SYMBOLS_MAP.NOMINA,
-};
+} as const;
 
 export const TEST_NETWORK_IDS = [
   NETWORKS_CHAIN_ID.GOERLI,
@@ -155,7 +154,7 @@ export const TEST_NETWORK_IDS = [
   NETWORKS_CHAIN_ID.MEGAETH_TESTNET,
   NETWORKS_CHAIN_ID.MEGAETH_TESTNET_V2,
   NETWORKS_CHAIN_ID.MONAD_TESTNET,
-];
+] as const;
 
 export const TESTNET_CAIP_IDS = TEST_NETWORK_IDS.map((id) =>
   toCaipChainId(KnownCaipNamespace.Eip155, parseInt(id, 16).toString()),

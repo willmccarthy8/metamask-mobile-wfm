@@ -1,34 +1,81 @@
-// @ts-nocheck
-export function toggleNetworkModal(shouldNetworkSwitchPopToWallet = true) {
+import type { Action as ReduxAction } from 'redux';
+
+export enum ModalActionType {
+  TOGGLE_NETWORK_MODAL = 'TOGGLE_NETWORK_MODAL',
+  TOGGLE_COLLECTIBLE_CONTRACT_MODAL = 'TOGGLE_COLLECTIBLE_CONTRACT_MODAL',
+  TOGGLE_DAPP_TRANSACTION_MODAL = 'TOGGLE_DAPP_TRANSACTION_MODAL',
+  TOGGLE_INFO_NETWORK_MODAL = 'TOGGLE_INFO_NETWORK_MODAL',
+  TOGGLE_SIGN_MODAL = 'TOGGLE_SIGN_MODAL',
+}
+
+export interface ToggleNetworkModalAction
+  extends ReduxAction<ModalActionType.TOGGLE_NETWORK_MODAL> {
+  shouldNetworkSwitchPopToWallet: boolean;
+}
+
+export interface ToggleCollectibleContractModalAction
+  extends ReduxAction<ModalActionType.TOGGLE_COLLECTIBLE_CONTRACT_MODAL> {}
+
+export interface ToggleDappTransactionModalAction
+  extends ReduxAction<ModalActionType.TOGGLE_DAPP_TRANSACTION_MODAL> {
+  show: boolean | null;
+}
+
+export interface ToggleInfoNetworkModalAction
+  extends ReduxAction<ModalActionType.TOGGLE_INFO_NETWORK_MODAL> {
+  show: boolean | null;
+}
+
+export interface ToggleSignModalAction
+  extends ReduxAction<ModalActionType.TOGGLE_SIGN_MODAL> {
+  show: boolean | null;
+}
+
+export type ModalActionTypes =
+  | ToggleNetworkModalAction
+  | ToggleCollectibleContractModalAction
+  | ToggleDappTransactionModalAction
+  | ToggleInfoNetworkModalAction
+  | ToggleSignModalAction;
+
+export function toggleNetworkModal(
+  shouldNetworkSwitchPopToWallet = true,
+): ToggleNetworkModalAction {
   return {
-    type: 'TOGGLE_NETWORK_MODAL',
+    type: ModalActionType.TOGGLE_NETWORK_MODAL,
     shouldNetworkSwitchPopToWallet,
   };
 }
 
-export function toggleCollectibleContractModal() {
+export function toggleCollectibleContractModal(): ToggleCollectibleContractModalAction {
   return {
-    type: 'TOGGLE_COLLECTIBLE_CONTRACT_MODAL',
+    type: ModalActionType.TOGGLE_COLLECTIBLE_CONTRACT_MODAL,
   };
 }
 
-export function toggleDappTransactionModal(show) {
+export function toggleDappTransactionModal(
+  show: boolean | null,
+): ToggleDappTransactionModalAction {
   return {
-    type: 'TOGGLE_DAPP_TRANSACTION_MODAL',
+    type: ModalActionType.TOGGLE_DAPP_TRANSACTION_MODAL,
     show,
   };
 }
 
-export function toggleInfoNetworkModal(show) {
+export function toggleInfoNetworkModal(
+  show: boolean | null,
+): ToggleInfoNetworkModalAction {
   return {
-    type: 'TOGGLE_INFO_NETWORK_MODAL',
+    type: ModalActionType.TOGGLE_INFO_NETWORK_MODAL,
     show,
   };
 }
 
-export function toggleSignModal(show) {
+export function toggleSignModal(
+  show: boolean | null,
+): ToggleSignModalAction {
   return {
-    type: 'TOGGLE_SIGN_MODAL',
+    type: ModalActionType.TOGGLE_SIGN_MODAL,
     show,
   };
 }

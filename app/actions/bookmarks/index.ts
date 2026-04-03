@@ -1,14 +1,37 @@
-// @ts-nocheck
-export function addBookmark(bookmark) {
+import type { Action as ReduxAction } from 'redux';
+
+export enum BookmarkActionType {
+  ADD_BOOKMARK = 'ADD_BOOKMARK',
+  REMOVE_BOOKMARK = 'REMOVE_BOOKMARK',
+}
+
+export interface Bookmark {
+  url: string;
+  name: string;
+}
+
+export interface AddBookmarkAction
+  extends ReduxAction<BookmarkActionType.ADD_BOOKMARK> {
+  bookmark: Bookmark;
+}
+
+export interface RemoveBookmarkAction
+  extends ReduxAction<BookmarkActionType.REMOVE_BOOKMARK> {
+  bookmark: Bookmark;
+}
+
+export type BookmarkActionTypes = AddBookmarkAction | RemoveBookmarkAction;
+
+export function addBookmark(bookmark: Bookmark): AddBookmarkAction {
   return {
-    type: 'ADD_BOOKMARK',
+    type: BookmarkActionType.ADD_BOOKMARK,
     bookmark,
   };
 }
 
-export function removeBookmark(bookmark) {
+export function removeBookmark(bookmark: Bookmark): RemoveBookmarkAction {
   return {
-    type: 'REMOVE_BOOKMARK',
+    type: BookmarkActionType.REMOVE_BOOKMARK,
     bookmark,
   };
 }

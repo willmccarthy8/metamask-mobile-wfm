@@ -1,21 +1,52 @@
-// @ts-nocheck
-import { BrowserActionTypes } from '../../actions/browser';
+/* eslint-disable @typescript-eslint/default-param-last */
+import {
+  BrowserActionType,
+  BrowserActionTypes,
+  type BrowserActions,
+} from '../../actions/browser';
 import AppConstants from '../../core/AppConstants';
 import { appendURLParams } from '../../util/browser';
 
-const initialState = {
+export interface BrowserTab {
+  url: string;
+  id: number;
+  linkType?: string;
+  lastActiveAt?: number;
+  isArchived?: boolean;
+  image?: string;
+}
+
+export interface Favicon {
+  origin: string;
+  url: string;
+}
+
+export interface BrowserState {
+  history: Array<{ url: string; name: string }>;
+  whitelist: string[];
+  tabs: BrowserTab[];
+  favicons: Favicon[];
+  activeTab: number | null;
+  visitedDappsByHostname: Record<string, boolean>;
+  isFullscreen: boolean;
+}
+
+export const initialState: BrowserState = {
   history: [],
   whitelist: [],
   tabs: [],
   favicons: [],
   activeTab: null,
-  // Keep track of viewed Dapps, which is used for MetaMetricsEvents.DAPP_VIEWED event
   visitedDappsByHostname: {},
   isFullscreen: false,
 };
-const browserReducer = (state = initialState, action) => {
+
+const browserReducer = (
+  state: BrowserState = initialState,
+  action: BrowserActions,
+): BrowserState => {
   switch (action.type) {
-    case BrowserActionTypes.ADD_TO_VIEWED_DAPP: {
+    case BrowserActionType.ADD_TO_VIEWED_DAPP: {
       const { hostname } = action;
       return {
         ...state,
@@ -25,7 +56,7 @@ const browserReducer = (state = initialState, action) => {
         },
       };
     }
-    case 'ADD_TO_BROWSER_HISTORY': {
+    case BrowserActionType.ADD_TO_BROWSER_HISTORY: {
       const { url, name } = action;
 
       return {
@@ -33,12 +64,12 @@ const browserReducer = (state = initialState, action) => {
         history: [...state.history, { url, name }].slice(-50),
       };
     }
-    case 'ADD_TO_BROWSER_WHITELIST':
+    case BrowserActionType.ADD_TO_BROWSER_WHITELIST:
       return {
         ...state,
         whitelist: [...state.whitelist, action.url],
       };
-    case 'CLEAR_BROWSER_HISTORY':
+    case BrowserActionType.CLEAR_BROWSER_HISTORY:
       return {
         ...state,
         history: [],
@@ -46,20 +77,20 @@ const browserReducer = (state = initialState, action) => {
         tabs: [
           {
             url: appendURLParams(AppConstants.HOMEPAGE_URL, {
-              metricsEnabled: action.metricsEnabled,
-              marketingEnabled: action.marketingEnabled,
+                metricsEnabled: action.metricsEnabled ?? false,
+                marketingEnabled: action.marketingEnabled ?? false,
             }).href,
             id: action.id,
           },
         ],
         activeTab: action.id,
       };
-    case 'CLOSE_ALL_TABS':
+    case BrowserActionType.CLOSE_ALL_TABS:
       return {
         ...state,
         tabs: [],
       };
-    case 'CREATE_NEW_TAB':
+    case BrowserActionType.CREATE_NEW_TAB:
       return {
         ...state,
         tabs: [
@@ -72,12 +103,12 @@ const browserReducer = (state = initialState, action) => {
           },
         ],
       };
-    case 'CLOSE_TAB':
+    case BrowserActionType.CLOSE_TAB:
       return {
         ...state,
         tabs: state.tabs.filter((tab) => tab.id !== action.id),
       };
-    case 'SET_ACTIVE_TAB':
+    case BrowserActionType.SET_ACTIVE_TAB:
       return {
         ...state,
         activeTab: action.id,
@@ -85,7 +116,7 @@ const browserReducer = (state = initialState, action) => {
           tab.id === action.id ? { ...tab, lastActiveAt: Date.now() } : tab,
         ),
       };
-    case 'UPDATE_TAB':
+    case BrowserActionType.UPDATE_TAB:
       return {
         ...state,
         tabs: state.tabs.map((tab) => {
@@ -95,7 +126,7 @@ const browserReducer = (state = initialState, action) => {
           return { ...tab };
         }),
       };
-    case 'STORE_FAVICON_URL':
+    case BrowserActionType.STORE_FAVICON_URL:
       return {
         ...state,
         favicons: [
@@ -103,7 +134,7 @@ const browserReducer = (state = initialState, action) => {
           ...state.favicons,
         ].slice(0, AppConstants.FAVICON_CACHE_MAX_SIZE),
       };
-    case 'TOGGLE_FULLSCREEN':
+    case BrowserActionType.TOGGLE_FULLSCREEN:
       return {
         ...state,
         isFullscreen: action.isFullscreen,

@@ -1,4 +1,3 @@
-// @ts-nocheck
-export const PREVIOUS_SCREEN = 'previous_screen';
-export const ONBOARDING = 'onboarding';
-export const PROTECT = 'protect';
+export const PREVIOUS_SCREEN = 'previous_screen' as const;
+export const ONBOARDING = 'onboarding' as const;
+export const PROTECT = 'protect' as const;

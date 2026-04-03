@@ -1,16 +1,25 @@
-// @ts-nocheck
+import type { Action as ReduxAction } from 'redux';
 import {
   INFURA_AVAILABILITY_BLOCKED,
   INFURA_AVAILABILITY_NOT_BLOCKED,
 } from '../../reducers/infuraAvailability';
 
-export function setInfuraAvailabilityBlocked() {
+export interface InfuraAvailabilityBlockedAction
+  extends ReduxAction<typeof INFURA_AVAILABILITY_BLOCKED> {}
+export interface InfuraAvailabilityNotBlockedAction
+  extends ReduxAction<typeof INFURA_AVAILABILITY_NOT_BLOCKED> {}
+
+export type InfuraAvailabilityActionTypes =
+  | InfuraAvailabilityBlockedAction
+  | InfuraAvailabilityNotBlockedAction;
+
+export function setInfuraAvailabilityBlocked(): InfuraAvailabilityBlockedAction {
   return {
     type: INFURA_AVAILABILITY_BLOCKED,
   };
 }
 
-export function setInfuraAvailabilityNotBlocked() {
+export function setInfuraAvailabilityNotBlocked(): InfuraAvailabilityNotBlockedAction {
   return {
     type: INFURA_AVAILABILITY_NOT_BLOCKED,
   };
