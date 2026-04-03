@@ -570,4 +570,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withAnalyticsAwareness(Settings));
+)(withAnalyticsAwareness(Settings)) as React.ComponentType<Record<string, unknown>>;

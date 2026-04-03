@@ -229,4 +229,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withRampNavigation(ReceiveRequest));
+)(withRampNavigation(ReceiveRequest)) as React.ComponentType<Record<string, unknown>>;

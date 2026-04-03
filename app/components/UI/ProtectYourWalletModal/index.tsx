@@ -223,4 +223,4 @@ ProtectYourWalletModal.contextType = ThemeContext;
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(withAnalyticsAwareness(ProtectYourWalletModal));
+)(withAnalyticsAwareness(ProtectYourWalletModal)) as React.ComponentType<Record<string, unknown>>;
