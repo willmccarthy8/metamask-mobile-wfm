@@ -1,10 +1,10 @@
-// @ts-nocheck
 import React, { PureComponent } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { ThemeContext, mockTheme } from '../../../util/theme';
+import type { Colors } from '../../../util/theme/models';
 import { CommonSelectorsIDs } from '../../../util/Common.testIds';
 
-const createStyles = (colors) =>
+const createStyles = (colors: Colors) =>
   StyleSheet.create({
     wrapper: {
       flex: 1,
@@ -30,6 +30,8 @@ const foxImage = require('../../../images/branding/fox.png'); // eslint-disable-
  * in the middle of the screen
  */
 export default class FoxScreen extends PureComponent {
+  static override contextType = ThemeContext;
+  declare context: { colors: Colors };
   render = () => {
     const colors = this.context.colors || mockTheme.colors;
     const styles = createStyles(colors);
