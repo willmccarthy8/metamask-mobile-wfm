@@ -1,4 +1,15 @@
-const initialState = {
+import { ModalsAction, ModalActionTypes } from '../../actions/modals';
+
+export interface ModalsState {
+  networkModalVisible: boolean;
+  shouldNetworkSwitchPopToWallet: boolean;
+  collectibleContractModalVisible: boolean;
+  dappTransactionModalVisible: boolean;
+  signMessageModalVisible: boolean;
+  infoNetworkModalVisible?: boolean;
+}
+
+export const initialState: ModalsState = {
   networkModalVisible: false,
   shouldNetworkSwitchPopToWallet: false,
   collectibleContractModalVisible: false,
@@ -6,20 +17,23 @@ const initialState = {
   signMessageModalVisible: true,
 };
 
-const modalsReducer = (state = initialState, action) => {
+const modalsReducer = (
+  state: ModalsState = initialState,
+  action: ModalsAction,
+): ModalsState => {
   switch (action.type) {
-    case 'TOGGLE_NETWORK_MODAL':
+    case ModalActionTypes.TOGGLE_NETWORK_MODAL:
       return {
         ...state,
         networkModalVisible: !state.networkModalVisible,
         shouldNetworkSwitchPopToWallet: action.shouldNetworkSwitchPopToWallet,
       };
-    case 'TOGGLE_COLLECTIBLE_CONTRACT_MODAL':
+    case ModalActionTypes.TOGGLE_COLLECTIBLE_CONTRACT_MODAL:
       return {
         ...state,
         collectibleContractModalVisible: !state.collectibleContractModalVisible,
       };
-    case 'TOGGLE_DAPP_TRANSACTION_MODAL':
+    case ModalActionTypes.TOGGLE_DAPP_TRANSACTION_MODAL:
       if (action.show === false) {
         return {
           ...state,
@@ -33,7 +47,7 @@ const modalsReducer = (state = initialState, action) => {
             ? !state.dappTransactionModalVisible
             : action.show,
       };
-    case 'TOGGLE_INFO_NETWORK_MODAL':
+    case ModalActionTypes.TOGGLE_INFO_NETWORK_MODAL:
       if (action.show === false) {
         return {
           ...state,
@@ -44,7 +58,7 @@ const modalsReducer = (state = initialState, action) => {
         ...state,
         infoNetworkModalVisible: !state.infoNetworkModalVisible,
       };
-    case 'TOGGLE_SIGN_MODAL':
+    case ModalActionTypes.TOGGLE_SIGN_MODAL:
       if (action.show === false) {
         return {
           ...state,

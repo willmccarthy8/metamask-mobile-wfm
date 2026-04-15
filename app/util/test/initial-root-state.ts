@@ -17,6 +17,16 @@ import { initialState as initialSampleCounterState } from '../../features/Sample
 import { isTest } from './utils';
 import { initialState as initialRewardsState } from '../../reducers/rewards';
 import { initialState as initialNetworkConnectionBannerState } from '../../reducers/networkConnectionBanner';
+import { initialState as initialCollectiblesState } from '../../reducers/collectibles';
+import { initialState as initialPrivacyState } from '../../reducers/privacy';
+import { initialState as initialBookmarksState } from '../../reducers/bookmarks';
+import { initialState as initialBrowserState } from '../../reducers/browser';
+import { initialState as initialModalsState } from '../../reducers/modals';
+import { initialState as initialSettingsState } from '../../reducers/settings';
+import { initialState as initialAlertState } from '../../reducers/alert';
+import { initialState as initialNotificationState } from '../../reducers/notification';
+import { initialState as initialSwapsState } from '../../reducers/swaps';
+import { initialState as initialInfuraAvailabilityState } from '../../reducers/infuraAvailability';
 // A cast is needed here because we use enums in some controllers, and TypeScript doesn't consider
 // the string value of an enum as satisfying an enum type.
 export const backgroundState: EngineState =
@@ -28,26 +38,26 @@ const initialRootState: RootState = {
     newPrivacyPolicyToastClickedOrClosed: false,
     newPrivacyPolicyToastShownDate: null,
   },
-  collectibles: undefined,
+  collectibles: initialCollectiblesState,
   engine: { backgroundState },
   cronjobController: {
     storage: undefined,
   },
-  privacy: undefined,
-  bookmarks: undefined,
-  browser: undefined,
-  modals: undefined,
-  settings: undefined,
-  alert: undefined,
+  privacy: initialPrivacyState,
+  bookmarks: initialBookmarksState,
+  browser: initialBrowserState,
+  modals: initialModalsState,
+  settings: initialSettingsState,
+  alert: initialAlertState,
   securityAlerts: {
     alerts: {},
   },
   user: userInitialState,
   onboarding: initialOnboardingState,
-  notification: undefined,
-  swaps: undefined,
+  notification: initialNotificationState,
+  swaps: initialSwapsState,
   fiatOrders: initialFiatOrdersState,
-  infuraAvailability: undefined,
+  infuraAvailability: initialInfuraAvailabilityState,
   navigation: initialNavigationState,
   networkOnboarded: undefined,
   security: initialSecurityState,

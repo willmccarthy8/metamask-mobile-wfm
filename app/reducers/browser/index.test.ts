@@ -1,4 +1,4 @@
-import browserReducer from './index';
+import browserReducer, { BrowserState } from './index';
 import AppConstants from '../../core/AppConstants';
 
 describe('browserReducer CREATE_NEW_TAB', () => {
@@ -10,15 +10,17 @@ describe('browserReducer CREATE_NEW_TAB', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
-    };
+      visitedDappsByHostname: {},
+      isFullscreen: false,
+    } as BrowserState;
 
     const action = {
-      type: 'CREATE_NEW_TAB',
+      type: 'CREATE_NEW_TAB' as const,
       url: 'https://example.com',
       id: 42,
     };
 
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     expect(newState.tabs).toHaveLength(1);
     expect(newState.tabs[0].id).toBe(42);
@@ -40,14 +42,16 @@ describe('browserReducer SET_ACTIVE_TAB', () => {
       ],
       favicons: [],
       activeTab: 1,
-    };
+      visitedDappsByHostname: {},
+      isFullscreen: false,
+    } as BrowserState;
 
     const action = {
-      type: 'SET_ACTIVE_TAB',
+      type: 'SET_ACTIVE_TAB' as const,
       id: 2,
     };
 
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     expect(newState.activeTab).toBe(2);
     // Tab 2 should have an updated lastActiveAt
@@ -65,10 +69,12 @@ describe('browserReducer STORE_FAVICON_URL', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
-    };
+      visitedDappsByHostname: {},
+      isFullscreen: false,
+    } as BrowserState;
 
     const action = {
-      type: 'STORE_FAVICON_URL',
+      type: 'STORE_FAVICON_URL' as const,
       origin: 'testOrigin',
       url: 'testUrl',
     };
@@ -79,9 +85,11 @@ describe('browserReducer STORE_FAVICON_URL', () => {
       tabs: [],
       favicons: [{ origin: 'testOrigin', url: 'testUrl' }],
       activeTab: null,
+      visitedDappsByHostname: {},
+      isFullscreen: false,
     };
 
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     expect(newState).toEqual(expectedState);
   });
@@ -96,10 +104,12 @@ describe('browserReducer STORE_FAVICON_URL', () => {
         url: 'oldUrl',
       }),
       activeTab: null,
-    };
+      visitedDappsByHostname: {},
+      isFullscreen: false,
+    } as BrowserState;
 
     const action = {
-      type: 'STORE_FAVICON_URL',
+      type: 'STORE_FAVICON_URL' as const,
       origin: 'newOrigin',
       url: 'newUrl',
     };
@@ -116,9 +126,11 @@ describe('browserReducer STORE_FAVICON_URL', () => {
         }),
       ],
       activeTab: null,
+      visitedDappsByHostname: {},
+      isFullscreen: false,
     };
 
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     expect(newState).toEqual(expectedState);
   });
@@ -133,11 +145,12 @@ describe('browserReducer TOGGLE_FULLSCREEN', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
+      visitedDappsByHostname: {},
       isFullscreen: false,
-    };
+    } as BrowserState;
 
     const action = {
-      type: 'TOGGLE_FULLSCREEN',
+      type: 'TOGGLE_FULLSCREEN' as const,
       isFullscreen: true,
     };
 
@@ -147,11 +160,12 @@ describe('browserReducer TOGGLE_FULLSCREEN', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
+      visitedDappsByHostname: {},
       isFullscreen: true,
     };
 
     // Act
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     // Assert
     expect(newState).toEqual(expectedState);
@@ -165,11 +179,12 @@ describe('browserReducer TOGGLE_FULLSCREEN', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
+      visitedDappsByHostname: {},
       isFullscreen: true,
-    };
+    } as BrowserState;
 
     const action = {
-      type: 'TOGGLE_FULLSCREEN',
+      type: 'TOGGLE_FULLSCREEN' as const,
       isFullscreen: false,
     };
 
@@ -179,11 +194,12 @@ describe('browserReducer TOGGLE_FULLSCREEN', () => {
       tabs: [],
       favicons: [],
       activeTab: null,
+      visitedDappsByHostname: {},
       isFullscreen: false,
     };
 
     // Act
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     // Assert
     expect(newState).toEqual(expectedState);
@@ -194,19 +210,20 @@ describe('browserReducer TOGGLE_FULLSCREEN', () => {
     const initialState = {
       history: [{ url: 'https://example.com', name: 'Example' }],
       whitelist: ['https://trusted.com'],
-      tabs: [{ id: 'tab1', url: 'https://example.com' }],
+      tabs: [{ id: 1, url: 'https://example.com' }],
       favicons: [{ origin: 'example.com', url: 'favicon.ico' }],
-      activeTab: 'tab1',
+      activeTab: 1,
+      visitedDappsByHostname: {},
       isFullscreen: false,
-    };
+    } as BrowserState;
 
     const action = {
-      type: 'TOGGLE_FULLSCREEN',
+      type: 'TOGGLE_FULLSCREEN' as const,
       isFullscreen: true,
     };
 
     // Act
-    const newState = browserReducer(initialState, action);
+    const newState = browserReducer(initialState, action as any);
 
     // Assert
     expect(newState.history).toEqual(initialState.history);
