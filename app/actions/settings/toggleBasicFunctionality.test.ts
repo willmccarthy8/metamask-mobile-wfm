@@ -13,7 +13,8 @@ jest.mock('../../core/Engine', () => ({
 }));
 
 describe('toggleBasicFunctionality action', () => {
-  let mockDispatch;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let mockDispatch: any;
 
   beforeEach(() => {
     mockDispatch = jest.fn();

@@ -9,7 +9,7 @@ import { FeatureFlags } from '@metamask/swaps-controller/dist/types';
 // Note: The reducer is written in JavaScript without proper TypeScript types,
 // so we need to use type assertions in some places
 
-interface SwapsAction {
+interface TestSwapsAction {
   type: string | null;
   payload?: object | null;
 }
@@ -57,7 +57,8 @@ import reducer, {
   getFeatureFlagChainId,
 } from './index';
 
-const emptyAction: SwapsAction = { type: null };
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const emptyAction = { type: null } as any;
 
 const DEFAULT_FEATURE_FLAGS = {
   ethereum: {
