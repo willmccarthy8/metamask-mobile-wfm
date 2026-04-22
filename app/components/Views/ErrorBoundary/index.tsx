@@ -135,7 +135,7 @@ const createStyles = (colors) =>
     fullWidthButton: { flex: 1 },
   });
 
-export const Fallback = (props) => {
+export const Fallback = (props: any) => {
   const { colors } = useTheme();
   const styles = createStyles(colors);
   const [modalVisible, setModalVisible] = React.useState(false);

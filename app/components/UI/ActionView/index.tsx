@@ -71,7 +71,7 @@ export default function ActionView({
   enableAutomaticScroll,
   extraScrollHeight,
   showsVerticalScrollIndicator,
-}) {
+}: any) {
   const { colors } = useTheme();
   confirmText = confirmText || strings('action_view.confirm');
   cancelText = cancelText || strings('action_view.cancel');

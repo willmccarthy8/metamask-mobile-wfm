@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
-export default function migrate(state) {
+export default function migrate(state: any) {
   if (state?.engine?.backgroundState?.PreferencesController?.openSeaEnabled) {
     state.engine.backgroundState.PreferencesController.displayNftMedia =
       state.engine.backgroundState.PreferencesController.openSeaEnabled ?? true;

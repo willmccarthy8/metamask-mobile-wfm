@@ -62,7 +62,7 @@ const createStyles = (colors) =>
     },
   });
 
-export const getIcon = (status, colors, styles) => {
+export const getIcon = (status: any, colors: any, styles: any) => {
   switch (status) {
     case 'pending':
     case 'pending_withdrawal':
@@ -169,7 +169,7 @@ const getTitle = (status, { nonce, amount, assetType }) => {
   }
 };
 
-export const getDescription = (status, { amount = null, type = null }) => {
+export const getDescription = (status: any, { amount = null, type = null }: any) => {
   if (amount && typeof amount !== 'object' && type) {
     return strings(`notifications.${type}_${status}_message`, { amount });
   }

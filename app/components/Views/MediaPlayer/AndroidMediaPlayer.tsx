@@ -168,7 +168,7 @@ export default function VideoPlayer({
   selectedTextTrack,
   onLoad: propsOnLoad,
   style,
-}) {
+}: any) {
   const [paused, setPaused] = useState(false);
   const [muted, setMuted] = useState(true);
   const [seekerFillWidth, setSeekerFillWidth] = useState(0);

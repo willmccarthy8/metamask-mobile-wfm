@@ -41,7 +41,7 @@ export default function ActionModal({
   verticalButtons,
   propagateSwipe,
   cancelButtonDisabled,
-}) {
+}: any) {
   const { colors } = useTheme();
 
   return (

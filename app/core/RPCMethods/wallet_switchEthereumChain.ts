@@ -26,7 +26,7 @@ export const wallet_switchEthereumChain = async ({
   res,
   analytics,
   hooks,
-}) => {
+}: any) => {
   const {
     CurrencyRateController,
     NetworkController,

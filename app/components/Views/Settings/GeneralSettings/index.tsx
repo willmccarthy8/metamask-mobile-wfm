@@ -60,7 +60,7 @@ const infuraCurrencyOptions = sortedCurrencies.map(
   }),
 );
 
-export const updateUserTraitsWithCurrentCurrency = (currency, analytics) => {
+export const updateUserTraitsWithCurrentCurrency = (currency: any, analytics: any) => {
   // track event and add selected currency to user profile for analytics
   const traits = { [UserProfileProperty.CURRENT_CURRENCY]: currency };
   analytics.addTraitsToUser(traits);
@@ -76,8 +76,8 @@ export const updateUserTraitsWithCurrentCurrency = (currency, analytics) => {
 };
 
 export const updateUserTraitsWithCurrencyType = (
-  primaryCurrency,
-  analytics,
+  primaryCurrency: any,
+  analytics: any,
 ) => {
   // track event and add primary currency preference (fiat/crypto) to user profile for analytics
   const traits = { [UserProfileProperty.PRIMARY_CURRENCY]: primaryCurrency };

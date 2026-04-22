@@ -5,7 +5,7 @@ import { sumHexWEIs } from '../../../util/conversions';
 import { hexToBN, isBN, BNToHex, renderToGwei } from '../../../util/number';
 import { calculateEIP1559GasFeeHexes } from '../../../util/transactions';
 
-export function calculateTotalGas(transaction) {
+export function calculateTotalGas(transaction: any) {
   const {
     gas,
     gasPrice,
@@ -39,7 +39,7 @@ export function calculateTotalGas(transaction) {
   }
   return totalGas;
 }
-export function renderGwei(transaction) {
+export function renderGwei(transaction: any) {
   const {
     gasPrice,
     estimatedBaseFee,

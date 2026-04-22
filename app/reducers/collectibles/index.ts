@@ -31,7 +31,7 @@ function buildAllowedChainIdSet(chainIds) {
 
 const favoritesSelector = (state) => state.collectibles.favorites;
 
-export const isNftFetchingProgressSelector = (state) =>
+export const isNftFetchingProgressSelector = (state: any) =>
   state.collectibles.isNftFetchingProgress;
 
 export const collectibleContractsSelector = createSelector(

@@ -31,7 +31,7 @@ const getSubjects = (state) => state.subjects;
  * @param origin - The origin to match the subject state from.
  * @returns {Caip25CaveatValue} The current authorization or undefined if no authorization exists.
  */
-export const getAuthorizedScopes = (origin) =>
+export const getAuthorizedScopes = (origin: any) =>
   createSelector(getSubjects, (subjects) => {
     const subject = subjects[origin];
 

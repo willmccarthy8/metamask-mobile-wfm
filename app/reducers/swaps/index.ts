@@ -20,7 +20,7 @@ import { toHex } from '@metamask/controller-utils';
 
 // Identity function, will be removed when legacy swaps is removed,
 // but keep it for now to keep changes atomic.
-export const getFeatureFlagChainId = (chainId) => chainId;
+export const getFeatureFlagChainId = (chainId: any) => chainId;
 
 // * Constants
 export const SWAPS_SET_LIVENESS = 'SWAPS_SET_LIVENESS';
@@ -28,11 +28,11 @@ export const SWAPS_SET_HAS_ONBOARDED = 'SWAPS_SET_HAS_ONBOARDED';
 const MAX_TOKENS_WITH_BALANCE = 5;
 
 // * Action Creator
-export const setSwapsLiveness = (chainId, featureFlags) => ({
+export const setSwapsLiveness = (chainId: any, featureFlags: any) => ({
   type: SWAPS_SET_LIVENESS,
   payload: { chainId, featureFlags },
 });
-export const setSwapsHasOnboarded = (hasOnboarded) => ({
+export const setSwapsHasOnboarded = (hasOnboarded: any) => ({
   type: SWAPS_SET_HAS_ONBOARDED,
   payload: hasOnboarded,
 });
@@ -108,7 +108,7 @@ const selectSwapsControllerState = (state) =>
 /**
  * Returns the swaps tokens from the state
  */
-export const swapsControllerTokens = (state) =>
+export const swapsControllerTokens = (state: any) =>
   state.engine.backgroundState.SwapsController.tokens;
 
 export const selectSwapsApprovalTransaction = createSelector(

@@ -2,7 +2,7 @@
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { NetworksChainId } from '@metamask/controller-utils';
 
-export default function migrate(state) {
+export default function migrate(state: any) {
   const { allTokens } = state.engine.backgroundState.TokensController;
   const { allCollectibleContracts, allCollectibles } =
     state.engine.backgroundState.CollectiblesController;

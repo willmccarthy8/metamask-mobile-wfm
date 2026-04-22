@@ -22,7 +22,7 @@ export default function TransactionActionModal({
   descriptionText,
   cancelButtonMode,
   confirmButtonMode,
-}) {
+}: any) {
   return (
     <ActionModal
       modalVisible={isVisible}

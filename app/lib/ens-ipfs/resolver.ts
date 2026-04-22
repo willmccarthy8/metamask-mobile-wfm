@@ -14,7 +14,7 @@ export default async function resolveEnsToIpfsContentId({
   provider,
   name,
   chainId,
-}) {
+}: any) {
   const eth = new Eth(provider);
   const hash = namehash.hash(name);
   const contract = new EthContract(eth);
@@ -95,7 +95,7 @@ function getRegistryForChainId(chainId) {
   }
 }
 
-export function isGatewayUrl(urlObj) {
+export function isGatewayUrl(urlObj: any) {
   // All IPFS gateway urls start with the path /ipfs/
   if (urlObj.pathname.substr(0, 6) === '/ipfs/') return true;
   // All Swarm gateway urls start with the path /bzz:/

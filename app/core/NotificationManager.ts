@@ -40,7 +40,7 @@ export const IN_PROGRESS_SKIP_STATUS = [
   TransactionStatus.submitted,
 ];
 
-export const constructTitleAndMessage = (notification) => {
+export const constructTitleAndMessage = (notification: any) => {
   let title, message;
   switch (notification.type) {
     case NotificationTransactionTypes.pending:

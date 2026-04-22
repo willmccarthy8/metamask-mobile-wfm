@@ -8,7 +8,7 @@ export const INFURA_AVAILABILITY_BLOCKED = 'INFURA_AVAILABILITY_BLOCKED';
 export const INFURA_AVAILABILITY_NOT_BLOCKED =
   'INFURA_AVAILABILITY_NOT_BLOCKED';
 
-export const getInfuraBlockedSelector = (state) =>
+export const getInfuraBlockedSelector = (state: any) =>
   state.infuraAvailability?.isBlocked;
 
 const infuraAvailabilityReducer = (state = initialState, action) => {

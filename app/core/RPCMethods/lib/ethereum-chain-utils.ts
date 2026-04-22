@@ -22,7 +22,7 @@ import { POPULAR_NETWORK_CHAIN_IDS } from '../../../constants/popular-networks';
 
 const EVM_NATIVE_TOKEN_DECIMALS = 18;
 
-export function validateChainId(chainId) {
+export function validateChainId(chainId: any) {
   const _chainId = typeof chainId === 'string' && chainId.toLowerCase();
 
   if (!isPrefixedFormattedHexString(_chainId)) {
@@ -40,7 +40,7 @@ export function validateChainId(chainId) {
   return _chainId;
 }
 
-export function validateAddEthereumChainParams(params) {
+export function validateAddEthereumChainParams(params: any) {
   if (!params || !params?.[0] || typeof params[0] !== 'object') {
     throw rpcErrors.invalidParams({
       message: `Expected single, object parameter. Received:\n${JSON.stringify(
@@ -170,7 +170,7 @@ function validateNativeCurrency(nativeCurrency) {
   return ticker;
 }
 
-export async function validateRpcEndpoint(rpcUrl, chainId) {
+export async function validateRpcEndpoint(rpcUrl: any, chainId: any) {
   let endpointChainId;
   try {
     endpointChainId = await jsonRpcRequest(rpcUrl, 'eth_chainId');
@@ -188,7 +188,7 @@ export async function validateRpcEndpoint(rpcUrl, chainId) {
   }
 }
 
-export function findExistingNetwork(chainId, networkConfigurations) {
+export function findExistingNetwork(chainId: any, networkConfigurations: any) {
   const existingEntry = Object.entries(networkConfigurations).find(
     ([, networkConfiguration]) => networkConfiguration.chainId === chainId,
   );
@@ -228,7 +228,7 @@ export async function switchToNetwork({
   origin,
   autoApprove = false,
   hooks,
-}) {
+}: any) {
   const {
     getCaveat,
     requestPermittedChainsPermissionIncrementalForOrigin,

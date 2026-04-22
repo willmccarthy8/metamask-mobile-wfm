@@ -2,7 +2,7 @@
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { IPFS_DEFAULT_GATEWAY_URL } from '../../../app/constants/network';
 
-export default function migrate(state) {
+export default function migrate(state: any) {
   const outdatedIpfsGateways = [
     'https://hardbin.com/ipfs/',
     'https://ipfs.greyh.at/ipfs/',

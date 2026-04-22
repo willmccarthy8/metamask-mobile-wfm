@@ -17,9 +17,9 @@ const { sha512 } = require('@noble/hashes/sha2');
 
 export const getPublicKey = secp256k1.getPublicKey;
 export const keccak256 = keccak_256;
-export const hmacSha512 = (key, data) => hmac(sha512, key, data);
+export const hmacSha512 = (key: any, data: any) => hmac(sha512, key, data);
 export const getPublicKeyEd25519 = ed25519.getPublicKey;
-export const multiply = (a, b) => a * b;
+export const multiply = (a: any, b: any) => a * b;
 
 /**
  * Reimplemented from @ethereumjs/util.
@@ -32,7 +32,7 @@ export const multiply = (a, b) => a * b;
  *   4. That returns our mock's pubToAddress
  *   5. We call ourselves → stack overflow
  */
-export const pubToAddress = (pubKey, sanitize = false) => {
+export const pubToAddress = (pubKey: any, sanitize: any = false) => {
   let key = pubKey;
   if (sanitize && pubKey.length !== 64) {
     key = secp256k1.ProjectivePoint.fromHex(pubKey).toRawBytes(false).slice(1);

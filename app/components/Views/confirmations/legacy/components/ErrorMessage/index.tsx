@@ -18,7 +18,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export default function ErrorMessage(props) {
+export default function ErrorMessage(props: any) {
   const { errorMessage, errorContinue, onContinue, isOnlyWarning } = props;
   return (
     <Alert type={isOnlyWarning ? AlertType.Info : AlertType.Error}>

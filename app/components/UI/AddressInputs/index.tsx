@@ -220,7 +220,7 @@ AddressName.propTypes = {
   confusableCollection: PropTypes.array,
 };
 
-export const AddressTo = (props) => {
+export const AddressTo = (props: any) => {
   const {
     addressToReady,
     highlighted,
@@ -548,7 +548,7 @@ AddressTo.propTypes = {
   layout: PropTypes.string,
 };
 
-export const AddressFrom = (props) => {
+export const AddressFrom = (props: any) => {
   const {
     highlighted,
     onPressIcon,

@@ -222,7 +222,7 @@ export const getMainnetNetworks = () =>
 export const getTestNetworks = () =>
   getAllNetworks().filter((name) => NetworkList[name].isTestNet);
 
-export const isMainnetNetwork = (networkType) =>
+export const isMainnetNetwork = (networkType: any) =>
   getMainnetNetworks().includes(networkType);
 
 /**
@@ -231,7 +231,7 @@ export const isMainnetNetwork = (networkType) =>
  * @param {string} networkType - Type of network.
  * @returns If the network is default mainnet.
  */
-export const isDefaultMainnet = (networkType) => networkType === MAINNET;
+export const isDefaultMainnet = (networkType: any) => networkType === MAINNET;
 
 /**
  * Check whether the given chain ID is Ethereum Mainnet.
@@ -239,13 +239,13 @@ export const isDefaultMainnet = (networkType) => networkType === MAINNET;
  * @param {string} chainId - The chain ID to check.
  * @returns True if the chain ID is Ethereum Mainnet, false otherwise.
  */
-export const isMainNet = (chainId) => chainId === '0x1';
+export const isMainNet = (chainId: any) => chainId === '0x1';
 
-export const isLineaMainnet = (networkType) => networkType === LINEA_MAINNET;
-export const isLineaMainnetChainId = (chainId) =>
+export const isLineaMainnet = (networkType: any) => networkType === LINEA_MAINNET;
+export const isLineaMainnetChainId = (chainId: any) =>
   chainId === CHAIN_IDS.LINEA_MAINNET;
 
-export const isSolanaMainnet = (chainId) => chainId === SolScope.Mainnet;
+export const isSolanaMainnet = (chainId: any) => chainId === SolScope.Mainnet;
 
 /**
  * Converts a hexadecimal or decimal chain ID to a base 10 number as a string.
@@ -254,7 +254,7 @@ export const isSolanaMainnet = (chainId) => chainId === SolScope.Mainnet;
  * @param chainId - The chain ID to be converted. It can be in hexadecimal, decimal, or CAIP-2 format.
  * @returns - The chain ID converted to a base 10 number as a string, or the original input if it is in CAIP-2 format.
  */
-export const getDecimalChainId = (chainId) => {
+export const getDecimalChainId = (chainId: any) => {
   if (
     !chainId ||
     typeof chainId !== 'string' ||
@@ -266,13 +266,13 @@ export const getDecimalChainId = (chainId) => {
   return parseInt(chainId, 16).toString(10);
 };
 
-export const isMainnetByChainId = (chainId) =>
+export const isMainnetByChainId = (chainId: any) =>
   getDecimalChainId(String(chainId)) === String(1);
 
-export const isLineaMainnetByChainId = (chainId) =>
+export const isLineaMainnetByChainId = (chainId: any) =>
   getDecimalChainId(String(chainId)) === String(59144);
 
-export const isMultiLayerFeeNetwork = (chainId) =>
+export const isMultiLayerFeeNetwork = (chainId: any) =>
   chainId === NETWORKS_CHAIN_ID.OPTIMISM;
 
 /**
@@ -281,7 +281,7 @@ export const isMultiLayerFeeNetwork = (chainId) =>
  * @param {string} networkType - Type of network.
  * @returns - Image of test network or undefined.
  */
-export const getTestNetImage = (networkType) => {
+export const getTestNetImage = (networkType: any) => {
   if (
     networkType === SEPOLIA ||
     networkType === LINEA_GOERLI ||
@@ -291,7 +291,7 @@ export const getTestNetImage = (networkType) => {
   }
 };
 
-export const getTestNetImageByChainId = (chainId) => {
+export const getTestNetImageByChainId = (chainId: any) => {
   if (NETWORKS_CHAIN_ID.SEPOLIA === chainId) {
     return networksWithImages?.SEPOLIA;
   }
@@ -334,7 +334,7 @@ export const TESTNET_FAUCETS = {
   [ChainId[NetworkType['linea-sepolia']]]: LINEA_FAUCET,
 };
 
-export const isTestNetworkWithFaucet = (chainId) =>
+export const isTestNetworkWithFaucet = (chainId: any) =>
   TESTNET_FAUCETS[chainId] !== undefined;
 
 /**
@@ -343,7 +343,7 @@ export const isTestNetworkWithFaucet = (chainId) =>
  * @param {string} chainId - The chain ID of the network to check
  * @returns {boolean} `true` if the given chain ID is for a known testnet, `false` otherwise
  */
-export const isTestNet = (chainId) => TESTNET_CHAIN_IDS.includes(chainId);
+export const isTestNet = (chainId: any) => TESTNET_CHAIN_IDS.includes(chainId);
 
 /**
  * Returns whether the network can be deleted by the user.
@@ -352,7 +352,7 @@ export const isTestNet = (chainId) => TESTNET_CHAIN_IDS.includes(chainId);
  * @param {string} chainId - The chain ID to check (e.g. '0x1', '0x89').
  * @returns {boolean} True if the network can be deleted, false otherwise.
  */
-export const canDeleteNetwork = (chainId) =>
+export const canDeleteNetwork = (chainId: any) =>
   Boolean(
     chainId &&
       !isTestNet(chainId) &&
@@ -360,7 +360,7 @@ export const canDeleteNetwork = (chainId) =>
       !isLineaMainnetChainId(chainId),
   );
 
-export function getNetworkTypeById(id) {
+export function getNetworkTypeById(id: any) {
   if (!id) {
     throw new Error(NetworkSwitchErrorType.missingNetworkId);
   }
@@ -374,7 +374,7 @@ export function getNetworkTypeById(id) {
   throw new Error(`${NetworkSwitchErrorType.unknownNetworkId} ${id}`);
 }
 
-export function getDefaultNetworkByChainId(chainId) {
+export function getDefaultNetworkByChainId(chainId: any) {
   if (!chainId) {
     throw new Error(NetworkSwitchErrorType.missingChainId);
   }
@@ -390,11 +390,11 @@ export function getDefaultNetworkByChainId(chainId) {
   return returnNetwork;
 }
 
-export function hasBlockExplorer(key) {
+export function hasBlockExplorer(key: any) {
   return key.toLowerCase() !== RPC;
 }
 
-export function isPrivateConnection(hostname) {
+export function isPrivateConnection(hostname: any) {
   return hostname === 'localhost' || regex.localNetwork.test(hostname);
 }
 
@@ -404,7 +404,7 @@ export function isPrivateConnection(hostname) {
  * @param {string} providerRpcTarget
  * @param {object} networkConfigurations
  */
-export function findBlockExplorerForRpc(rpcTargetUrl, networkConfigurations) {
+export function findBlockExplorerForRpc(rpcTargetUrl: any, networkConfigurations: any) {
   const networkConfiguration = Object.values(networkConfigurations).find(
     ({ rpcEndpoints }) => rpcEndpoints?.some(({ url }) => url === rpcTargetUrl),
   );
@@ -424,7 +424,7 @@ export function findBlockExplorerForRpc(rpcTargetUrl, networkConfigurations) {
  * @param {object} internalAccount - Internal account object
  * @returns {string} - Block explorer url or undefined if not found
  */
-export function findBlockExplorerForNonEvmChainId(chainId) {
+export function findBlockExplorerForNonEvmChainId(chainId: any) {
   const blockExplorerUrls =
     MULTICHAIN_NETWORK_BLOCK_EXPLORER_FORMAT_URLS_MAP[chainId];
   return blockExplorerUrls?.url;
@@ -436,7 +436,7 @@ export function findBlockExplorerForNonEvmChainId(chainId) {
  * @param {object} internalAccount - Internal account object
  * @returns {string} - Block explorer url or undefined if not found
  */
-export function findBlockExplorerForNonEvmAccount(internalAccount) {
+export function findBlockExplorerForNonEvmAccount(internalAccount: any) {
   let scope;
 
   const selectedNonEvmNetworkChainId = selectSelectedNonEvmNetworkChainId(
@@ -488,7 +488,7 @@ export function findBlockExplorerForNonEvmAccount(internalAccount) {
  * @param {string} rpcOne
  * @param {string} rpcTwo
  */
-export function compareRpcUrls(rpcOne, rpcTwo) {
+export function compareRpcUrls(rpcOne: any, rpcTwo: any) {
   // First check that both objects are of the type string
   if (typeof rpcOne === 'string' && typeof rpcTwo === 'string') {
     const rpcUrlOne = new URL(rpcOne);
@@ -503,7 +503,7 @@ export function compareRpcUrls(rpcOne, rpcTwo) {
  *
  * @param {string} blockExplorerUrl - block explorer url
  */
-export function getBlockExplorerName(blockExplorerUrl) {
+export function getBlockExplorerName(blockExplorerUrl: any) {
   if (!blockExplorerUrl) return undefined;
   const hostname = new URL(blockExplorerUrl).hostname;
   if (!hostname) return undefined;
@@ -522,14 +522,14 @@ export function getBlockExplorerName(blockExplorerUrl) {
  * @returns {boolean} True if the value is a correctly formatted hex string,
  * false otherwise.
  */
-export function isPrefixedFormattedHexString(value) {
+export function isPrefixedFormattedHexString(value: any) {
   if (typeof value !== 'string') {
     return false;
   }
   return regex.prefixedFormattedHexString.test(value);
 }
 
-export function blockTagParamIndex(payload) {
+export function blockTagParamIndex(payload: any) {
   switch (payload.method) {
     // blockTag is at index 2
     case 'eth_getStorageAt':
@@ -555,7 +555,7 @@ export function blockTagParamIndex(payload) {
  * @param {Object} providerConfig - The provider configuration for the current selected network.
  * @returns {string} Name of the network.
  */
-export const getNetworkNameFromProviderConfig = (providerConfig) => {
+export const getNetworkNameFromProviderConfig = (providerConfig: any) => {
   let name = strings('network_information.unknown_network');
   if (providerConfig.nickname) {
     name = providerConfig.nickname;
@@ -650,9 +650,9 @@ export const getNetworkImageSource = ({ networkType, chainId }: { networkType?: 
  * @param {string} rpcBlockExplorer rpc block explorer base url
  */
 export const getBlockExplorerAddressUrl = (
-  networkType,
-  address,
-  rpcBlockExplorer = null,
+  networkType: any,
+  address: any,
+  rpcBlockExplorer: any = null,
 ) => {
   const isCustomRpcBlockExplorerNetwork = networkType === RPC;
 
@@ -677,9 +677,9 @@ export const getBlockExplorerAddressUrl = (
  * @param {string} rpcBlockExplorer rpc block explorer base url
  */
 export const getBlockExplorerTxUrl = (
-  networkType,
-  transactionHash,
-  rpcBlockExplorer = null,
+  networkType: any,
+  transactionHash: any,
+  rpcBlockExplorer: any = null,
 ) => {
   const isCustomRpcBlockExplorerNetwork = networkType === RPC;
 
@@ -702,7 +702,7 @@ export const getBlockExplorerTxUrl = (
  * @param {obj} networkOnboardedState - Object with onboarded networks
  * @returns
  */
-export const getIsNetworkOnboarded = (chainId, networkOnboardedState) =>
+export const getIsNetworkOnboarded = (chainId: any, networkOnboardedState: any) =>
   networkOnboardedState[chainId];
 
 export const isPermissionsSettingsV1Enabled =
@@ -743,7 +743,7 @@ export const WHITELIST_NETWORK_RPC_URL = {
  * @param {string} nickname - The nickname of the network.
  * @returns A boolean indicating whether the network name is valid for the given chain ID.
  */
-export const isValidNetworkName = (chainId, networkName, nickname) =>
+export const isValidNetworkName = (chainId: any, networkName: any, nickname: any) =>
   networkName === nickname || WHILELIST_NETWORK_NAME[chainId] === nickname;
 
 /**
@@ -754,7 +754,7 @@ export const isValidNetworkName = (chainId, networkName, nickname) =>
  * @param {string} symbol - The symbol to check.
  * @returns {boolean} - Whether the symbol is whitelisted for the given chain ID.
  */
-export const isWhitelistedSymbol = (chainId, symbol) => {
+export const isWhitelistedSymbol = (chainId: any, symbol: any) => {
   if (!chainId || !symbol) {
     return false;
   }
@@ -770,7 +770,7 @@ export const isWhitelistedSymbol = (chainId, symbol) => {
  * @param {string} rpcUrl - The RPC URL to check.
  * @returns {boolean} - Whether the RPC URL is whitelisted for the given chain ID.
  */
-export const isWhitelistedRpcUrl = (chainId, rpcUrl) => {
+export const isWhitelistedRpcUrl = (chainId: any, rpcUrl: any) => {
   if (!chainId || !rpcUrl) {
     return false;
   }
@@ -788,7 +788,7 @@ export const isWhitelistedRpcUrl = (chainId, rpcUrl) => {
  * @param {string} networkName - The network name to check.
  * @returns {boolean} - Whether the network name is whitelisted for the given chain ID.
  */
-export const isWhitelistedNetworkName = (chainId, networkName) => {
+export const isWhitelistedNetworkName = (chainId: any, networkName: any) => {
   if (!chainId || !networkName) {
     return false;
   }

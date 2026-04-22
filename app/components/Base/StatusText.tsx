@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
   },
 });
 
-export const ConfirmedText = ({ testID, style: styleProp, ...props }) => (
+export const ConfirmedText = ({ testID, style: styleProp, ...props }: any) => (
   <Text
     testID={testID}
     bold
@@ -31,7 +31,7 @@ ConfirmedText.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-export const PendingText = ({ testID, style: styleProp, ...props }) => {
+export const PendingText = ({ testID, style: styleProp, ...props }: any) => {
   const { colors } = useTheme();
   return (
     <Text
@@ -47,7 +47,7 @@ PendingText.propTypes = {
   style: PropTypes.oneOfType([PropTypes.object, PropTypes.array]),
 };
 
-export const FailedText = ({ testID, style: styleProp, ...props }) => {
+export const FailedText = ({ testID, style: styleProp, ...props }: any) => {
   const { colors } = useTheme();
   return (
     <Text

@@ -59,7 +59,7 @@ export const wallet_addEthereumChain = async ({
   requestUserApproval,
   analytics: analyticsParams,
   hooks,
-}) => {
+}: any) => {
   const {
     NetworkController,
     MultichainNetworkController,

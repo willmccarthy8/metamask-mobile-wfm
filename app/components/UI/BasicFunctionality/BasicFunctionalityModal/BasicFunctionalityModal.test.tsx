@@ -8,13 +8,14 @@ import renderWithProvider from '../../../../util/test/renderWithProvider';
 import { useNavigation } from '@react-navigation/native';
 import { toggleBasicFunctionality } from '../../../../actions/settings';
 
-/**
- * @typedef {import('../../../../reducers').RootState} RootState
- * @typedef {import('redux').DeepPartial<RootState>} MockRootState
- */
+import type { DeepPartial } from 'redux';
+import type { RootState as ReducersRootState } from '../../../../reducers';
 
-/** @type {MockRootState} */
-const mockInitialState = {
+// Re-exported so other modules can import this type.
+export type RootState = ReducersRootState;
+type MockRootState = DeepPartial<RootState>;
+
+const mockInitialState: MockRootState = {
   settings: {
     basicFunctionalityEnabled: true,
   },

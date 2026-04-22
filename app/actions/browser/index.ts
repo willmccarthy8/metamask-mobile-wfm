@@ -14,7 +14,7 @@ export const BrowserActionTypes = {
  * @param {string} hostname - Dapp hostname
  * @returns
  */
-export function addToViewedDapp(hostname) {
+export function addToViewedDapp(hostname: any) {
   return {
     type: BrowserActionTypes.ADD_TO_VIEWED_DAPP,
     hostname,
@@ -28,7 +28,7 @@ export function addToViewedDapp(hostname) {
  * @param {string} website.url - The website's url
  * @param {string} website.name - The website name
  */
-export function addToHistory({ url, name }) {
+export function addToHistory({ url, name }: any) {
   return {
     type: 'ADD_TO_BROWSER_HISTORY',
     url,
@@ -39,7 +39,7 @@ export function addToHistory({ url, name }) {
 /**
  * Clears the entire browser history
  */
-export function clearHistory(metricsEnabled, marketingEnabled) {
+export function clearHistory(metricsEnabled: any, marketingEnabled: any) {
   return {
     type: 'CLEAR_BROWSER_HISTORY',
     id: Date.now(),
@@ -53,7 +53,7 @@ export function clearHistory(metricsEnabled, marketingEnabled) {
  *
  * @param {string} url - The website's url
  */
-export function addToWhitelist(url) {
+export function addToWhitelist(url: any) {
   return {
     type: 'ADD_TO_BROWSER_WHITELIST',
     url,
@@ -75,7 +75,7 @@ export function closeAllTabs() {
  * @param {string} url - The website's url
  * @param {string} linkType - optional link type
  */
-export function createNewTab(url, linkType) {
+export function createNewTab(url: any, linkType: any) {
   return {
     type: 'CREATE_NEW_TAB',
     url,
@@ -89,7 +89,7 @@ export function createNewTab(url, linkType) {
  *
  * @param {number} id - The Tab ID
  */
-export function closeTab(id) {
+export function closeTab(id: any) {
   return {
     type: 'CLOSE_TAB',
     id,
@@ -101,7 +101,7 @@ export function closeTab(id) {
  *
  * @param {number} id - The Tab ID
  */
-export function setActiveTab(id) {
+export function setActiveTab(id: any) {
   return {
     type: 'SET_ACTIVE_TAB',
     id,
@@ -114,7 +114,7 @@ export function setActiveTab(id) {
  * @param {number} id - The Tab ID
  * @param {Object} data - { isArchived: boolean, url: string, image: string }
  */
-export function updateTab(id, data) {
+export function updateTab(id: any, data: any) {
   return {
     type: 'UPDATE_TAB',
     id,
@@ -129,7 +129,7 @@ export function updateTab(id, data) {
  * @param {string} favicon.url - the favicon image url
  * @returns {{favicon, type: string}}
  */
-export function storeFavicon({ origin, url }) {
+export function storeFavicon({ origin, url }: any) {
   return {
     type: 'STORE_FAVICON_URL',
     origin,
@@ -141,7 +141,7 @@ export function storeFavicon({ origin, url }) {
  * Toggles fullscreen mode for the browser
  * @returns {{type: string}}
  */
-export function toggleFullscreen(isFullscreen) {
+export function toggleFullscreen(isFullscreen: any) {
   return {
     type: BrowserActionTypes.TOGGLE_FULLSCREEN,
     isFullscreen,

@@ -1012,7 +1012,7 @@ function decodeMusdClaimTx(args) {
  * @param {*} args - Should contain tx, selectedAddress, ticker, conversionRate,
  * currentCurrency, exchangeRate, contractExchangeRates, collectibleContracts, tokens
  */
-export default async function decodeTransaction(args) {
+export default async function decodeTransaction(args: any) {
   const { tx, selectedAddress, chainId, ticker } = args;
   const chainIdToUse = tx.chainId || chainId;
   const { isTransfer } = tx || {};

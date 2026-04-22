@@ -66,7 +66,7 @@ export default function TransactionActionContent({
   titleText,
   gasTitleText,
   descriptionText,
-}) {
+}: any) {
   const { colors } = useTheme();
   const styles = createStyles(colors);
 

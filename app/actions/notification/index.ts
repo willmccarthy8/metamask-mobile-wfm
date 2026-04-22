@@ -11,7 +11,7 @@ export function hideCurrentNotification() {
   };
 }
 
-export function hideNotificationById(id) {
+export function hideNotificationById(id: any) {
   return {
     type: ACTIONS.HIDE_NOTIFICATION_BY_ID,
     id,
@@ -22,7 +22,7 @@ export function modifyOrShowTransactionNotificationById({
   autodismiss,
   transaction,
   status,
-}) {
+}: any) {
   return {
     type: ACTIONS.MODIFY_OR_SHOW_TRANSACTION_NOTIFICATION,
     autodismiss,
@@ -36,7 +36,7 @@ export function modifyOrShowSimpleNotificationById({
   title,
   description,
   status,
-}) {
+}: any) {
   return {
     type: ACTIONS.MODIFY_OR_SHOW_SIMPLE_NOTIFICATION,
     autodismiss,
@@ -46,7 +46,7 @@ export function modifyOrShowSimpleNotificationById({
   };
 }
 
-export function replaceNotificationById(notification) {
+export function replaceNotificationById(notification: any) {
   return {
     type: ACTIONS.REPLACE_NOTIFICATION_BY_ID,
     notification,
@@ -54,7 +54,7 @@ export function replaceNotificationById(notification) {
   };
 }
 
-export function removeNotificationById(id) {
+export function removeNotificationById(id: any) {
   return {
     type: ACTIONS.REMOVE_NOTIFICATION_BY_ID,
     id,
@@ -73,7 +73,7 @@ export function showSimpleNotification({
   description,
   status,
   id,
-}) {
+}: any) {
   return {
     id,
     type: ACTIONS.SHOW_SIMPLE_NOTIFICATION,
@@ -88,7 +88,7 @@ export function showTransactionNotification({
   autodismiss,
   transaction,
   status,
-}) {
+}: any) {
   return {
     type: ACTIONS.SHOW_TRANSACTION_NOTIFICATION,
     autodismiss,

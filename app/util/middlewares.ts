@@ -22,7 +22,7 @@ const USER_REJECTED_ERROR_CODE = 4001;
  * @param {{ origin: string }} opts - The middleware options
  * @returns {Function}
  */
-export function createOriginMiddleware(opts) {
+export function createOriginMiddleware(opts: any) {
   return function originMiddleware(
     /** @type {any} */ req,
     /** @type {any} */ _,
@@ -45,7 +45,7 @@ export function createOriginMiddleware(opts) {
  * @param {String} errorMessage
  * @returns {boolean}
  */
-export function containsUserRejectedError(errorMessage, errorCode) {
+export function containsUserRejectedError(errorMessage: any, errorCode: any) {
   try {
     if (!errorMessage || !(typeof errorMessage === 'string')) return false;
 
@@ -69,7 +69,7 @@ export function containsUserRejectedError(errorMessage, errorCode) {
  * @param {{ origin: string }} opts - The middleware options
  * @returns {Function}
  */
-export function createLoggerMiddleware(opts) {
+export function createLoggerMiddleware(opts: any) {
   return function loggerMiddleware(
     /** @type {any} */ req,
     /** @type {any} */ res,

@@ -57,7 +57,7 @@ const CHAIN_ID_TO_NETWORK_ID = {
  * @returns {string|undefined} The cached ENS name, or undefined if the name
  * was not found in the cache.
  */
-export function getCachedENSName(address, chainId) {
+export function getCachedENSName(address: any, chainId: any) {
   const networkHasEnsSupport = ENS_SUPPORTED_CHAIN_IDS.includes(chainId);
   if (!networkHasEnsSupport) {
     return undefined;
@@ -69,7 +69,7 @@ export function getCachedENSName(address, chainId) {
   return cacheEntry?.name;
 }
 
-export async function doENSReverseLookup(address, chainId) {
+export async function doENSReverseLookup(address: any, chainId: any) {
   const { provider } =
     Engine.context.NetworkController.getProviderAndBlockTracker();
   const { name: cachedName, timestamp } =
@@ -102,7 +102,7 @@ export async function doENSReverseLookup(address, chainId) {
   }
 }
 
-export async function doENSLookup(ensName, chainId) {
+export async function doENSLookup(ensName: any, chainId: any) {
   const { provider } =
     Engine.context.NetworkController.getProviderAndBlockTracker();
 
@@ -120,6 +120,6 @@ export async function doENSLookup(ensName, chainId) {
   }
 }
 
-export function isDefaultAccountName(name) {
+export function isDefaultAccountName(name: any) {
   return regex.defaultAccount.test(name);
 }

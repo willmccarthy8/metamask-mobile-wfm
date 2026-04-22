@@ -72,7 +72,7 @@ export default function WarningExistingUserModal({
   confirmTestID,
   cancelTestID,
   cancelButtonMode = 'warning',
-}) {
+}: any) {
   return (
     <ActionModal
       modalVisible={warningModalVisible}

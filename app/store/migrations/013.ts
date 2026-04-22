@@ -2,7 +2,7 @@
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { v1 as random } from 'uuid';
 
-export default function migrate(state) {
+export default function migrate(state: any) {
   // If for some reason we already have PermissionController state, bail out.
   const hasPermissionControllerState = Boolean(
     state.engine.backgroundState.PermissionController?.subjects,

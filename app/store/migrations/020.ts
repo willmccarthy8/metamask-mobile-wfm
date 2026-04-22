@@ -13,7 +13,7 @@ import { v4 } from 'uuid';
  * redux-persist bug somehow.
  *
  **/
-export default function migrate(state) {
+export default function migrate(state: any) {
   const preferencesControllerState =
     state.engine.backgroundState.PreferencesController;
   const networkControllerState = state.engine.backgroundState.NetworkController;

@@ -59,7 +59,7 @@ import DiscoveryTab from '../DiscoveryTab/DiscoveryTab';
  * Component that wraps all the browser
  * individual tabs and the tabs view
  */
-export const BrowserPure = (props) => {
+export const BrowserPure = (props: any) => {
   const {
     route,
     navigation,

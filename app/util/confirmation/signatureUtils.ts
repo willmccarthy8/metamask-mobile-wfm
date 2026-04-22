@@ -24,9 +24,9 @@ export const typedSign = {
 };
 
 export const getAnalyticsParams = (
-  messageParams,
-  signType,
-  securityAlertResponse,
+  messageParams: any,
+  signType: any,
+  securityAlertResponse: any,
 ) => {
   if (!messageParams || typeof messageParams !== 'object') {
     throw new Error('Invalid messageParams provided');
@@ -64,7 +64,7 @@ export const getAnalyticsParams = (
   return analyticsParams;
 };
 
-export const walletConnectNotificationTitle = (confirmation, isError) => {
+export const walletConnectNotificationTitle = (confirmation: any, isError: any) => {
   if (isError) return strings('notifications.wc_signed_failed_title');
   return confirmation
     ? strings('notifications.wc_signed_title')
@@ -72,9 +72,9 @@ export const walletConnectNotificationTitle = (confirmation, isError) => {
 };
 
 export const showWalletConnectNotification = (
-  messageParams = {},
-  confirmation = false,
-  isError = false,
+  messageParams: any = {},
+  confirmation: any = false,
+  isError: any = false,
 ) => {
   InteractionManager.runAfterInteractions(() => {
     /**
@@ -109,11 +109,11 @@ export const showWalletConnectNotification = (
 };
 
 export const handleSignatureAction = async (
-  onAction,
-  messageParams,
-  signType,
-  securityAlertResponse,
-  confirmation,
+  onAction: any,
+  messageParams: any,
+  signType: any,
+  securityAlertResponse: any,
+  confirmation: any,
 ) => {
   await onAction();
   showWalletConnectNotification(messageParams, confirmation);
@@ -130,21 +130,21 @@ export const handleSignatureAction = async (
   );
 };
 
-export const addSignatureErrorListener = (metamaskId, onSignatureError) => {
+export const addSignatureErrorListener = (metamaskId: any, onSignatureError: any) => {
   Engine.context.SignatureController.hub.on(
     `${metamaskId}:signError`,
     onSignatureError,
   );
 };
 
-export const removeSignatureErrorListener = (metamaskId, onSignatureError) => {
+export const removeSignatureErrorListener = (metamaskId: any, onSignatureError: any) => {
   Engine.context.SignatureController.hub.removeListener(
     `${metamaskId}:signError`,
     onSignatureError,
   );
 };
 
-export const shouldTruncateMessage = (e) => {
+export const shouldTruncateMessage = (e: any) => {
   if (
     (Device.isIos() && e.nativeEvent.layout.height > 70) ||
     (Device.isAndroid() && e.nativeEvent.layout.height > 100)
