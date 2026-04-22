@@ -80,7 +80,7 @@ describe('BasicFunctionalityModal', () => {
   it('should render correctly', () => {
     const { toJSON } = renderWithProvider(
       <BasicFunctionalityModal route={mockRoute} />,
-      { state: mockInitialState },
+      { state: mockInitialState as RootState },
     );
     expect(toJSON()).toMatchSnapshot();
   });
@@ -89,7 +89,7 @@ describe('BasicFunctionalityModal', () => {
   it('should call toggleBasicFunctionality thunk action when toggling', async () => {
     const { getByText } = renderWithProvider(
       <BasicFunctionalityModal route={mockRoute} />,
-      { state: mockInitialState },
+      { state: mockInitialState as RootState },
     );
 
     // Find and press the turn off button (when basicFunctionality is enabled)

@@ -345,7 +345,10 @@ describe('NftGrid', () => {
       if (selector === selectHomepageRedesignV1Enabled) {
         return isHomepageRedesignEnabled;
       }
-      if (selector === multichainCollectiblesByEnabledNetworksSelector) {
+      if (
+        selector ===
+        (multichainCollectiblesByEnabledNetworksSelector as unknown as typeof selector)
+      ) {
         return collectibles;
       }
       if (selector === isNftFetchingProgressSelector) {

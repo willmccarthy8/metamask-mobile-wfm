@@ -13,10 +13,14 @@ export const tlc = (str: any) => str?.toLowerCase?.();
  *
  * @returns - Promise resolving the request
  */
-export function timeoutFetch(url: any, options: any, timeout: any = 500) {
+export function timeoutFetch(
+  url: any,
+  options?: any,
+  timeout: any = 500,
+): Promise<Response> {
   return Promise.race([
     fetch(url, options),
-    new Promise((_, reject) =>
+    new Promise<Response>((_, reject) =>
       setTimeout(() => reject(new Error('timeout')), timeout),
     ),
   ]);

@@ -118,6 +118,23 @@ const legacyNetworkId = () => {
 };
 
 export class BackgroundBridge extends EventEmitter {
+  // Loose public surface so downstream TypeScript consumers can refer to the
+  // properties that this class dynamically attaches to `this`. Types are kept
+  // permissive while the file carries a @ts-nocheck pragma.
+  /* eslint-disable @typescript-eslint/no-explicit-any */
+  declare url: string;
+  declare origin: string;
+  declare isMainFrame: boolean;
+  declare isWalletConnect: boolean;
+  declare isMMSDK: boolean;
+  declare channelId: any;
+  declare channelIdOrOrigin: any;
+  declare sendNotificationEip1193: (payload: unknown) => void;
+  declare onDisconnect: () => void;
+  declare onMessage: (message: Record<string, unknown>) => void;
+  [key: string]: any;
+  /* eslint-enable @typescript-eslint/no-explicit-any */
+
   constructor({
     webview,
     url,
@@ -132,7 +149,7 @@ export class BackgroundBridge extends EventEmitter {
     isMMSDK,
     sdkVersion = 'v1',
     channelId,
-  }) {
+  }: any = {}) {
     super();
     this.url = url;
     this.origin = new URL(url).origin;
@@ -384,7 +401,7 @@ export class BackgroundBridge extends EventEmitter {
     );
   }
 
-  async notifySelectedAddressChanged(selectedAddress) {
+  async notifySelectedAddressChanged(selectedAddress?: any) {
     try {
       let approvedAccounts = [];
       DevLogger.log(

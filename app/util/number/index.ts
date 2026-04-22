@@ -172,7 +172,7 @@ export function fromTokenMinimalUnitString(minimalInput: any, decimals: any) {
  * @param {number} decimals - Unit to convert from, ether by default
  * @returns {BN} - BN instance containing the new number
  */
-export function toTokenMinimalUnit(tokenValue: any, decimals: any) {
+export function toTokenMinimalUnit(tokenValue: any, decimals: any): any {
   const base = toBN(Math.pow(10, decimals).toString());
   let value = convert.numberToString(tokenValue);
   const negative = value.substring(0, 1) === '-';
@@ -541,10 +541,10 @@ export function renderToGwei(value: any, unit: any = 'ether') {
 export function weiToFiat(
   wei: any,
   conversionRate: any = null,
-  currencyCode: any,
+  currencyCode?: any,
   decimalsToShow: any = 5,
-) {
-  if (!conversionRate) return undefined;
+): string {
+  if (!conversionRate) return undefined as unknown as string;
   if (!wei || !isBN(wei) || !conversionRate) {
     return addCurrencySymbol(0, currencyCode);
   }

@@ -26,7 +26,7 @@ export const typedSign = {
 export const getAnalyticsParams = (
   messageParams: any,
   signType: any,
-  securityAlertResponse: any,
+  securityAlertResponse?: any,
 ) => {
   if (!messageParams || typeof messageParams !== 'object') {
     throw new Error('Invalid messageParams provided');

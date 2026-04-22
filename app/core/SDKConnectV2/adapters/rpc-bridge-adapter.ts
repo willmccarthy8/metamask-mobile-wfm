@@ -95,7 +95,7 @@ export class RPCBridgeAdapter
 
     while (this.queue.length > 0) {
       const request = this.queue.shift();
-      this.client.onMessage(request);
+      this.client.onMessage(request as Record<string, unknown>);
     }
 
     this.processing = false;

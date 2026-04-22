@@ -206,10 +206,10 @@ export function getTransactionsNavbarOptions(
 export function getNavigationOptionsTitle(
   title: any,
   navigation: any,
-  isFullScreenModal: any,
-  themeColors: any,
+  isFullScreenModal?: any,
+  themeColors?: any,
   navigationPopEvent: any = null,
-) {
+): any {
   const innerStyles = StyleSheet.create({
     headerStyle: {
       backgroundColor: themeColors.background.default,
