@@ -898,7 +898,6 @@ export const BrowserTab: React.FC<BrowserTabProps> = React.memo(
         backgroundBridgeRef.current?.onDisconnect();
         backgroundBridgeRef.current = undefined;
 
-        //@ts-expect-error - We should type bacgkround bridge js file
         const newBridge = new BackgroundBridge({
           webview: webviewRef,
           url: urlBridge,

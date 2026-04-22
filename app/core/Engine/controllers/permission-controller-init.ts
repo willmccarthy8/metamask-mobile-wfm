@@ -39,19 +39,22 @@ export const permissionControllerInit: ControllerInitFunction<
     messenger: controllerMessenger,
     state: persistedState.PermissionController,
     caveatSpecifications: getCaveatSpecifications({
-      listAccounts: (...args) =>
-        initMessenger.call('AccountsController:listAccounts', ...args),
-      findNetworkClientIdByChainId: (...args) =>
-        initMessenger.call(
+      listAccounts: (...args: unknown[]) =>
+        (initMessenger.call as (...a: unknown[]) => unknown)(
+          'AccountsController:listAccounts',
+          ...args,
+        ),
+      findNetworkClientIdByChainId: (...args: unknown[]) =>
+        (initMessenger.call as (...a: unknown[]) => unknown)(
           'NetworkController:findNetworkClientIdByChainId',
           ...args,
         ),
-      isNonEvmScopeSupported: (scope) =>
+      isNonEvmScopeSupported: (scope: CaipChainId) =>
         initMessenger.call(
           'MultichainRouter:isSupportedScope',
           scope as CaipChainId,
         ),
-      getNonEvmAccountAddresses: (scope) =>
+      getNonEvmAccountAddresses: (scope: CaipChainId) =>
         initMessenger.call(
           'MultichainRouter:getSupportedAccounts',
           scope as CaipChainId,

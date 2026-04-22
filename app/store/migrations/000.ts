@@ -1,0 +1,23 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
+/**
+ * Needed after https://github.com/MetaMask/controllers/pull/152
+ *
+ **/
+export default function migrate(state: any) {
+  const addressBook =
+    state.engine.backgroundState.AddressBookController.addressBook;
+  const migratedAddressBook = {};
+  Object.keys(addressBook).forEach((address) => {
+    const chainId = addressBook[address].chainId.toString();
+    migratedAddressBook[chainId]
+      ? (migratedAddressBook[chainId] = {
+          ...migratedAddressBook[chainId],
+          [address]: addressBook[address],
+        })
+      : (migratedAddressBook[chainId] = { [address]: addressBook[address] });
+  });
+  state.engine.backgroundState.AddressBookController.addressBook =
+    migratedAddressBook;
+  return state;
+}

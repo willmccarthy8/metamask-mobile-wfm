@@ -246,7 +246,6 @@ const DaimoPayModal: React.FC = () => {
       try {
         const origin = new URL(url).origin;
 
-        // @ts-expect-error - BackgroundBridge is a JS file without proper types
         const newBridge = new BackgroundBridge({
           webview: webViewRef,
           url,

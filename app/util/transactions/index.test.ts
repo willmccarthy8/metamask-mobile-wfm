@@ -268,7 +268,7 @@ describe('Transactions utils :: decodeTransferData', () => {
     const [address, amount] = decodeTransferData(
       'transfer',
       '0xa9059cbb00000000000000000000000056ced0d816c668d7c0bcc3fbf0ab2c6896f589a00000000000000000000000000000000000000000000000000000000000000001',
-    );
+    ) ?? [];
     expect(address).toEqual('0x56ced0d816c668d7c0bcc3fbf0ab2c6896f589a0');
     expect(amount).toEqual('1');
   });
@@ -277,7 +277,7 @@ describe('Transactions utils :: decodeTransferData', () => {
     const [fromAddress, toAddress, tokenId] = decodeTransferData(
       'transferFrom',
       '0x23b872dd00000000000000000000000056ced0d816c668d7c0bcc3fbf0ab2c6896f589c900000000000000000000000056ced0d816c668d7c0bcc3fbf0ab2c6896f589b400000000000000000000000000000000000000000000000000000000000004f1',
-    );
+    ) ?? [];
     expect(fromAddress).toEqual('0x56ced0d816c668d7c0bcc3fbf0ab2c6896f589c9');
     expect(toAddress).toEqual('0x56ced0d816c668d7c0bcc3fbf0ab2c6896f589b4');
     expect(tokenId).toEqual('1265');
@@ -1921,8 +1921,7 @@ describe('Transactions utils :: isLegacyTransaction', () => {
   });
 
   it('returns false for undefined transactionMeta', () => {
-    // @ts-expect-error Testing undefined input
-    expect(isLegacyTransaction(undefined)).toBe(false);
+    expect(isLegacyTransaction(undefined as any)).toBe(false);
   });
 
   it('returns false for transactionMeta without txParams', () => {
@@ -2141,8 +2140,7 @@ describe('Transactions utils :: isNFTTokenStandard', () => {
   });
 
   it('returns false for undefined token standard', () => {
-    // @ts-expect-error Testing undefined input
-    const result = isNFTTokenStandard(undefined);
+    const result = isNFTTokenStandard(undefined as any);
     expect(result).toBe(false);
   });
 
