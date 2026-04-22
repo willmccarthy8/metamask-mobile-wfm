@@ -11,7 +11,7 @@ import { WALLET_ACCOUNT_ADDRESS_LABEL } from '../../../../wdio/screen-objects/te
  * View that renders an ethereum address
  * or its ENS name when supports reverse lookup
  */
-class EthereumAddress extends PureComponent {
+class EthereumAddress extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Styles to be applied to the text component

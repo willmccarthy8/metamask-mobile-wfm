@@ -178,7 +178,7 @@ const TRANSACTION_STATUS = {
 /**
  * View that renders a transaction item part of transactions list
  */
-class TransactionElement extends PureComponent {
+class TransactionElement extends PureComponent<any, any> {
   static propTypes = {
     assetSymbol: PropTypes.string,
     /**

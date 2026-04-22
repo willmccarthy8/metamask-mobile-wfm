@@ -396,7 +396,7 @@ Fallback.propTypes = {
   }),
 };
 
-class ErrorBoundary extends Component {
+class ErrorBoundary extends Component<any, any> {
   state = { error: null };
 
   static propTypes = {

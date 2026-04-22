@@ -51,7 +51,7 @@ const createStyles = (colors) =>
 /**
  * View where users can re-enter their password
  */
-export default class EnterPasswordSimple extends PureComponent {
+export default class EnterPasswordSimple extends PureComponent<any, any> {
   static propTypes = {
     /**
      * The navigator object

@@ -105,7 +105,7 @@ const foxImage = require('../../../../images/branding/fox.png'); // eslint-disab
 /**
  * View that contains app information
  */
-class AppInformation extends PureComponent {
+class AppInformation extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* navigation object required to push new views

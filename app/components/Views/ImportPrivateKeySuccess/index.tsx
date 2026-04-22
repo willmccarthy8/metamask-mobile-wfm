@@ -77,7 +77,7 @@ const createStyles = (colors) =>
 /**
  * View that's displayed the first time imports account
  */
-class ImportPrivateKeySuccess extends PureComponent {
+class ImportPrivateKeySuccess extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* navigation object required to push and pop other views

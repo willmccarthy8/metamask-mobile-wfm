@@ -43,7 +43,7 @@ const createStyles = (colors) =>
 /**
  * View that displays a specific collectible asset
  */
-class CollectibleView extends PureComponent {
+class CollectibleView extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* navigation object required to access the props

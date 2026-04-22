@@ -265,7 +265,7 @@ const MODE_AMOUNT = 'amount';
 /**
  * View to generate a payment request link
  */
-class PaymentRequest extends PureComponent {
+class PaymentRequest extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Object that represents the navigator

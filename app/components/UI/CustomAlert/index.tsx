@@ -45,7 +45,7 @@ const createStyles = (colors) =>
 /* PureComponent that renders our custom alerts, which contains
 /* a header with an image, body and footer with a button
 */
-export default class CustomAlert extends PureComponent {
+export default class CustomAlert extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* Style of the header view

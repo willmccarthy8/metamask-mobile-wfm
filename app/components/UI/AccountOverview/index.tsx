@@ -150,7 +150,7 @@ const createStyles = (colors) =>
  * View that's part of the <Wallet /> component
  * which shows information about the selected account
  */
-class AccountOverview extends PureComponent {
+class AccountOverview extends PureComponent<any, any> {
   static propTypes = {
     /**
      * String that represents the selected address

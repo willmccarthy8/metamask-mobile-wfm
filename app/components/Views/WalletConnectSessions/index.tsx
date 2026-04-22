@@ -80,7 +80,7 @@ const createStyles = (colors) =>
 /**
  * View that displays all the active WalletConnect Sessions
  */
-export default class WalletConnectSessions extends PureComponent {
+export default class WalletConnectSessions extends PureComponent<any, any> {
   state = {
     sessions: [],
   };

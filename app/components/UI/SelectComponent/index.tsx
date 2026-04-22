@@ -79,7 +79,7 @@ const createStyles = (colors) =>
     },
   });
 
-export default class SelectComponent extends PureComponent {
+export default class SelectComponent extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Default value to show

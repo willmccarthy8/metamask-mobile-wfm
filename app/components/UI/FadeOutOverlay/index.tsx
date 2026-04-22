@@ -21,7 +21,7 @@ const createStyles = (colors) =>
 /**
  * View that is displayed to first time (new) users
  */
-export default class FadeOutOverlay extends PureComponent {
+export default class FadeOutOverlay extends PureComponent<any, any> {
   static propTypes = {
     style: PropTypes.any,
     duration: PropTypes.number,

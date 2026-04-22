@@ -84,7 +84,7 @@ const createStyles = (colors, measures) =>
     },
   });
 
-export default class AnimatedSpinner extends PureComponent {
+export default class AnimatedSpinner extends PureComponent<any, any> {
   spinValue = new Animated.Value(0);
 
   state = {

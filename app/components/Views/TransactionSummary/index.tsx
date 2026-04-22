@@ -23,7 +23,7 @@ const createStyles = (colors) =>
     },
   });
 
-export default class TransactionSummary extends PureComponent {
+export default class TransactionSummary extends PureComponent<any, any> {
   static propTypes = {
     amount: PropTypes.string,
     fee: PropTypes.string,

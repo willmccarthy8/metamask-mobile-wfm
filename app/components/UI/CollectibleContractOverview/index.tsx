@@ -59,7 +59,7 @@ const createStyles = (colors) =>
  * View that displays a specific collectible contract
  * including the overview (name, address, symbol, logo, description, total supply)
  */
-class CollectibleContractOverview extends PureComponent {
+class CollectibleContractOverview extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Object that represents the asset to be displayed

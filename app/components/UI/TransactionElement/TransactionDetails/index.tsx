@@ -122,7 +122,7 @@ const createStyles = (colors) =>
 /**
  * View that renders a transaction details as part of transactions list
  */
-class TransactionDetails extends PureComponent {
+class TransactionDetails extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* navigation object required to push new views

@@ -21,7 +21,7 @@ import {
  *
  * @see {@link https://github.com/MetaMask/metamask-mobile/issues/8106 | Tracking issue}
  */
-export default class StyledButton extends PureComponent {
+export default class StyledButton extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Children components of the Button

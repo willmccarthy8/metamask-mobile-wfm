@@ -31,7 +31,7 @@ const createStyles = (colors) =>
  * PureComponent that renders an icon showing
  * the current number of open tabs
  */
-class TabCountIcon extends PureComponent {
+class TabCountIcon extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Switches to a specific tab

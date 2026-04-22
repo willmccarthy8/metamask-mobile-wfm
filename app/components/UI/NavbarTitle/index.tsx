@@ -38,7 +38,7 @@ const createStyles = (colors) =>
  * UI PureComponent that renders inside the navbar
  * showing the view title and the selected network
  */
-class NavbarTitle extends PureComponent {
+class NavbarTitle extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Object representing the configuration of the current selected network

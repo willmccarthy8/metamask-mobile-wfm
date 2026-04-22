@@ -11,7 +11,7 @@ import { ThemeContext, mockTheme } from '../../../util/theme';
  * and allows to fade it in / out
  * via the boolean prop visible
  */
-export default class WebviewProgressBar extends PureComponent {
+export default class WebviewProgressBar extends PureComponent<any, any> {
   state = {
     visible: true,
   };

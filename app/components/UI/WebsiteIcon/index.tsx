@@ -41,7 +41,7 @@ const createStyles = (colors) =>
  *
  * Please replace this component with the equivalent component from `@metamask/design-system-react-native`.
  */
-class WebsiteIcon extends PureComponent {
+class WebsiteIcon extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Style object for image

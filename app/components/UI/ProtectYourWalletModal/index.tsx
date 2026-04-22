@@ -77,7 +77,7 @@ const createStyles = (colors) =>
 /**
  * View that renders an action modal
  */
-class ProtectYourWalletModal extends PureComponent {
+class ProtectYourWalletModal extends PureComponent<any, any> {
   static propTypes = {
     navigation: PropTypes.object,
     /**

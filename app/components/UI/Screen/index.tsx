@@ -8,7 +8,7 @@ import { baseStyles } from '../../../styles/common';
 /**
  * Base view component providing consistent styling meant to wrap other views
  */
-export default class Screen extends PureComponent {
+export default class Screen extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Content to wrap inside this view

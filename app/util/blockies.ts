@@ -434,3 +434,9 @@
 class Blockies {
   static cache = {};
 }
+
+// Explicit ES module exports so downstream TypeScript consumers can import
+// symbols that the IIFE attaches to CommonJS `exports` at runtime.
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const toDataUrl: (seed: string) => string = (module as any).exports
+  .toDataUrl;

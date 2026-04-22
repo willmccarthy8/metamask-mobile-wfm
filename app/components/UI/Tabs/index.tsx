@@ -99,7 +99,7 @@ const createStyles = (colors) =>
  * PureComponent that wraps all the thumbnails
  * representing all the open tabs
  */
-class Tabs extends PureComponent {
+class Tabs extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Array of tabs

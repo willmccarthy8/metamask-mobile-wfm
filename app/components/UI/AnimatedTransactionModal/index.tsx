@@ -32,7 +32,7 @@ const customGasHeightPlaceHolder = 400;
 /**
  * PureComponent that handles most of the animation/transition logic
  */
-class AnimatedTransactionModal extends PureComponent {
+class AnimatedTransactionModal extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Changes the mode to 'review'

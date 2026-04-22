@@ -111,7 +111,7 @@ const ROW_HEIGHT = (Device.isIos() ? 95 : 100) + StyleSheet.hairlineWidth;
 /**
  * View that renders a list of transactions for a specific asset
  */
-class Transactions extends PureComponent {
+class Transactions extends PureComponent<any, any> {
   static propTypes = {
     assetSymbol: PropTypes.string,
     /**

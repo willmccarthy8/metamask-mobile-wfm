@@ -41,7 +41,7 @@ const createStyles = (colors) =>
 /**
  * Copmonent that provides ability to add a bookmark
  */
-export default class AddBookmark extends PureComponent {
+export default class AddBookmark extends PureComponent<any, any> {
   state = {
     title: '',
     url: '',

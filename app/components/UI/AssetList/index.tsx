@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
 /**
  * PureComponent that provides ability to search assets.
  */
-export default class AssetList extends PureComponent {
+export default class AssetList extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Array of assets objects returned from the search

@@ -191,7 +191,7 @@ SettingsRow.propTypes = {
 /**
  * Main view for app configurations
  */
-class AdvancedSettings extends PureComponent {
+class AdvancedSettings extends PureComponent<any, any> {
   static propTypes = {
     /**
     /* navigation object required to push new views

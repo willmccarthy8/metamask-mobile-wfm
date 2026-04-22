@@ -114,7 +114,7 @@ const openSeaLogo = require('../../../images/opensea-logo-flat-colored-blue.png'
 /**
  * View that contains a collectible contract information as description, total supply and address
  */
-class CollectibleContractInformation extends PureComponent {
+class CollectibleContractInformation extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Navigation object required to push

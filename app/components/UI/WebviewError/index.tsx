@@ -67,7 +67,7 @@ const createStyles = (colors) =>
 /**
  * View that renders custom error page for the browser
  */
-export default class WebviewError extends PureComponent {
+export default class WebviewError extends PureComponent<any, any> {
   static propTypes = {
     /**
      * error info

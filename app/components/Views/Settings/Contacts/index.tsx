@@ -36,7 +36,7 @@ const ADD = 'add';
 /**
  * View that contains app information
  */
-class Contacts extends PureComponent {
+class Contacts extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Map representing the address book

@@ -39,7 +39,7 @@ const HARDWARE_BACK_PRESS = 'hardwareBackPress';
  * View that's shown during the last step of
  * the backup seed phrase flow
  */
-class ManualBackupStep3 extends PureComponent {
+class ManualBackupStep3 extends PureComponent<any, any> {
   constructor(props) {
     super(props);
     this.steps = props.route.params?.steps;

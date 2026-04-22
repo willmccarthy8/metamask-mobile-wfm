@@ -163,7 +163,7 @@ const createStyles = (theme) =>
 /**
  * View to interact with a previously generated payment request link
  */
-class PaymentRequestSuccess extends PureComponent {
+class PaymentRequestSuccess extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Navigation object

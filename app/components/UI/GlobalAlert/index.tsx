@@ -42,7 +42,7 @@ const createStyles = (colors) =>
  * Wrapper component for a global alert
  * connected to redux
  */
-class GlobalAlert extends PureComponent {
+class GlobalAlert extends PureComponent<any, any> {
   static propTypes = {
     /**
      * Boolean that determines if the modal should be shown
