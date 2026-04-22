@@ -112,8 +112,8 @@ export const handleSignatureAction = async (
   onAction: any,
   messageParams: any,
   signType: any,
-  securityAlertResponse: any,
-  confirmation: any,
+  securityAlertResponse?: any,
+  confirmation?: any,
 ) => {
   await onAction();
   showWalletConnectNotification(messageParams, confirmation);

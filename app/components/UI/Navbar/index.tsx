@@ -1456,11 +1456,11 @@ export function getStakingNavbar(
   title: any,
   navigation: any,
   themeColors: any,
-  navBarOptions: any,
-  metricsOptions: any,
+  navBarOptions?: any,
+  metricsOptions?: any,
   ///: BEGIN:ONLY_INCLUDE_IF(tron)
-  earnToken = null,
-  aprOverride = null,
+  earnToken: any = null,
+  aprOverride: any = null,
   ///: END:ONLY_INCLUDE_IF
 ) {
   const {

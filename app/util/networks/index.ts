@@ -360,7 +360,7 @@ export const canDeleteNetwork = (chainId: any) =>
       !isLineaMainnetChainId(chainId),
   );
 
-export function getNetworkTypeById(id: any) {
+export function getNetworkTypeById(id?: any) {
   if (!id) {
     throw new Error(NetworkSwitchErrorType.missingNetworkId);
   }

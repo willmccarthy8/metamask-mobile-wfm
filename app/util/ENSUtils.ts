@@ -69,7 +69,7 @@ export function getCachedENSName(address: any, chainId: any) {
   return cacheEntry?.name;
 }
 
-export async function doENSReverseLookup(address: any, chainId: any) {
+export async function doENSReverseLookup(address: any, chainId?: any) {
   const { provider } =
     Engine.context.NetworkController.getProviderAndBlockTracker();
   const { name: cachedName, timestamp } =

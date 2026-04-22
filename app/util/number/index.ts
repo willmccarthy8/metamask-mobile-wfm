@@ -919,7 +919,7 @@ export const conversionUtil = (
     value: value || '0',
   });
 
-export const toHexadecimal = (decimal: any) => {
+export const toHexadecimal = (decimal?: any) => {
   if (!decimal) return decimal;
   if (decimal !== typeof 'string') {
     decimal = String(decimal);

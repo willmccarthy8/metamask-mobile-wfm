@@ -112,7 +112,7 @@ export function parseWaitTime(min: any) {
 export async function getGasLimit(
   transaction: any,
   resetGas: any = false,
-  networkClientId: any,
+  networkClientId?: any,
 ) {
   let estimation;
   try {
