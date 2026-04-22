@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import DefaultPreference from 'react-native-default-preference';
 import {
   ONBOARDING_WIZARD,

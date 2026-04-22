@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import {
   Caip25CaveatType,
   Caip25EndowmentPermissionName,

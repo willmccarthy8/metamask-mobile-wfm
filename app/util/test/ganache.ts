@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { getGanachePort } from '../../../tests/framework/fixtures/FixtureUtils';
 import ganache from 'ganache';
 import { ServerStatus } from '../../../tests/framework/types';

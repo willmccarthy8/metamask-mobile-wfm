@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { createSelector } from 'reselect';
 import { isMainnetByChainId } from '../../util/networks';
 import { safeToChecksumAddress, areAddressesEqual } from '../../util/address';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import migrate from './020';
 import { v4 } from 'uuid';
 

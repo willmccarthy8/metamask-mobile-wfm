@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 export const flushPromises = () => new Promise(setImmediate);
 
 // Fallback ports - used in fixture data and when LaunchArgs are unavailable

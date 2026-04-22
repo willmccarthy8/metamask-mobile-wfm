@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import Clipboard from '@react-native-clipboard/clipboard';
 import Device from '../util/device';
 import Logger from '../util/Logger';

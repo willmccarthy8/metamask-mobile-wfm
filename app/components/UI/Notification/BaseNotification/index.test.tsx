@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React from 'react';
 import BaseNotification, { getDescription } from './';
 import renderWithProvider from '../../../../util/test/renderWithProvider';

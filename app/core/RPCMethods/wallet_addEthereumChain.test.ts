@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { InteractionManager } from 'react-native';
 import { wallet_addEthereumChain } from './wallet_addEthereumChain';
 import Engine from '../Engine';

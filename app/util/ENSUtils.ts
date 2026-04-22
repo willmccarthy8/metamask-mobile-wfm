@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import Engine from '../core/Engine';
 import ENS from 'ethjs-ens';
 import { areAddressesEqual } from './address';

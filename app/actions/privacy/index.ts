@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 export function approveHost(hostname) {
   return {
     type: 'APPROVE_HOST',

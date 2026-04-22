@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useState, useEffect, useCallback } from 'react';
 import { connect, useSelector } from 'react-redux';
 import {

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { rpcErrors } from '@metamask/rpc-errors';
 import validUrl from 'valid-url';
 import { isSafeChainId } from '@metamask/controller-utils';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { Web3Provider } from '@ethersproject/providers';
 import { ContractFactory } from '@ethersproject/contracts';
 import { SMART_CONTRACTS, contractConfiguration } from './smart-contracts';

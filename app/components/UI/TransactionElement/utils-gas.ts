@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { isEIP1559Transaction } from '@metamask/transaction-controller';
 import { sumHexWEIs } from '../../../util/conversions';
 import { hexToBN, isBN, BNToHex, renderToGwei } from '../../../util/number';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import namehash from 'eth-ens-namehash';
 import Eth from '@metamask/ethjs-query';
 import EthContract from '@metamask/ethjs-contract';

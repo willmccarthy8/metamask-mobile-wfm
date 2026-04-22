@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { toHex } from '@metamask/controller-utils';
 import { createSelector } from 'reselect';
 import { selectChainId } from '../../selectors/networkController';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { addHexPrefix } from 'ethereumjs-util';
 import BN from 'bnjs4';
 import { rawEncode, rawDecode } from 'ethereumjs-abi';

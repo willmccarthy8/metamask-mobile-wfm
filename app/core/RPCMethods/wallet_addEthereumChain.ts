@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { equal } from 'uri-js';
 import { InteractionManager } from 'react-native';
 import { ChainId, toHex } from '@metamask/controller-utils';

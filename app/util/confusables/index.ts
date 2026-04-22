@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { confusables } from 'unicode-confusables';
 import { strings } from '../../../locales/i18n';
 import confusablesMap from 'unicode-confusables/data/confusables.json';

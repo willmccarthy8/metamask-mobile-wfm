@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 (function (global, factory) {
   exports && typeof exports === 'object' && typeof module !== 'undefined'
     ? factory(exports)

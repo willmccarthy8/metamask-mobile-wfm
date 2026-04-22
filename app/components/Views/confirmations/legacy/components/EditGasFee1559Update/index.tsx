@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* eslint-disable react/prop-types */
 /* eslint-disable react/no-unstable-nested-components */
 import BigNumber from 'bignumber.js';

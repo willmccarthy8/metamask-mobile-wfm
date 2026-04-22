@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* eslint-disable */
 // Mock for @myx-trade/sdk
 // Prevents Jest failures from lodash-es (ESM-only) imported by the real SDK

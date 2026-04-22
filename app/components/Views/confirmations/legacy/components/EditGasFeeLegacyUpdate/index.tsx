@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* eslint-disable react/prop-types */
 /* eslint-disable react/display-name */
 import { GAS_ESTIMATE_TYPES } from '@metamask/gas-fee-controller';

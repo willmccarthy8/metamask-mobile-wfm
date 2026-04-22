@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React from 'react';
 import { StyleSheet } from 'react-native';
 import DefaultTabBar from '@tommasini/react-native-scrollable-tab-view/DefaultTabBar';

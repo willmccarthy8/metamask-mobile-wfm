@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 'use strict';
 
 // eslint-disable-next-line import/no-nodejs-modules

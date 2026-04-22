@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useEffect, useCallback } from 'react';
 import { Alert } from 'react-native';
 import PropTypes from 'prop-types';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useRef, useState } from 'react';
 import PropTypes from 'prop-types';
 import { StyleSheet, TouchableOpacity, View } from 'react-native';

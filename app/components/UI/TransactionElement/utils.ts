@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import BN from 'bnjs4';
 import {
   hexToBN,

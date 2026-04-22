@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React from 'react';
 import { StyleSheet, View, TextInput, TouchableOpacity } from 'react-native';
 import { fontStyles, baseStyles } from '../../../styles/common';

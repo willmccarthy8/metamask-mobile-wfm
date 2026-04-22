@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useEffect } from 'react';
 import { Platform } from 'react-native';
 import Device from '../../../util/device';

@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import axios from 'axios';
 import { Platform } from 'react-native';
 import { getFixturesServerPortInApp } from './utils';

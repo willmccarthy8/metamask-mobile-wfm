@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /**
  * This file contains all the actions related to the in app (old/v1) notification system.
  */

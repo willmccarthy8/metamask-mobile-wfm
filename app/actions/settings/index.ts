@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 export function setSearchEngine(searchEngine) {
   return {
     type: 'SET_SEARCH_ENGINE',

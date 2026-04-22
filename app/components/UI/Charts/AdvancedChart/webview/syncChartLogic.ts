@@ -1,4 +1,5 @@
 #!/usr/bin/env node
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* eslint-disable import/no-commonjs, import/no-nodejs-modules, no-console */
 /**
  * Sync script that reads chartLogic.js and exports it as a string in chartLogicString.ts

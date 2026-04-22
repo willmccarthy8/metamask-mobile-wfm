@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { NativeModules } from 'react-native';
 import mockRNAsyncStorage from '@react-native-async-storage/async-storage/jest/async-storage-mock';
 import mockClipboard from '@react-native-clipboard/clipboard/jest/clipboard-mock.js';

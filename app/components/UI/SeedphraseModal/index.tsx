@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useRef } from 'react';
 import { View, StyleSheet, Platform } from 'react-native';
 import { fontStyles } from '../../../styles/common';

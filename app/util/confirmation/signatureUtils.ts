@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import Engine from '../../core/Engine';
 import { MetaMetricsEvents } from '../../core/Analytics/MetaMetrics.events';
 import { getAddressAccountType } from '../address';

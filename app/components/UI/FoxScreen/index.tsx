@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { PureComponent } from 'react';
 import { View, Image, StyleSheet } from 'react-native';
 import { ThemeContext, mockTheme } from '../../../util/theme';

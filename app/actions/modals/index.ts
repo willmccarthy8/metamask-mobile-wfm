@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 export function toggleNetworkModal(shouldNetworkSwitchPopToWallet = true) {
   return {
     type: 'TOGGLE_NETWORK_MODAL',

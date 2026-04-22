@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 // eslint-disable-next-line import/no-nodejs-modules
 import { Buffer } from 'buffer';
 import { Duplex } from 'readable-stream';

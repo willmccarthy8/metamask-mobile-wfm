@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable import/no-commonjs */
 /**

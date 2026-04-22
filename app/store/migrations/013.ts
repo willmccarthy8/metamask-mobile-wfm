@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { v1 as random } from 'uuid';
 
 export default function migrate(state) {

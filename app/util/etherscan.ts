@@ -1,3 +1,4 @@
+// @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import {
   BASE_MAINNET_BLOCK_EXPLORER,
   LINEA_GOERLI_BLOCK_EXPLORER,
