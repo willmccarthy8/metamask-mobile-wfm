@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';

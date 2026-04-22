@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /**
  * This view was created in order to test the navigation api since it's possible it can change even with minor upgrades.

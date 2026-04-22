@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { rpcErrors } from '@metamask/rpc-errors';
 import { MESSAGE_TYPE } from '../createTracingMiddleware';

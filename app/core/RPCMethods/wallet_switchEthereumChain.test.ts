@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { wallet_switchEthereumChain } from './wallet_switchEthereumChain';
 import Engine from '../Engine';

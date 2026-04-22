@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import { strings } from '../../../locales/i18n';
 import { MINUTE, HOUR, DAY } from '../../constants/time';

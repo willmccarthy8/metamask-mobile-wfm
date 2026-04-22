@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import migrate from './021';
 import { IPFS_DEFAULT_GATEWAY_URL } from '../../../app/constants/network';

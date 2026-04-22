@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 import BN from 'bnjs4';
 import { renderFromWei, weiToFiat, toWei, conversionUtil } from '../number';

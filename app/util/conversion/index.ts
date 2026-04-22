@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck - TODO: Add proper types as part of ongoing JS→TS migration
 /* Currency Conversion Utility
  * This utility function can be used for converting currency related values within metamask.
