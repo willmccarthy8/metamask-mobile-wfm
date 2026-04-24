@@ -4,7 +4,18 @@ import { ServerStatus } from '../../../tests/framework/types';
 
 export const DEFAULT_GANACHE_PORT = 8545;
 
-const defaultOptions = {
+interface GanacheOptions {
+  blockTime?: number;
+  network_id?: number;
+  port?: number;
+  vmErrorsOnRPCResponse?: boolean;
+  hardfork?: string;
+  quiet?: boolean;
+  mnemonic?: string;
+  [key: string]: unknown;
+}
+
+const defaultOptions: GanacheOptions = {
   blockTime: 2,
   network_id: 1337,
   port: DEFAULT_GANACHE_PORT,
@@ -14,6 +25,11 @@ const defaultOptions = {
 };
 
 export default class Ganache {
+  private _startOptions: GanacheOptions;
+  private _serverPort: number | undefined;
+  private _serverStatus: ServerStatus;
+  private _server: ReturnType<typeof ganache.server> | undefined;
+
   constructor() {
     this._startOptions = {};
     this._serverPort = undefined;
@@ -24,7 +40,7 @@ export default class Ganache {
    * Set start options that will be used when start() is called
    * @param {Object} opts - Ganache node options
    */
-  setStartOptions(opts) {
+  setStartOptions(opts: GanacheOptions): void {
     this._startOptions = opts;
   }
 
@@ -32,11 +48,11 @@ export default class Ganache {
    * Set the port that Ganache should listen on
    * @param {number} port - Port number
    */
-  setServerPort(port) {
+  setServerPort(port: number): void {
     this._serverPort = port;
   }
 
-  async start(opts = {}) {
+  async start(opts: GanacheOptions = {}): Promise<void> {
     // Use stored options if no options provided, otherwise use provided opts
     const optsToUse = Object.keys(opts).length > 0 ? opts : this._startOptions;
 
@@ -57,18 +73,19 @@ export default class Ganache {
     }
   }
 
-  getProvider() {
+  getProvider(): ReturnType<ReturnType<typeof ganache.server>['provider']> | undefined {
+    // @ts-expect-error ganache server provider type mismatch
     return this._server?.provider;
   }
 
-  async getAccounts() {
+  async getAccounts(): Promise<string[]> {
     return await this.getProvider().request({
       method: 'eth_accounts',
       params: [],
     });
   }
 
-  async getBalance() {
+  async getBalance(): Promise<string | number> {
     const accounts = await this.getAccounts();
     const balanceHex = await this.getProvider().request({
       method: 'eth_getBalance',
@@ -82,7 +99,7 @@ export default class Ganache {
     return balanceFormatted;
   }
 
-  async stop() {
+  async stop(): Promise<void> {
     if (!this._server) {
       throw new Error('Server not running yet');
     }
@@ -96,7 +113,7 @@ export default class Ganache {
    * Check if the Ganache server is running
    * @returns {boolean} True if the server is running, false otherwise
    */
-  isStarted() {
+  isStarted(): boolean {
     return this._serverStatus === ServerStatus.STARTED;
   }
 
@@ -104,7 +121,7 @@ export default class Ganache {
    * Get the port the Ganache server is listening on
    * @returns {number} The port number
    */
-  getServerPort() {
+  getServerPort(): number {
     return this._serverPort ?? 0;
   }
 
@@ -112,7 +129,7 @@ export default class Ganache {
    * Get the current server status
    * @returns {ServerStatus} The server status
    */
-  getServerStatus() {
+  getServerStatus(): ServerStatus {
     return this._serverStatus;
   }
 }

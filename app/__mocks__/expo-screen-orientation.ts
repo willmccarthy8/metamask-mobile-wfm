@@ -1,11 +1,11 @@
 // mock expo-screen-orientation for testing
 
-export const lockAsync = jest.fn().mockResolvedValue(undefined);
-export const unlockAsync = jest.fn().mockResolvedValue(undefined);
-export const getOrientationAsync = jest.fn().mockResolvedValue(1); // Portrait
-export const getOrientationLockAsync = jest.fn().mockResolvedValue(0);
-export const getPlatformOrientationLockAsync = jest.fn().mockResolvedValue({});
-export const supportsOrientationLockAsync = jest.fn().mockResolvedValue(true);
+export const lockAsync: jest.Mock = jest.fn().mockResolvedValue(undefined);
+export const unlockAsync: jest.Mock = jest.fn().mockResolvedValue(undefined);
+export const getOrientationAsync: jest.Mock = jest.fn().mockResolvedValue(1); // Portrait
+export const getOrientationLockAsync: jest.Mock = jest.fn().mockResolvedValue(0);
+export const getPlatformOrientationLockAsync: jest.Mock = jest.fn().mockResolvedValue({});
+export const supportsOrientationLockAsync: jest.Mock = jest.fn().mockResolvedValue(true);
 
 export const Orientation = {
   UNKNOWN: 0,
@@ -13,7 +13,7 @@ export const Orientation = {
   PORTRAIT_DOWN: 2,
   LANDSCAPE_LEFT: 3,
   LANDSCAPE_RIGHT: 4,
-};
+} as const;
 
 export const OrientationLock = {
   DEFAULT: 0,
@@ -26,13 +26,13 @@ export const OrientationLock = {
   LANDSCAPE_RIGHT: 7,
   OTHER: 8,
   UNKNOWN: 9,
-};
+} as const;
 
 export const SizeClassIOS = {
   UNKNOWN: 0,
   COMPACT: 1,
   REGULAR: 2,
-};
+} as const;
 
 export const WebOrientationLock = {
   PORTRAIT_PRIMARY: 'portrait-primary',
@@ -44,14 +44,14 @@ export const WebOrientationLock = {
   NATURAL: 'natural',
   ANY: 'any',
   UNKNOWN: 'unknown',
-};
+} as const;
 
 export const WebOrientation = {
   PORTRAIT_PRIMARY: 0,
   PORTRAIT_SECONDARY: 180,
   LANDSCAPE_PRIMARY: 90,
   LANDSCAPE_SECONDARY: -90,
-};
+} as const;
 
 // Default export for namespace imports
 export default {

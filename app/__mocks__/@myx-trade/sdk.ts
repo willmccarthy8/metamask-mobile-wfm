@@ -2,12 +2,18 @@
 // Mock for @myx-trade/sdk
 // Prevents Jest failures from lodash-es (ESM-only) imported by the real SDK
 
-const mockMarkets = {
+interface MockMarkets {
+  getPoolSymbolAll: jest.Mock;
+  getTickerList: jest.Mock;
+}
+
+const mockMarkets: MockMarkets = {
   getPoolSymbolAll: jest.fn().mockResolvedValue([]),
   getTickerList: jest.fn().mockResolvedValue([]),
 };
 
 class MyxClient {
+  markets: MockMarkets;
   constructor() {
     this.markets = mockMarkets;
   }

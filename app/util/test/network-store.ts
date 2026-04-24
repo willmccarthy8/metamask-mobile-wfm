@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import { Platform } from 'react-native';
 import { getFixturesServerPortInApp } from './utils';
 
@@ -11,18 +11,27 @@ axios.defaults.headers.common['Access-Control-Allow-Methods'] =
 axios.defaults.headers.common['Access-Control-Allow-Headers'] =
   'Origin, X-Requested-With, Content-Type, Accept';
 
-const fetchWithTimeout = (url) =>
+const fetchWithTimeout = (url: string): Promise<AxiosResponse> =>
   new Promise((resolve, reject) => {
     axios
       .get(url)
       .then((response) => resolve(response))
-      .catch((error) => reject(error));
+      .catch((error: unknown) => reject(error));
     setTimeout(() => {
       reject(new Error('Request timeout'));
     }, FETCH_TIMEOUT);
   });
 
+interface FixtureState {
+  state?: Record<string, unknown>;
+  asyncState?: Record<string, string>;
+}
+
 class ReadOnlyNetworkStore {
+  private _initialized: boolean;
+  private _state: Record<string, unknown> | undefined;
+  private _asyncState: Record<string, string> | undefined;
+
   constructor() {
     this._initialized = false;
     this._state = undefined;
@@ -30,12 +39,12 @@ class ReadOnlyNetworkStore {
   }
 
   // Redux Store
-  async getState() {
+  async getState(): Promise<Record<string, unknown> | undefined> {
     await this._initIfRequired();
     return this._state;
   }
 
-  async setState(state) {
+  async setState(state: Record<string, unknown>): Promise<void> {
     if (!state) {
       throw new Error('MetaMask - updated state is missing');
     }
@@ -44,44 +53,44 @@ class ReadOnlyNetworkStore {
   }
 
   // Async Storage
-  async getString(key) {
+  async getString(key: string): Promise<string | null> {
     await this._initIfRequired();
     const value = this._asyncState[key];
     return value !== undefined ? value : null;
   }
 
-  async set(key, value) {
+  async set(key: string, value: string): Promise<void> {
     await this._initIfRequired();
     this._asyncState[key] = value;
   }
 
-  async delete(key) {
+  async delete(key: string): Promise<void> {
     await this._initIfRequired();
     delete this._asyncState[key];
   }
 
-  async clearAll() {
+  async clearAll(): Promise<void> {
     await this._initIfRequired();
     delete this._asyncState;
   }
 
-  async getAllKeys() {
+  async getAllKeys(): Promise<string[]> {
     await this._initIfRequired();
     return Object.keys(this._asyncState || {});
   }
 
-  async multiGet(keys) {
+  async multiGet(keys: string[]): Promise<[string, string | null][]> {
     await this._initIfRequired();
     return keys.map((key) => [key, this._asyncState?.[key] ?? null]);
   }
 
-  async _initIfRequired() {
+  async _initIfRequired(): Promise<void> {
     if (!this._initialized) {
       await this._init();
     }
   }
 
-  async _init() {
+  async _init(): Promise<void> {
     // Dynamically get the port (works on iOS via LaunchArgs, fallback on Android)
     const port = getFixturesServerPortInApp();
     const isAndroid = Platform.OS === 'android';
